@@ -1,6 +1,6 @@
 .section {
-  padding: 88px 0;
-  border-bottom: 1px solid var(--color-hairline);
+  position: relative;
+  padding: 56px 0;
 }
 
 .headingRow {
@@ -12,12 +12,6 @@
 
 .heading {
   margin-bottom: 0;
-}
-
-.vessel {
-  width: 84px;
-  height: 24px;
-  flex-shrink: 0;
 }
 
 .status {
