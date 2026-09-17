@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DEVPOST_URL, navLinks } from "../content/content";
-import { FusionMark } from "../illustrations/FusionMark";
+import { ReachMark } from "../illustrations/ReachMark";
 import styles from "./Nav.module.css";
 
 export function Nav() {
@@ -10,7 +10,7 @@ export function Nav() {
     <header className={styles.nav}>
       <div className={styles.inner}>
         <a className={styles.brand} href="#top">
-          <FusionMark className={styles.brandMark} variant="compact" />
+          <ReachMark className={styles.brandMark} />
           UnivaBio
         </a>
 
@@ -22,7 +22,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <a className={`btn ${styles.navCta}`} href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
+        <a className={`btn glow ${styles.navCta}`} href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
           Register
         </a>
 
@@ -44,7 +44,7 @@ export function Nav() {
             {link.label}
           </a>
         ))}
-        <a className={`btn ${styles.cta}`} href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
+        <a className={`btn glow ${styles.cta}`} href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
           Register on Devpost
         </a>
       </div>
