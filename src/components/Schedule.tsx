@@ -1,6 +1,7 @@
 import { scheduleEvents } from "../content/content";
-import { ScheduleVessel } from "../illustrations/ScheduleVessel";
+import { ParticleField } from "../illustrations/ParticleField";
 import { useScheduleStatus } from "../hooks/useScheduleStatus";
+import { Scrim } from "./Scrim";
 import styles from "./Schedule.module.css";
 
 export function Schedule() {
@@ -8,10 +9,10 @@ export function Schedule() {
 
   return (
     <section className={styles.section} id="schedule">
-      <div className="container">
+      <ParticleField density={0.12} opacity={0.35} entrance={false} seed={22} />
+      <Scrim>
         <div className={styles.headingRow}>
           <h2 className={styles.heading}>Schedule</h2>
-          <ScheduleVessel className={styles.vessel} />
         </div>
         <p className={styles.status}>{message}</p>
 
@@ -23,7 +24,7 @@ export function Schedule() {
             </div>
           ))}
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
