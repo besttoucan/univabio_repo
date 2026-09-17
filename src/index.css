@@ -1,31 +1,36 @@
 /*
   Design rationale
   ----------------
-  v9 course-corrects v8: v8's 3-color-only rule made the page read as gray and
-  unfinished, not "clean." The fix isn't less color, it's *disciplined* color —
-  a curated 5-color semantic illustration palette (see src/illustrations/theme.ts,
-  kept in sync with the tokens below), used the same way everywhere it appears:
-  teal for biological structures, coral for vascular/connective imagery, blue for
-  circuit/data structures, violet for the moments biology becomes signal, amber
-  used sparingly for highlights. Page chrome — nav, body text, buttons, hairline
-  rules — stays plain ink-on-paper on purpose, so the illustrations (hero
-  centerpiece, section icons, schedule/prize/FAQ artwork) read as the featured
-  content rather than competing with everything else for attention.
+  v10-v12 built a dark atmospheric world from procedural line art and, later,
+  crops of a sourced reference image, with content floating over it in
+  translucent glass panels. v15 replaces that scene entirely: the visuals
+  are now particles and ASCII characters sampled directly from a reference
+  image's own bright pixels (see src/assets/scene/referencePoints.ts,
+  referenceAscii.ts, src/illustrations/ParticleField.tsx, AsciiField.tsx),
+  classified organic (warm root tones) vs. circuit (green/cyan board-trace
+  tones) by hue. Glass panels are gone too — src/components/Scrim.tsx is a
+  plain dark gradient behind text, since the sparser particle fields don't
+  need blur to stay legible. The palette itself (below) still traces back to
+  v12's color-sampling pass and is unchanged by v15.
 */
 
 :root {
-  --color-paper: #f6f5f0;
-  --color-ink: #15140f;
-  --color-ink-dim: #4a473e;
-  --color-ink-faint: #8c8879;
-  --color-accent: #2f5fd6;
-  --color-hairline: #ddd9cb;
+  --color-paper: #05072a;
+  --color-ink: #eef1fb;
+  --color-ink-dim: #b7c0e0;
+  --color-ink-faint: #6b7396;
+  --color-accent: #4f7fe0;
+  --color-hairline: rgba(200, 215, 255, 0.14);
 
-  --color-bio: #1f7a5c;
-  --color-vascular: #e0524a;
-  --color-circuit: #2f5fd6;
-  --color-fusion: #7c4fd6;
-  --color-highlight: #e2a02c;
+  --color-bio: #55d98f;
+  --color-vascular: #67e0c9;
+  --color-circuit: #4f7fe0;
+  --color-fusion: #3f9fc9;
+  --color-highlight: #ffb454;
+
+  --color-glass-bg: rgba(10, 14, 40, 0.55);
+  --color-glass-border: rgba(200, 215, 255, 0.14);
+  --glow-color-rgb: 255, 180, 84;
 
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -50,6 +55,7 @@ body {
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -113,7 +119,7 @@ button {
   font-size: 0.95rem;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn:hover {
@@ -140,6 +146,25 @@ button {
   border: none;
   border-top: 1px solid var(--color-hairline);
   margin: 0;
+}
+
+/* ============ Glow — reserved for a small number of true focal points ============ */
+.glow {
+  box-shadow:
+    0 0 0 1px rgba(var(--glow-color-rgb), 0.4),
+    0 0 18px 2px rgba(var(--glow-color-rgb), 0.5),
+    0 0 46px 10px rgba(var(--glow-color-rgb), 0.25);
+}
+
+.glow:hover {
+  box-shadow:
+    0 0 0 1px rgba(var(--glow-color-rgb), 0.55),
+    0 0 24px 4px rgba(var(--glow-color-rgb), 0.65),
+    0 0 60px 16px rgba(var(--glow-color-rgb), 0.35);
+}
+
+.glow-text {
+  text-shadow: 0 0 22px rgba(var(--glow-color-rgb), 0.6), 0 0 46px rgba(var(--glow-color-rgb), 0.3);
 }
 
 @media (max-width: 640px) {
