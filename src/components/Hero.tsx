@@ -1,16 +1,32 @@
 import { DEVPOST_URL, heroFacts } from "../content/content";
-import { FusionMark } from "../illustrations/FusionMark";
-import { HeroCenterpiece } from "../illustrations/HeroCenterpiece";
+import { ParticleField } from "../illustrations/ParticleField";
+import { buildReachMotif } from "../illustrations/reachMotif";
+import { ReachMark } from "../illustrations/ReachMark";
+import { Scrim } from "./Scrim";
 import styles from "./Hero.module.css";
+
+const reach = buildReachMotif();
 
 export function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <div className={`container ${styles.grid}`}>
+      <ParticleField
+        style={{ top: "auto", bottom: 0, height: "56%", minHeight: 260 }}
+        sourceOrganic={reach.organic}
+        sourceCircuit={reach.circuit}
+        edgeMode="sides"
+        spark={reach.gap}
+        density={1}
+        focalFraction={0}
+        entrance
+        entranceDurationMs={3200}
+        seed={5}
+      />
+      <Scrim className={styles.grid}>
         <div>
           <p className={`label ${styles.eyebrow}`}>BioCataalysis × UnivaDev</p>
           <div className={styles.headlineRow}>
-            <FusionMark className={styles.mark} variant="full" />
+            <ReachMark className={styles.mark} />
             <h1 className={styles.headline}>UnivaBio</h1>
           </div>
           <p className={styles.themeLine}>Artificial Intelligence for Human Health</p>
@@ -19,7 +35,7 @@ export function Hero() {
             make healthcare smarter, earlier, and more accessible.
           </p>
           <div className={styles.ctas}>
-            <a className="btn" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
+            <a className="btn glow" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
               Register on Devpost
             </a>
             <a className="btn btn-quiet" href="#schedule">
@@ -29,7 +45,6 @@ export function Hero() {
         </div>
 
         <div className={styles.side}>
-          <HeroCenterpiece className={styles.centerpiece} />
           <div className={styles.facts}>
             {heroFacts.map((fact) => (
               <div className={styles.fact} key={fact.label}>
@@ -40,7 +55,7 @@ export function Hero() {
             <p className={styles.footnote}>Non-cash prizes — sponsor credits, subscriptions & licenses.</p>
           </div>
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
