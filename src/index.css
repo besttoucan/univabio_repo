@@ -1,47 +1,37 @@
 /*
   Design rationale
   ----------------
-  Cal Hacks energy, UnivaBio theme: a warm cream base with bright section-to-section
-  color bands (sky blue, mint, peach, lavender, sun yellow) instead of one flat
-  background, a bold rounded display face for headlines, gradient pill buttons, and
-  a recurring illustrated "cell" mascot + floating bio/AI iconography standing in
-  for Cal Hacks' cloud characters — playful and colorful, but drawn from this
-  hackathon's own subject (cells, DNA, pulse lines, circuitry) rather than sky/clouds.
+  v9 course-corrects v8: v8's 3-color-only rule made the page read as gray and
+  unfinished, not "clean." The fix isn't less color, it's *disciplined* color —
+  a curated 5-color semantic illustration palette (see src/illustrations/theme.ts,
+  kept in sync with the tokens below), used the same way everywhere it appears:
+  teal for biological structures, coral for vascular/connective imagery, blue for
+  circuit/data structures, violet for the moments biology becomes signal, amber
+  used sparingly for highlights. Page chrome — nav, body text, buttons, hairline
+  rules — stays plain ink-on-paper on purpose, so the illustrations (hero
+  centerpiece, section icons, schedule/prize/FAQ artwork) read as the featured
+  content rather than competing with everything else for attention.
 */
 
 :root {
-  --color-bg: #fffaf1;
-  --color-ink: #1c1440;
-  --color-ink-dim: #4a4270;
-  --color-ink-faint: #8b84ab;
-  --color-hairline: #e7dfca;
+  --color-paper: #f6f5f0;
+  --color-ink: #15140f;
+  --color-ink-dim: #4a473e;
+  --color-ink-faint: #8c8879;
+  --color-accent: #2f5fd6;
+  --color-hairline: #ddd9cb;
 
-  --color-coral: #ff6f81;
-  --color-coral-dark: #e14f63;
-  --color-blue: #4d8af0;
-  --color-blue-dark: #2f68d6;
-  --color-mint: #21c88e;
-  --color-mint-dark: #12a473;
-  --color-yellow: #ffc247;
-  --color-yellow-dark: #f2a30f;
-  --color-violet: #8b5cf6;
-  --color-violet-dark: #6d3ff0;
+  --color-bio: #1f7a5c;
+  --color-vascular: #e0524a;
+  --color-circuit: #2f5fd6;
+  --color-fusion: #7c4fd6;
+  --color-highlight: #e2a02c;
 
-  --band-sky: #eaf4ff;
-  --band-mint: #e6fbf3;
-  --band-peach: #fff1e2;
-  --band-lavender: #f2ecff;
-  --band-sun: #fff8df;
-
-  --font-display: "Fredoka", ui-rounded, "Segoe UI", sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --container-w: 1180px;
   --measure: 640px;
-  --radius-lg: 28px;
-  --radius-md: 18px;
-  --shadow-card: 0 10px 30px -12px rgba(28, 20, 64, 0.18);
-  --shadow-pop: 0 14px 34px -10px rgba(28, 20, 64, 0.28);
 }
 
 * {
@@ -54,7 +44,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 17px;
@@ -64,15 +54,15 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.01em;
   margin: 0;
   color: var(--color-ink);
 }
 
-h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
-h3 { font-size: 1.2rem; }
+h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+h3 { font-size: 1.15rem; }
 
 p {
   margin: 0;
@@ -81,7 +71,7 @@ p {
 }
 
 a {
-  color: var(--color-blue-dark);
+  color: var(--color-accent);
 }
 
 ul, ol {
@@ -101,48 +91,49 @@ button {
 }
 
 .label {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--color-violet);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
 }
 
-/* ============ Buttons ============ */
+/* ============ Buttons — hairline, no gradient ============ */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 28px;
-  border-radius: 999px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--color-coral), var(--color-violet));
-  font-family: var(--font-display);
+  padding: 12px 24px;
+  border: 1px solid var(--color-ink);
+  border-radius: 2px;
+  color: var(--color-ink);
+  background: transparent;
   font-weight: 600;
-  font-size: 1rem;
-  border: none;
+  font-size: 0.95rem;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: var(--shadow-pop);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 18px 40px -10px rgba(28, 20, 64, 0.34);
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 .btn-quiet {
-  background: none;
-  box-shadow: none;
-  color: var(--color-ink);
-  padding: 14px 0;
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-hairline);
 }
 
 .btn-quiet:hover {
-  transform: none;
-  color: var(--color-violet);
-  box-shadow: none;
+  background: transparent;
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
 }
 
 .rule {

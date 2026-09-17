@@ -8,12 +8,10 @@ export interface IconBadgeProps {
   className?: string;
 }
 
+/** One consistent badge treatment (rounded square, one semantic color, flat white glyph) for every section icon. */
 export function IconBadge({ icon: Icon, color, size = "md", className }: IconBadgeProps) {
   return (
-    <span
-      className={`${styles.badge} ${size === "sm" ? styles.sm : ""} ${className ?? ""}`}
-      style={{ background: color }}
-    >
+    <span className={`${styles.badge} ${size === "sm" ? styles.sm : ""} ${className ?? ""}`} style={{ background: color }}>
       <Icon />
     </span>
   );
