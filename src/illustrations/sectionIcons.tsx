@@ -5,7 +5,7 @@ type IconProps = SVGProps<SVGSVGElement>;
 const base = {
   viewBox: "0 0 24 24",
   fill: "none",
-  stroke: "#f6f5f0",
+  stroke: "currentColor",
   strokeWidth: 1.7,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
@@ -61,7 +61,7 @@ export function IconPlay(props: IconProps) {
   return (
     <svg {...base} {...props}>
       <circle cx="12" cy="12" r="9" />
-      <path d="M10 8.5v7l6-3.5-6-3.5Z" fill="#f6f5f0" stroke="none" />
+      <path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor" stroke="none" />
     </svg>
   );
 }
