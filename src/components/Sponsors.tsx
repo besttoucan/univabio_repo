@@ -1,17 +1,16 @@
 import { sponsors } from "../content/content";
-import { SponsorFusionMark } from "../illustrations/SponsorFusionMark";
+import { Scrim } from "./Scrim";
 import styles from "./Sponsors.module.css";
 
 export function Sponsors() {
   return (
     <section className={styles.section} id="sponsors">
-      <div className="container">
+      <Scrim>
         <div className={styles.headingRow}>
           <div>
             <h2 className={styles.heading}>Sponsors</h2>
             <p className={styles.intro}>The prizes above are made possible by these partners.</p>
           </div>
-          <SponsorFusionMark className={styles.mark} />
         </div>
 
         <div className={styles.row}>
@@ -33,7 +32,7 @@ export function Sponsors() {
             ),
           )}
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
