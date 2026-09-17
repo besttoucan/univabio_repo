@@ -1,5 +1,6 @@
 .section {
-  padding: 88px 0;
+  position: relative;
+  padding: 56px 0;
 }
 
 .heading {
