@@ -1,0 +1,82 @@
+.section {
+  position: relative;
+  padding: 96px 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  top: -80px;
+  right: -100px;
+  width: 380px;
+  height: 380px;
+  z-index: 0;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 56px;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+.intro {
+  font-size: 1.02rem;
+}
+
+.note {
+  margin-top: 28px;
+  padding: 20px 22px;
+  background: var(--band-peach);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+}
+
+.note strong {
+  color: var(--color-ink);
+}
+
+.examplesLabel {
+  margin-bottom: 16px;
+  display: block;
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.examples li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-ink);
+  max-width: none;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

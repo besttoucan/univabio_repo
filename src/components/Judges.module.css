@@ -1,0 +1,42 @@
+.section {
+  position: relative;
+  padding: 110px 0;
+  text-align: center;
+  background: var(--band-sun);
+  overflow: hidden;
+}
+
+.critterA {
+  position: absolute;
+  top: 14%;
+  left: 8%;
+  width: 68px;
+  height: 74px;
+}
+
+.critterB {
+  position: absolute;
+  bottom: 12%;
+  right: 10%;
+  width: 60px;
+  height: 66px;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.statement {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  max-width: 18ch;
+  margin: 0 auto 32px;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.highlight {
+  color: var(--color-violet);
+}

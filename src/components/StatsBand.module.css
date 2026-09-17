@@ -1,0 +1,55 @@
+.band {
+  background: var(--band-mint);
+  padding: 64px 0 48px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat {
+  background: #fff;
+  border-radius: var(--radius-md);
+  border-top: 5px solid;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+}
+
+.label {
+  display: block;
+  color: var(--color-ink-dim);
+  margin-top: 6px;
+  text-transform: none;
+  font-weight: 600;
+}
+
+.asOf {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-ink-faint);
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+.footnote {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-ink-faint);
+  margin: 28px auto 0;
+}
+
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

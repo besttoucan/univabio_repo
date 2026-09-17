@@ -1,0 +1,42 @@
+.section {
+  padding: 96px 0;
+}
+
+.heading {
+  margin-bottom: 8px;
+}
+
+.intro {
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: transform 0.18s ease;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
