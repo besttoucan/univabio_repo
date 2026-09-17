@@ -1,6 +1,18 @@
 .section {
   position: relative;
   padding: 56px 0;
+  overflow: hidden;
+}
+
+.comet {
+  position: absolute;
+  z-index: 0;
+  top: 14%;
+  right: 4%;
+  width: 100px;
+  height: 34px;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .headingRow {
