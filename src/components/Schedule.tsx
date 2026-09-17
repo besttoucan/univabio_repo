@@ -1,4 +1,5 @@
 import { scheduleEvents } from "../content/content";
+import { ScheduleVessel } from "../illustrations/ScheduleVessel";
 import { useScheduleStatus } from "../hooks/useScheduleStatus";
 import styles from "./Schedule.module.css";
 
@@ -8,7 +9,10 @@ export function Schedule() {
   return (
     <section className={styles.section} id="schedule">
       <div className="container">
-        <h2 className={styles.heading}>Schedule</h2>
+        <div className={styles.headingRow}>
+          <h2 className={styles.heading}>Schedule</h2>
+          <ScheduleVessel className={styles.vessel} />
+        </div>
         <p className={styles.status}>{message}</p>
 
         <div className={styles.list}>

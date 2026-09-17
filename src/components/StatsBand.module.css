@@ -1,55 +1,66 @@
 .band {
-  background: var(--band-mint);
-  padding: 64px 0 48px;
+  background: var(--color-paper);
+  border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+  padding: 56px 0 40px;
 }
 
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 0;
 }
 
 .stat {
-  background: #fff;
-  border-radius: var(--radius-md);
-  border-top: 5px solid;
-  padding: 26px 22px;
-  text-align: center;
-  box-shadow: var(--shadow-card);
+  padding: 0 28px;
+  border-left: 1px solid var(--color-hairline);
+  text-align: left;
+}
+
+.stat:first-child {
+  border-left: none;
+  padding-left: 0;
 }
 
 .value {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.6vw, 2.5rem);
-  font-weight: 700;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  color: var(--color-ink);
 }
 
 .label {
   display: block;
-  color: var(--color-ink-dim);
-  margin-top: 6px;
-  text-transform: none;
-  font-weight: 600;
+  margin-top: 4px;
 }
 
 .asOf {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--color-ink-faint);
-  font-weight: 500;
-  margin-top: 3px;
+  margin-top: 2px;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
 }
 
 .footnote {
-  text-align: center;
+  margin: 24px auto 0;
   font-size: 0.8rem;
   color: var(--color-ink-faint);
-  margin: 28px auto 0;
 }
 
 @media (max-width: 760px) {
   .row {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px 0;
+  }
+  .stat:nth-child(2) {
+    border-left: 1px solid var(--color-hairline);
+    padding-left: 28px;
+  }
+  .stat:nth-child(3) {
+    border-left: none;
+    padding-left: 0;
   }
 }

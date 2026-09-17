@@ -1,29 +1,25 @@
 import { sponsors } from "../content/content";
+import { SponsorFusionMark } from "../illustrations/SponsorFusionMark";
 import styles from "./Sponsors.module.css";
-
-const tileColors = [
-  "var(--band-sky)",
-  "var(--band-mint)",
-  "var(--band-peach)",
-  "var(--band-lavender)",
-  "var(--band-sun)",
-];
 
 export function Sponsors() {
   return (
     <section className={styles.section} id="sponsors">
       <div className="container">
-        <h2 className={styles.heading}>Sponsors</h2>
-        <p className={styles.intro}>The prizes above are made possible by these partners.</p>
+        <div className={styles.headingRow}>
+          <div>
+            <h2 className={styles.heading}>Sponsors</h2>
+            <p className={styles.intro}>The prizes above are made possible by these partners.</p>
+          </div>
+          <SponsorFusionMark className={styles.mark} />
+        </div>
 
-        <div className={styles.grid}>
-          {sponsors.map((sponsor, i) => {
-            const style = { background: tileColors[i % tileColors.length] };
-            return sponsor.href ? (
+        <div className={styles.row}>
+          {sponsors.map((sponsor) =>
+            sponsor.href ? (
               <a
                 key={sponsor.name}
                 className={styles.item}
-                style={style}
                 href={sponsor.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -31,11 +27,11 @@ export function Sponsors() {
                 {sponsor.name}
               </a>
             ) : (
-              <span key={sponsor.name} className={styles.item} style={style}>
+              <span key={sponsor.name} className={styles.item}>
                 {sponsor.name}
               </span>
-            );
-          })}
+            ),
+          )}
         </div>
       </div>
     </section>

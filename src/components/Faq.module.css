@@ -1,10 +1,9 @@
 .section {
-  padding: 96px 0;
-  background: var(--band-sky);
+  padding: 88px 0;
 }
 
 .heading {
-  margin-bottom: 44px;
+  margin-bottom: 48px;
 }
 
 .groups {
@@ -14,23 +13,23 @@
 }
 
 .groupTitle {
-  padding-top: 4px;
-  color: var(--color-violet);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--color-ink);
+}
+
+.groupTitle h3 {
+  margin: 0;
 }
 
 .groupItems {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: 6px 24px;
-  box-shadow: var(--shadow-card);
+  border-top: 1px solid var(--color-ink);
 }
 
 .item {
   border-bottom: 1px solid var(--color-hairline);
-}
-
-.item:last-child {
-  border-bottom: none;
 }
 
 .question {
@@ -44,22 +43,23 @@
   text-align: left;
   font-family: var(--font-body);
   font-size: 1.02rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-ink);
-  padding: 20px 0;
+  padding: 22px 0;
   cursor: pointer;
 }
 
 .icon {
   flex-shrink: 0;
   font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--color-violet);
+  font-size: 1.2rem;
+  color: var(--color-ink-faint);
   transition: transform 0.2s ease;
 }
 
 .question[aria-expanded="true"] .icon {
   transform: rotate(45deg);
+  color: var(--color-accent);
 }
 
 .answer {
@@ -73,7 +73,7 @@
 }
 
 .answer p {
-  padding: 0 0 20px;
+  padding: 0 0 22px;
   font-size: 0.96rem;
 }
 
@@ -83,7 +83,7 @@
     gap: 8px 0;
   }
   .groupTitle {
-    margin-top: 24px;
+    margin-top: 28px;
   }
   .groupTitle:first-child {
     margin-top: 0;

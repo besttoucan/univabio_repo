@@ -1,14 +1,9 @@
 import { prizes } from "../content/content";
-import { IconCapsule, IconRibbon } from "../illustrations/icons";
+import { PrizeNodeCluster } from "../illustrations/PrizeNodeCluster";
 import styles from "./Prizes.module.css";
 
-const tierColors = [
-  "var(--color-yellow)",
-  "var(--color-blue)",
-  "var(--color-coral)",
-  "var(--color-mint)",
-  "var(--color-violet)",
-];
+const tierColors = ["var(--color-fusion)", "var(--color-circuit)", "var(--color-bio)"];
+const tierDensity = [3, 2, 1];
 
 export function Prizes() {
   return (
@@ -20,26 +15,39 @@ export function Prizes() {
           licenses, matching Devpost's official prize disclosures.
         </p>
 
-        <div className={styles.grid}>
-          {prizes.map((prize, i) => {
-            const color = tierColors[i % tierColors.length];
-            const Icon = i < 3 ? IconRibbon : IconCapsule;
-            return (
-              <div className={`${styles.card} ${i === 0 ? styles.featured : ""}`} key={prize.rank}>
-                <span className={styles.iconWrap} style={{ background: color }}>
-                  <Icon />
-                </span>
-                <span className={styles.rank}>{prize.rank}</span>
-                <span className={styles.winners}>{prize.winners}</span>
-                <ul className={styles.items}>
-                  {prize.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Included</th>
+            </tr>
+          </thead>
+          <tbody>
+            {prizes.map((prize, i) => (
+              <tr key={prize.rank}>
+                <td>
+                  {i < 3 && (
+                    <PrizeNodeCluster
+                      className={styles.node}
+                      seed={400 + i}
+                      color={tierColors[i]}
+                      density={tierDensity[i]}
+                    />
+                  )}
+                  <span className={styles.rank}>{prize.rank}</span>
+                  <span className={styles.winners}>{prize.winners}</span>
+                </td>
+                <td>
+                  <ul className={styles.items}>
+                    {prize.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );

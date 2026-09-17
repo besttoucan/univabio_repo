@@ -1,165 +1,117 @@
 .hero {
   position: relative;
-  padding: 90px 0 100px;
+  padding: 88px 0 72px;
+  border-bottom: 1px solid var(--color-hairline);
   overflow: hidden;
-  background: linear-gradient(180deg, var(--band-sky) 0%, #fdf9ee 100%);
-  border-bottom: 4px solid #fff;
-}
-
-.scene {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.blobA {
-  position: absolute;
-  top: -60px;
-  right: -40px;
-  width: 340px;
-  height: 340px;
-  opacity: 0.9;
-}
-
-.blobB {
-  position: absolute;
-  bottom: -90px;
-  left: -60px;
-  width: 300px;
-  height: 300px;
-  opacity: 0.85;
-}
-
-.critterA {
-  position: absolute;
-  top: 18%;
-  right: 8%;
-  width: 74px;
-  height: 80px;
-  filter: drop-shadow(0 10px 16px rgba(28, 20, 64, 0.15));
-}
-
-.critterB {
-  position: absolute;
-  bottom: 8%;
-  right: 20%;
-  width: 56px;
-  height: 60px;
-  filter: drop-shadow(0 8px 14px rgba(28, 20, 64, 0.12));
-}
-
-.dna {
-  position: absolute;
-  bottom: 12%;
-  left: 4%;
-  width: 46px;
-  height: 46px;
-  color: var(--color-blue);
-  opacity: 0.55;
 }
 
 .grid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 48px;
   align-items: start;
 }
 
 .eyebrow {
-  display: inline-block;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
+}
+
+.headlineRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0.15em;
+}
+
+.mark {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
 }
 
 .headline {
-  font-size: clamp(3.2rem, 7.5vw, 5.6rem);
+  font-size: clamp(2.7rem, 6vw, 4.6rem);
   max-width: 12ch;
-  margin-bottom: 0.12em;
-  background: linear-gradient(120deg, var(--color-violet), var(--color-coral));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  margin: 0;
 }
 
 .themeLine {
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
-  font-weight: 500;
-  color: var(--color-ink);
-  margin-bottom: 22px;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 400;
+  color: var(--color-ink-dim);
+  margin-bottom: 26px;
 }
 
 .tagline {
-  font-size: 1.08rem;
+  font-size: 1.03rem;
   margin-bottom: 36px;
 }
 
 .ctas {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 28px;
   flex-wrap: wrap;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.centerpiece {
+  width: 100%;
+  aspect-ratio: 1 / 0.82;
+  max-width: 340px;
+  align-self: center;
 }
 
 .facts {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-card);
 }
 
 .fact {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 8px 4px;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-hairline);
+}
+
+.fact:last-child {
+  border-bottom: 1px solid var(--color-hairline);
 }
 
 .factLabel {
   display: block;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-ink-faint);
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 
 .factValue {
   display: block;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
 }
 
 .footnote {
-  margin: 4px 4px 0;
-  font-size: 0.78rem;
+  margin-top: 14px;
+  font-size: 0.8rem;
   color: var(--color-ink-faint);
 }
 
 @media (max-width: 860px) {
   .hero {
-    padding: 64px 0 56px;
+    padding: 60px 0 52px;
   }
   .grid {
     grid-template-columns: 1fr;
     gap: 36px;
   }
-  .critterA,
-  .critterB,
-  .dna {
-    display: none;
-  }
-  .blobA,
-  .blobB {
-    width: 220px;
-    height: 220px;
+  .centerpiece {
+    max-width: 280px;
+    align-self: flex-start;
   }
 }

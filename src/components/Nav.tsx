@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DEVPOST_URL, navLinks } from "../content/content";
-import { CellCharacter } from "../illustrations/CellCharacter";
+import { FusionMark } from "../illustrations/FusionMark";
 import styles from "./Nav.module.css";
 
 export function Nav() {
@@ -10,7 +10,7 @@ export function Nav() {
     <header className={styles.nav}>
       <div className={styles.inner}>
         <a className={styles.brand} href="#top">
-          <CellCharacter className={styles.brandMark} color="var(--color-mint)" />
+          <FusionMark className={styles.brandMark} variant="compact" />
           UnivaBio
         </a>
 

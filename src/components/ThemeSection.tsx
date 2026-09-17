@@ -1,13 +1,18 @@
 import { themeExamples } from "../content/content";
-import { Blob } from "../illustrations/Blob";
+import { MembraneThreshold } from "../illustrations/MembraneThreshold";
 import styles from "./ThemeSection.module.css";
 
-const exampleColors = ["var(--color-coral)", "var(--color-blue)", "var(--color-mint)", "var(--color-violet)"];
+const exampleColors = [
+  "var(--color-bio)",
+  "var(--color-circuit)",
+  "var(--color-vascular)",
+  "var(--color-fusion)",
+];
 
 export function ThemeSection() {
   return (
     <section className={styles.section} id="theme">
-      <Blob className={styles.blob} id="theme-blob" colorA="#f2ecff" colorB="#e5d9ff" rotate={35} />
+      <MembraneThreshold opacity={0.65} />
       <div className={`container ${styles.grid}`}>
         <div>
           <h2 className={styles.heading}>The challenge</h2>
@@ -28,10 +33,7 @@ export function ThemeSection() {
           <ul className={styles.examples}>
             {themeExamples.map((example, i) => (
               <li key={example}>
-                <span
-                  className={styles.dot}
-                  style={{ background: exampleColors[i % exampleColors.length] }}
-                />
+                <span className={styles.dot} style={{ background: exampleColors[i % exampleColors.length] }} />
                 {example}
               </li>
             ))}

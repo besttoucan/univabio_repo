@@ -2,10 +2,10 @@ import { DEVPOST_URL } from "../content/content";
 import styles from "./StatsBand.module.css";
 
 const stats = [
-  { value: "$40,000", label: "In prizes, non-cash", color: "var(--color-coral)" },
-  { value: "555+", label: "Hackers registered", asOf: "as of Sep 17, 2026", color: "var(--color-blue)" },
-  { value: "100%", label: "Online & global", color: "var(--color-mint)" },
-  { value: "13+", label: "Minimum age to join", color: "var(--color-violet)" },
+  { value: "$40,000", label: "In prizes, non-cash", color: "var(--color-highlight)" },
+  { value: "555+", label: "Hackers registered", asOf: "as of Sep 17, 2026", color: "var(--color-vascular)" },
+  { value: "100%", label: "Online & global", color: "var(--color-circuit)" },
+  { value: "13+", label: "Minimum age to join", color: "var(--color-bio)" },
 ];
 
 export function StatsBand() {
@@ -13,7 +13,7 @@ export function StatsBand() {
     <section className={styles.band} aria-label="Event stats">
       <div className={`container ${styles.row}`}>
         {stats.map((stat) => (
-          <div className={styles.stat} key={stat.label} style={{ borderTopColor: stat.color }}>
+          <div className={styles.stat} key={stat.label}>
             <span className={styles.value} style={{ color: stat.color }}>
               {stat.value}
             </span>

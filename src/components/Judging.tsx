@@ -1,15 +1,15 @@
 import { judgingCriteria } from "../content/content";
 import { IconBadge } from "../illustrations/IconBadge";
-import { IconChip, IconHandshake, IconLayers, IconPulse, IconSparkle } from "../illustrations/icons";
+import { IconChip, IconLayers, IconMegaphone, IconPulse, IconSparkle } from "../illustrations/sectionIcons";
 import styles from "./Judging.module.css";
 
-const criteriaIcons = [IconSparkle, IconChip, IconPulse, IconLayers, IconHandshake];
+const criteriaIcons = [IconSparkle, IconChip, IconPulse, IconLayers, IconMegaphone];
 const criteriaColors = [
-  "var(--color-violet)",
-  "var(--color-blue)",
-  "var(--color-coral)",
-  "var(--color-mint)",
-  "var(--color-yellow-dark)",
+  "var(--color-fusion)",
+  "var(--color-circuit)",
+  "var(--color-vascular)",
+  "var(--color-highlight)",
+  "var(--color-bio)",
 ];
 
 export function Judging() {
@@ -18,7 +18,7 @@ export function Judging() {
       <div className="container">
         <h2 className={styles.heading}>How projects are judged</h2>
 
-        <div className={styles.grid}>
+        <div className={styles.scroller}>
           {judgingCriteria.map((criterion, i) => (
             <div className={styles.item} key={criterion.title}>
               <IconBadge icon={criteriaIcons[i]} color={criteriaColors[i]} size="sm" />
