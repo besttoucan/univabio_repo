@@ -1,27 +1,17 @@
 import { DEVPOST_URL, heroFacts } from "../content/content";
-import { ParticleField } from "../illustrations/ParticleField";
-import { buildReachMotif } from "../illustrations/reachMotif";
+import { CellPlanet } from "../illustrations/objects/CellPlanet";
+import { MitochondriaMoon } from "../illustrations/objects/MitochondriaMoon";
+import { ProbeShip } from "../illustrations/objects/ProbeShip";
 import { ReachMark } from "../illustrations/ReachMark";
 import { Scrim } from "./Scrim";
 import styles from "./Hero.module.css";
 
-const reach = buildReachMotif();
-
 export function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <ParticleField
-        style={{ top: "auto", bottom: 0, height: "56%", minHeight: 260 }}
-        sourceOrganic={reach.organic}
-        sourceCircuit={reach.circuit}
-        edgeMode="sides"
-        spark={reach.gap}
-        density={1}
-        focalFraction={0}
-        entrance
-        entranceDurationMs={3200}
-        seed={5}
-      />
+      <CellPlanet className={styles.cellPlanet} />
+      <MitochondriaMoon className={styles.mitoMoon} />
+      <ProbeShip className={styles.distantShip} heading={-20} trail={false} />
       <Scrim className={styles.grid}>
         <div>
           <p className={`label ${styles.eyebrow}`}>BioCataalysis × UnivaDev</p>
