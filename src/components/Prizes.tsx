@@ -1,12 +1,10 @@
 import { prizes } from "../content/content";
-import { ParticleField } from "../illustrations/ParticleField";
 import { Scrim } from "./Scrim";
 import styles from "./Prizes.module.css";
 
 export function Prizes() {
   return (
     <section className={styles.section} id="prizes">
-      <ParticleField density={0.12} opacity={0.35} entrance={false} seed={23} />
       <Scrim>
         <h2 className={styles.heading}>Prizes</h2>
         <p className={styles.intro}>
