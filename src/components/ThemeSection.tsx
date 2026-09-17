@@ -1,5 +1,6 @@
 import { themeExamples } from "../content/content";
 import { AsciiField } from "../illustrations/AsciiField";
+import { ProbeShip } from "../illustrations/objects/ProbeShip";
 import { Scrim } from "./Scrim";
 import styles from "./ThemeSection.module.css";
 
@@ -14,6 +15,7 @@ export function ThemeSection() {
   return (
     <section className={styles.section} id="theme">
       <AsciiField className={styles.ascii} />
+      <ProbeShip className={styles.ship} heading={-8} />
       <Scrim className={styles.grid}>
         <div>
           <h2 className={styles.heading}>The challenge</h2>
