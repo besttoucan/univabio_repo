@@ -1,6 +1,6 @@
 .finalCta {
-  padding: 100px 0;
-  border-top: 1px solid var(--color-hairline);
+  position: relative;
+  padding: 72px 0;
   text-align: left;
 }
 
@@ -26,7 +26,9 @@
 
 .footer {
   border-top: 1px solid var(--color-hairline);
-  background: var(--color-ink);
+  background: rgba(4, 6, 24, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 44px 0;
 }
 
@@ -38,14 +40,23 @@
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-display);
   font-size: 1.05rem;
-  color: var(--color-paper);
+  color: var(--color-ink);
   margin-right: auto;
 }
 
+.brandMark {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
 .credit {
-  color: rgba(246, 245, 240, 0.6);
+  color: var(--color-ink-dim);
   font-size: 0.85rem;
 }
 
@@ -56,17 +67,17 @@
 
 .links a {
   font-size: 0.85rem;
-  color: rgba(246, 245, 240, 0.78);
+  color: var(--color-ink-dim);
   text-decoration: none;
 }
 
 .links a:hover {
-  color: var(--color-paper);
+  color: var(--color-ink);
 }
 
 .copyright {
   width: 100%;
   margin-top: 10px;
   font-size: 0.78rem;
-  color: rgba(246, 245, 240, 0.45);
+  color: var(--color-ink-faint);
 }
