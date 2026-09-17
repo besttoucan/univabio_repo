@@ -1,7 +1,9 @@
 import { requirements } from "../content/content";
 import { IconBadge } from "../illustrations/IconBadge";
 import { OrganelleMarks } from "../illustrations/OrganelleMarks";
+import { ParticleField } from "../illustrations/ParticleField";
 import { IconCodeBracket, IconDocument, IconFolder, IconPlay } from "../illustrations/sectionIcons";
+import { Scrim } from "./Scrim";
 import styles from "./Requirements.module.css";
 
 const reqIcons = [IconFolder, IconPlay, IconDocument, IconCodeBracket];
@@ -10,8 +12,9 @@ const reqColors = ["var(--color-circuit)", "var(--color-vascular)", "var(--color
 export function Requirements() {
   return (
     <section className={styles.section} id="requirements">
+      <ParticleField density={0.12} opacity={0.35} entrance={false} seed={21} />
       <OrganelleMarks className={styles.marks} variant="a" />
-      <div className="container">
+      <Scrim>
         <h2 className={styles.heading}>What you'll submit</h2>
 
         <div className={styles.grid}>
@@ -23,7 +26,7 @@ export function Requirements() {
             </div>
           ))}
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
