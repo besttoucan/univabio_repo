@@ -1,0 +1,28 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.trail {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform-origin: right center;
+  translate: 0 -50%;
+  display: flex;
+  gap: 1px;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 8px;
+  color: var(--color-circuit);
+  text-shadow: 0 0 6px rgba(79, 127, 224, 0.6);
+  white-space: nowrap;
+  pointer-events: none;
+}
