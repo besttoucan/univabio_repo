@@ -1,5 +1,5 @@
 import { scheduleEvents } from "../content/content";
-import { ParticleField } from "../illustrations/ParticleField";
+import { DnaComet } from "../illustrations/objects/DnaComet";
 import { useScheduleStatus } from "../hooks/useScheduleStatus";
 import { Scrim } from "./Scrim";
 import styles from "./Schedule.module.css";
@@ -9,7 +9,7 @@ export function Schedule() {
 
   return (
     <section className={styles.section} id="schedule">
-      <ParticleField density={0.12} opacity={0.35} entrance={false} seed={22} />
+      <DnaComet className={styles.comet} />
       <Scrim>
         <div className={styles.headingRow}>
           <h2 className={styles.heading}>Schedule</h2>
