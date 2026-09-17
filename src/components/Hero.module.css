@@ -2,6 +2,40 @@
   position: relative;
   padding: 56px 0 40px;
   min-height: 560px;
+  overflow: hidden;
+}
+
+.cellPlanet {
+  position: absolute;
+  z-index: 0;
+  bottom: -12%;
+  right: -6%;
+  width: 34%;
+  max-width: 320px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mitoMoon {
+  position: absolute;
+  z-index: 0;
+  bottom: 6%;
+  right: 26%;
+  width: 14%;
+  max-width: 130px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.distantShip {
+  position: absolute;
+  z-index: 0;
+  top: 14%;
+  right: 8%;
+  width: 46px;
+  height: 23px;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .grid {
