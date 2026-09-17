@@ -1,5 +1,28 @@
 .band {
+  position: relative;
   padding: 56px 0;
+  overflow: hidden;
+}
+
+.belt {
+  position: absolute;
+  z-index: 0;
+  top: -6%;
+  left: 10%;
+  width: 60%;
+  max-width: 480px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.satellite {
+  position: absolute;
+  z-index: 0;
+  top: 12%;
+  right: 8%;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
 }
 
 .row {
