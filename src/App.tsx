@@ -11,10 +11,12 @@ import { Sponsors } from "./components/Sponsors";
 import { StatsBand } from "./components/StatsBand";
 import { ThemeSection } from "./components/ThemeSection";
 import { WhySection } from "./components/WhySection";
+import { GalaxyScene } from "./illustrations/galaxy/GalaxyScene";
 
 export function App() {
   return (
     <>
+      <GalaxyScene />
       <Nav />
       <main>
         <Hero />
