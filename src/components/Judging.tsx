@@ -1,5 +1,6 @@
 import { judgingCriteria } from "../content/content";
 import { IconBadge } from "../illustrations/IconBadge";
+import { ProbeShip } from "../illustrations/objects/ProbeShip";
 import { IconChip, IconLayers, IconMegaphone, IconPulse, IconSparkle } from "../illustrations/sectionIcons";
 import { Scrim } from "./Scrim";
 import styles from "./Judging.module.css";
@@ -16,6 +17,7 @@ const criteriaColors = [
 export function Judging() {
   return (
     <section className={styles.section} id="judging">
+      <ProbeShip className={styles.approachingShip} heading={12} />
       <Scrim>
         <h2 className={styles.heading}>How projects are judged</h2>
 
