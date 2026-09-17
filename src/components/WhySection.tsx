@@ -1,7 +1,7 @@
 import { whyPoints } from "../content/content";
-import { BranchLine } from "../illustrations/BranchLine";
 import { IconBadge } from "../illustrations/IconBadge";
 import { IconChip, IconGlobe, IconGradCap, IconSeedling } from "../illustrations/sectionIcons";
+import { Scrim } from "./Scrim";
 import styles from "./WhySection.module.css";
 
 const pointIcons = [IconSeedling, IconChip, IconGlobe, IconGradCap];
@@ -10,22 +10,7 @@ const pointColors = ["var(--color-bio)", "var(--color-circuit)", "var(--color-va
 export function WhySection() {
   return (
     <section className={styles.section} id="about">
-      <BranchLine
-        className={styles.scene}
-        originX={0.06}
-        originY={0.15}
-        initialAngleDeg={12}
-        depth={6}
-        branchLength={9}
-        angleJitterDeg={24}
-        branchProbability={0.42}
-        strokeWeight={1.3}
-        seed={101}
-        color="var(--color-vascular)"
-        accentNodeEvery={4}
-        accentColor="var(--color-fusion)"
-      />
-      <div className={`container ${styles.grid}`}>
+      <Scrim className={styles.grid}>
         <h2 className={styles.heading}>Who this is for</h2>
 
         <div className={styles.list}>
@@ -39,7 +24,7 @@ export function WhySection() {
             </div>
           ))}
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
