@@ -1,4 +1,7 @@
 import { DEVPOST_URL } from "../content/content";
+import { AntibodySatellite } from "../illustrations/objects/AntibodySatellite";
+import { BloodstreamBelt } from "../illustrations/objects/BloodstreamBelt";
+import { TelemetryLine } from "../illustrations/objects/TelemetryLine";
 import { Scrim } from "./Scrim";
 import styles from "./StatsBand.module.css";
 
@@ -12,9 +15,11 @@ const stats = [
 export function StatsBand() {
   return (
     <section className={styles.band} aria-label="Event stats">
+      <BloodstreamBelt className={styles.belt} />
+      <AntibodySatellite className={styles.satellite} />
       <Scrim>
         <div className={styles.row}>
-          {stats.map((stat) => (
+          {stats.map((stat, i) => (
             <div className={styles.stat} key={stat.label}>
               <span
                 className={`${styles.value} ${stat.glow ? "glow-text" : ""}`}
@@ -26,6 +31,7 @@ export function StatsBand() {
                 {stat.label}
                 {stat.asOf && <span className={styles.asOf}>{stat.asOf}</span>}
               </span>
+              <TelemetryLine seed={100 + i} />
             </div>
           ))}
         </div>
