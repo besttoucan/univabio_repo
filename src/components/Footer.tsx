@@ -1,6 +1,6 @@
 import { CONTACT_EMAIL, DEVPOST_URL } from "../content/content";
 import { DnaCircuitMerge } from "../illustrations/DnaCircuitMerge";
-import { ParticleField } from "../illustrations/ParticleField";
+import { ProbeShip } from "../illustrations/objects/ProbeShip";
 import { ReachMark } from "../illustrations/ReachMark";
 import { Scrim } from "./Scrim";
 import styles from "./Footer.module.css";
@@ -8,7 +8,7 @@ import styles from "./Footer.module.css";
 export function FinalCta() {
   return (
     <section className={styles.finalCta}>
-      <ParticleField density={0.5} opacity={0.25} entrance={false} seed={11} />
+      <ProbeShip className={styles.arrivedShip} heading={0} trail={false} />
       <Scrim>
         <h2 className={styles.finalHeading}>Ready to build something that matters?</h2>
         <a className="btn glow" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
