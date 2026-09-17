@@ -1,5 +1,6 @@
 import { themeExamples } from "../content/content";
-import { MembraneThreshold } from "../illustrations/MembraneThreshold";
+import { AsciiField } from "../illustrations/AsciiField";
+import { Scrim } from "./Scrim";
 import styles from "./ThemeSection.module.css";
 
 const exampleColors = [
@@ -12,8 +13,8 @@ const exampleColors = [
 export function ThemeSection() {
   return (
     <section className={styles.section} id="theme">
-      <MembraneThreshold opacity={0.65} />
-      <div className={`container ${styles.grid}`}>
+      <AsciiField className={styles.ascii} />
+      <Scrim className={styles.grid}>
         <div>
           <h2 className={styles.heading}>The challenge</h2>
           <p className={styles.intro}>
@@ -39,7 +40,7 @@ export function ThemeSection() {
             ))}
           </ul>
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
