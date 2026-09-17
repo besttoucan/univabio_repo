@@ -1,19 +1,8 @@
 .section {
-  position: relative;
-  padding: 88px 0;
-}
-
-.scene {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.3;
-  pointer-events: none;
+  padding: 56px 0;
 }
 
 .grid {
-  position: relative;
-  z-index: 1;
   display: grid;
   grid-template-columns: 0.8fr 1.6fr;
   gap: 56px;
