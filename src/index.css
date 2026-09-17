@@ -1,0 +1,161 @@
+/*
+  Design rationale
+  ----------------
+  Cal Hacks energy, UnivaBio theme: a warm cream base with bright section-to-section
+  color bands (sky blue, mint, peach, lavender, sun yellow) instead of one flat
+  background, a bold rounded display face for headlines, gradient pill buttons, and
+  a recurring illustrated "cell" mascot + floating bio/AI iconography standing in
+  for Cal Hacks' cloud characters — playful and colorful, but drawn from this
+  hackathon's own subject (cells, DNA, pulse lines, circuitry) rather than sky/clouds.
+*/
+
+:root {
+  --color-bg: #fffaf1;
+  --color-ink: #1c1440;
+  --color-ink-dim: #4a4270;
+  --color-ink-faint: #8b84ab;
+  --color-hairline: #e7dfca;
+
+  --color-coral: #ff6f81;
+  --color-coral-dark: #e14f63;
+  --color-blue: #4d8af0;
+  --color-blue-dark: #2f68d6;
+  --color-mint: #21c88e;
+  --color-mint-dark: #12a473;
+  --color-yellow: #ffc247;
+  --color-yellow-dark: #f2a30f;
+  --color-violet: #8b5cf6;
+  --color-violet-dark: #6d3ff0;
+
+  --band-sky: #eaf4ff;
+  --band-mint: #e6fbf3;
+  --band-peach: #fff1e2;
+  --band-lavender: #f2ecff;
+  --band-sun: #fff8df;
+
+  --font-display: "Fredoka", ui-rounded, "Segoe UI", sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --container-w: 1180px;
+  --measure: 640px;
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --shadow-card: 0 10px 30px -12px rgba(28, 20, 64, 0.18);
+  --shadow-pop: 0 14px 34px -10px rgba(28, 20, 64, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+h3 { font-size: 1.2rem; }
+
+p {
+  margin: 0;
+  color: var(--color-ink-dim);
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--color-blue-dark);
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-violet);
+}
+
+/* ============ Buttons ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-coral), var(--color-violet));
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-pop);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 40px -10px rgba(28, 20, 64, 0.34);
+}
+
+.btn-quiet {
+  background: none;
+  box-shadow: none;
+  color: var(--color-ink);
+  padding: 14px 0;
+}
+
+.btn-quiet:hover {
+  transform: none;
+  color: var(--color-violet);
+  box-shadow: none;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--color-hairline);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+  body {
+    font-size: 16px;
+  }
+}
