@@ -2,6 +2,18 @@
   position: relative;
   padding: 72px 0;
   text-align: left;
+  overflow: hidden;
+}
+
+.arrivedShip {
+  position: absolute;
+  z-index: 0;
+  top: 20%;
+  right: 8%;
+  width: 60px;
+  height: 30px;
+  opacity: 0.65;
+  pointer-events: none;
 }
 
 .finalHeading {
