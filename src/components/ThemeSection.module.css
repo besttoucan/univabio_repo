@@ -21,6 +21,22 @@
   }
 }
 
+.ship {
+  position: absolute;
+  z-index: 0;
+  top: 18%;
+  right: 6%;
+  width: 90px;
+  height: 45px;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .ship {
+    display: none;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
