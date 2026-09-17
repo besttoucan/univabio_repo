@@ -1,7 +1,9 @@
 import { Fragment, useState } from "react";
 import { faqGroups } from "../content/content";
 import { IconBadge } from "../illustrations/IconBadge";
+import { ParticleField } from "../illustrations/ParticleField";
 import { IconCodeBracket, IconGlobe, IconGradCap } from "../illustrations/sectionIcons";
+import { Scrim } from "./Scrim";
 import styles from "./Faq.module.css";
 
 const groupIcons = [IconGlobe, IconGradCap, IconCodeBracket];
@@ -12,7 +14,8 @@ export function Faq() {
 
   return (
     <section className={styles.section} id="faq">
-      <div className="container">
+      <ParticleField density={0.12} opacity={0.35} entrance={false} seed={24} />
+      <Scrim>
         <h2 className={styles.heading}>Frequently asked questions</h2>
 
         <div className={styles.groups}>
@@ -48,7 +51,7 @@ export function Faq() {
             </Fragment>
           ))}
         </div>
-      </div>
+      </Scrim>
     </section>
   );
 }
