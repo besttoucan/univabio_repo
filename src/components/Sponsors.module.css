@@ -1,5 +1,5 @@
 .section {
-  padding: 88px 0;
+  padding: 56px 0;
 }
 
 .headingRow {
@@ -16,12 +16,6 @@
 
 .intro {
   margin-bottom: 0;
-}
-
-.mark {
-  width: 160px;
-  height: 48px;
-  flex-shrink: 0;
 }
 
 .row {
