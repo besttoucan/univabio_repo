@@ -1,12 +1,27 @@
 .section {
   position: relative;
-  padding: 88px 0;
-  border-bottom: 1px solid var(--color-hairline);
+  padding: 56px 0;
+}
+
+.ascii {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: -2%;
+  width: 42%;
+  max-width: 420px;
+  transform: translateY(-50%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .ascii {
+    display: none;
+  }
 }
 
 .grid {
-  position: relative;
-  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 64px;
