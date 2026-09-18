@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  padding: 56px 0;
+  padding: 40px 0;
 }
 
 .heading {
@@ -30,11 +30,36 @@
   border-bottom: 1px solid var(--color-hairline);
 }
 
+.row {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.row.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .table td,
 .table th {
   padding: 22px 20px 22px 0;
   vertical-align: top;
   position: relative;
+}
+
+.rankRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.badge {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
 }
 
 .rank {
