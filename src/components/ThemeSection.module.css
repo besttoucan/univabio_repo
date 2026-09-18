@@ -1,22 +1,21 @@
 .section {
   position: relative;
-  padding: 56px 0;
+  padding: 40px 0;
 }
 
-.ascii {
+.nucleusPlanet {
   position: absolute;
   z-index: 0;
-  top: 50%;
+  bottom: -8%;
   right: -2%;
-  width: 42%;
-  max-width: 420px;
-  transform: translateY(-50%);
-  opacity: 0.85;
+  width: 36%;
+  max-width: 320px;
+  opacity: 0.95;
   pointer-events: none;
 }
 
 @media (max-width: 900px) {
-  .ascii {
+  .nucleusPlanet {
     display: none;
   }
 }
@@ -24,10 +23,10 @@
 .ship {
   position: absolute;
   z-index: 0;
-  top: 18%;
-  right: 6%;
-  width: 90px;
-  height: 45px;
+  top: 14%;
+  right: 4%;
+  width: 130px;
+  height: 65px;
   pointer-events: none;
 }
 
@@ -68,7 +67,7 @@
   display: block;
 }
 
-.examples li {
+.exampleItem {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -79,6 +78,16 @@
   font-style: italic;
   color: var(--color-ink);
   max-width: none;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.exampleItem.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .dot {
@@ -88,7 +97,7 @@
   flex-shrink: 0;
 }
 
-.examples li:last-child {
+.exampleItem:last-child {
   border-bottom: 1px solid var(--color-hairline);
 }
 
