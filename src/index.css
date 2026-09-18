@@ -188,3 +188,29 @@ button {
     font-size: 16px;
   }
 }
+
+/* ============ Gentle drift — applied to the illustrated cast (planets,
+   moons, ships, satellites) so the scene reads as floating in space rather
+   than pasted on. Three offset variants so neighboring objects desync. ============ */
+@keyframes float-a {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-1.2deg); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(10px) rotate(1deg); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.drift-a { animation: float-a 7s ease-in-out infinite; }
+.drift-b { animation: float-b 8.5s ease-in-out infinite; }
+.drift-c { animation: float-c 6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-a, .drift-b, .drift-c {
+    animation: none;
+  }
+}
