@@ -8,7 +8,7 @@ import styles from "./Footer.module.css";
 export function FinalCta() {
   return (
     <section className={styles.finalCta}>
-      <ProbeShip className={styles.arrivedShip} heading={0} trail={false} />
+      <ProbeShip className={`${styles.arrivedShip} drift-c`} heading={0} trail={false} />
       <Scrim>
         <h2 className={styles.finalHeading}>Ready to build something that matters?</h2>
         <a className="btn glow" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">

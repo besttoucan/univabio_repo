@@ -1,6 +1,6 @@
 .finalCta {
   position: relative;
-  padding: 72px 0;
+  padding: 52px 0;
   text-align: left;
   overflow: hidden;
 }
@@ -8,11 +8,11 @@
 .arrivedShip {
   position: absolute;
   z-index: 0;
-  top: 20%;
+  top: 16%;
   right: 8%;
-  width: 60px;
-  height: 30px;
-  opacity: 0.65;
+  width: 110px;
+  height: 55px;
+  opacity: 0.95;
   pointer-events: none;
 }
 
