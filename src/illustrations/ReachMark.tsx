@@ -7,10 +7,10 @@ export interface ReachMarkProps {
 }
 
 /**
- * The site's persistent small mark (build spec v16): the same reach-and-
- * almost-touch idea as the hero's full particle motif, reduced to just the
- * two nearest tips and the gap between them — organic tendril from the
- * left, circuit trace from the right, amber spark in the gap.
+ * The site's persistent small mark (build spec v22): the same reach-and-
+ * almost-touch idea as before, rendered as two small flat shapes — an
+ * organic blob from the left, a circuit node from the right — with an amber
+ * spark in the gap between them.
  */
 export function ReachMark({ className, resolved = false }: ReachMarkProps) {
   const gap = resolved ? 0 : 3.2;
@@ -21,24 +21,14 @@ export function ReachMark({ className, resolved = false }: ReachMarkProps) {
   return (
     <svg className={className} viewBox="0 0 32 32" aria-hidden="true">
       <path
-        d={`M 3 21 Q 10 22 ${organicTipX - 4} 17.5 T ${organicTipX} 16`}
-        fill="none"
-        stroke={colorBio}
-        strokeWidth="2.1"
-        strokeLinecap="round"
+        d={`M 3 19 Q 4 24 10 23 Q ${organicTipX + 2} 22.5 ${organicTipX} 16 Q ${organicTipX - 1} 19 6 20 Z`}
+        fill={colorBio}
       />
-      <path
-        d={`M 29 11 L 21 11 L 21 16 L ${circuitTipX} 16`}
-        fill="none"
-        stroke={colorCircuit}
-        strokeWidth="2.1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <rect x="19.2" y="9.2" width="3.2" height="3.2" fill={colorCircuit} />
+      <rect x={circuitTipX - 2.4} y="13.6" width="4.8" height="4.8" rx="1.2" fill={colorCircuit} />
+      <rect x="21" y="9.2" width="8" height="3.2" rx="1" fill={colorCircuit} />
 
-      <circle cx={midX} cy="16" r={resolved ? 2.6 : 2.1} fill={colorHighlight} opacity="0.95" />
-      <circle cx={midX} cy="16" r={resolved ? 5.5 : 4.6} fill={colorHighlight} opacity="0.3" />
+      <circle cx={midX} cy="16" r={resolved ? 3.2 : 2.4} fill={colorHighlight} />
+      <circle cx={midX} cy="16" r={resolved ? 5.8 : 4.6} fill={colorHighlight} opacity="0.28" />
     </svg>
   );
 }

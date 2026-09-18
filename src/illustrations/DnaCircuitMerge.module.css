@@ -5,57 +5,48 @@
   overflow: visible;
 }
 
-.strand {
-  fill: none;
-  stroke-width: 1.6;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.strand.revealed {
-  stroke-dashoffset: 0;
-}
-
-.strandBio {
-  stroke: var(--color-bio);
-}
-
-.strandCircuit {
-  stroke: var(--color-circuit);
-}
-
-.rung {
-  stroke: var(--color-ink-faint);
-  stroke-width: 1;
+.hull,
+.wing {
   opacity: 0;
-  transition: opacity 0.5s ease-out;
-  transition-delay: var(--delay);
+  transform: scale(0.92);
+  transform-origin: center;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.rung.revealed {
-  opacity: 0.6;
+.hull.revealed,
+.wing.revealed {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.link {
-  stroke: var(--color-fusion);
-  stroke-width: 1.2;
-  opacity: 0;
-  transition: opacity 0.6s ease-out;
-  transition-delay: var(--delay);
-}
-
-.link.revealed {
-  opacity: 0.9;
-}
-
-.node {
-  fill: var(--color-highlight);
+.window {
   opacity: 0;
   transition: opacity 0.4s ease-out;
   transition-delay: var(--delay);
 }
 
-.node.revealed {
+.window.revealed {
+  opacity: 1;
+}
+
+.antenna {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  transition-delay: 1s;
+}
+
+.antenna.revealed {
+  opacity: 1;
+}
+
+.beacon {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  transition-delay: 1.15s;
+}
+
+.beacon.revealed {
   opacity: 1;
 }

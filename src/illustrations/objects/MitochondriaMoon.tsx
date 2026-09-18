@@ -1,43 +1,39 @@
-import { colorBio, colorInk } from "../theme";
-import { GlowDefs } from "./GlowDefs";
-import { STROKE_WEIGHT, glowFilterId } from "./objectStyles";
+import { mitochondriaMoonIdentity } from "./objectPalette";
+import { STROKE_WEIGHT } from "./objectStyles";
 
 export interface MitochondriaMoonProps {
   className?: string;
 }
 
-/** The Mitochondria-Moon (build spec v21, section 3) — a smaller orbiting body near the Cell-Planet, cristae-textured surface. */
+/**
+ * The Mitochondria-Moon (build spec v22, section 1) — a smaller flat
+ * moon near the Cell-Planet, its cristae-fold texture rendered as flat
+ * lens shapes ("craters") in its own teal-green identity, distinct from
+ * the planet's warm coral-to-gold.
+ */
 export function MitochondriaMoon({ className }: MitochondriaMoonProps) {
-  const glowId = glowFilterId("mito-moon");
+  const { base, detail, outline } = mitochondriaMoonIdentity;
   return (
     <svg className={className} viewBox="0 0 120 80" aria-hidden="true">
-      <defs>
-        <GlowDefs id={glowId} />
-        <radialGradient id="mitoMoonFill" cx="40%" cy="35%" r="75%">
-          <stop offset="0%" stopColor="#10281f" />
-          <stop offset="100%" stopColor="#040f0b" />
-        </radialGradient>
-      </defs>
-      <ellipse
-        cx="60"
-        cy="40"
-        rx="52"
-        ry="32"
-        fill="url(#mitoMoonFill)"
-        stroke={colorBio}
-        strokeWidth={STROKE_WEIGHT}
-        filter={`url(#${glowId})`}
-        opacity="0.85"
-      />
-      {/* cristae folds */}
-      {[-18, -8, 2, 12, 22].map((dy) => (
-        <path
-          key={dy}
-          d={`M 20 ${40 + dy} Q 60 ${32 + dy} 100 ${40 + dy}`}
-          fill="none"
-          stroke={colorInk}
+      <ellipse cx="60" cy="40" rx="52" ry="32" fill={base} stroke={outline} strokeWidth={STROKE_WEIGHT} />
+      {/* cristae folds — flat alternating-tone lens shapes standing in for craters */}
+      {[
+        { cx: 30, cy: 26, rx: 11, ry: 5 },
+        { cx: 58, cy: 20, rx: 9, ry: 4 },
+        { cx: 86, cy: 30, rx: 10, ry: 4.5 },
+        { cx: 40, cy: 50, rx: 12, ry: 5 },
+        { cx: 74, cy: 54, rx: 9, ry: 4 },
+      ].map((c, i) => (
+        <ellipse
+          key={i}
+          cx={c.cx}
+          cy={c.cy}
+          rx={c.rx}
+          ry={c.ry}
+          fill={detail}
+          stroke={outline}
           strokeWidth="1"
-          opacity="0.3"
+          opacity={i % 2 === 0 ? 0.9 : 0.7}
         />
       ))}
     </svg>
