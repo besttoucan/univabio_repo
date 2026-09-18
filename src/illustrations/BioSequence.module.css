@@ -1,0 +1,15 @@
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 3px 7px;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.base {
+  opacity: 0.55;
+}
