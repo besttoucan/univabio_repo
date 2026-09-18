@@ -1,6 +1,36 @@
 .section {
   position: relative;
-  padding: 56px 0;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.comet {
+  position: absolute;
+  z-index: 0;
+  top: 4%;
+  right: 6%;
+  width: 110px;
+  height: 36px;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.mark {
+  position: absolute;
+  z-index: 0;
+  bottom: 8%;
+  left: 3%;
+  width: 30px;
+  height: 30px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .comet,
+  .mark {
+    display: none;
+  }
 }
 
 .headingRow {
