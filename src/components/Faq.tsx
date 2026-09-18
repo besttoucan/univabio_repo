@@ -1,7 +1,9 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { faqGroups } from "../content/content";
 import { IconBadge } from "../illustrations/IconBadge";
 import { IconCodeBracket, IconGlobe, IconGradCap } from "../illustrations/sectionIcons";
+import { ParchmentPanel } from "./ParchmentPanel";
+import { Reveal } from "./Reveal";
 import { Scrim } from "./Scrim";
 import styles from "./Faq.module.css";
 
@@ -16,9 +18,9 @@ export function Faq() {
       <Scrim>
         <h2 className={styles.heading}>Frequently asked questions</h2>
 
-        <div className={styles.groups}>
+        <ParchmentPanel className={styles.groups}>
           {faqGroups.map((group, gi) => (
-            <Fragment key={group.title}>
+            <Reveal className={styles.group} key={group.title} delay={gi * 120}>
               <div className={styles.groupTitle}>
                 <IconBadge icon={groupIcons[gi]} color={groupColors[gi]} size="sm" />
                 <h3 className="label">{group.title}</h3>
@@ -46,9 +48,9 @@ export function Faq() {
                   );
                 })}
               </div>
-            </Fragment>
+            </Reveal>
           ))}
-        </div>
+        </ParchmentPanel>
       </Scrim>
     </section>
   );
