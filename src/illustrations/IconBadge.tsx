@@ -9,17 +9,16 @@ export interface IconBadgeProps {
 }
 
 /**
- * One consistent badge treatment for every section icon — build spec v17:
- * the old flat filled-square badges clashed with the dark/particle/glow
- * language, so this is now a dark, transparent badge with a glowing outline
- * and a glowing line-icon in the semantic color, instead of a solid color
- * fill with a flat white glyph.
+ * One consistent badge treatment for every section icon (build spec v22,
+ * section 4): a flat solid-color chip with the icon in a fixed light tone,
+ * matching the same flat-fill construction technique as the planet/satellite
+ * cast, instead of the earlier dark glow-outline treatment.
  */
 export function IconBadge({ icon: Icon, color, size = "md", className }: IconBadgeProps) {
   return (
     <span
       className={`${styles.badge} ${size === "sm" ? styles.sm : ""} ${className ?? ""}`}
-      style={{ color, borderColor: color, boxShadow: `0 0 8px 0 ${color}, 0 0 18px 2px ${color}` }}
+      style={{ background: color, color: "var(--color-paper)" }}
     >
       <Icon />
     </span>
