@@ -1,29 +1,49 @@
 .hero {
   position: relative;
-  padding: 56px 0 40px;
-  min-height: 560px;
+  padding: 40px 0 8px;
+  min-height: 420px;
   overflow: hidden;
+}
+
+.station {
+  position: absolute;
+  z-index: 0;
+  top: -8%;
+  left: 6%;
+  width: 92%;
+  aspect-ratio: 1.4772;
+  opacity: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .station {
+    left: 2%;
+    width: 96%;
+    top: -4%;
+    opacity: 0.7;
+  }
 }
 
 .cellPlanet {
   position: absolute;
   z-index: 0;
-  bottom: -12%;
+  bottom: -14%;
   right: -6%;
-  width: 34%;
-  max-width: 320px;
-  opacity: 0.5;
+  width: 42%;
+  max-width: 400px;
+  opacity: 0.95;
   pointer-events: none;
 }
 
 .mitoMoon {
   position: absolute;
   z-index: 0;
-  bottom: 6%;
-  right: 26%;
-  width: 14%;
-  max-width: 130px;
-  opacity: 0.55;
+  bottom: 32%;
+  right: 1%;
+  width: 11%;
+  max-width: 100px;
+  opacity: 0.95;
   pointer-events: none;
 }
 
@@ -34,7 +54,7 @@
   right: 8%;
   width: 46px;
   height: 23px;
-  opacity: 0.6;
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -57,15 +77,20 @@
 }
 
 .mark {
-  width: 46px;
-  height: 46px;
+  width: 58px;
+  height: 58px;
   flex-shrink: 0;
 }
 
 .headline {
-  font-size: clamp(2.7rem, 6vw, 4.6rem);
+  font-size: clamp(3.4rem, 8.5vw, 6.4rem);
   max-width: 12ch;
   margin: 0;
+  -webkit-text-stroke: 2.2px var(--color-ink);
+  text-shadow:
+    3px 4px 0 rgba(5, 7, 42, 1),
+    6px 8px 0 rgba(5, 7, 42, 0.75),
+    8px 12px 26px rgba(255, 138, 92, 0.3);
 }
 
 .themeLine {

@@ -2,6 +2,7 @@ import { DEVPOST_URL, heroFacts } from "../content/content";
 import { CellPlanet } from "../illustrations/objects/CellPlanet";
 import { MitochondriaMoon } from "../illustrations/objects/MitochondriaMoon";
 import { ProbeShip } from "../illustrations/objects/ProbeShip";
+import { SpaceStation } from "../illustrations/objects/SpaceStation";
 import { ReachMark } from "../illustrations/ReachMark";
 import { Scrim } from "./Scrim";
 import styles from "./Hero.module.css";
@@ -9,9 +10,10 @@ import styles from "./Hero.module.css";
 export function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <CellPlanet className={styles.cellPlanet} />
-      <MitochondriaMoon className={styles.mitoMoon} />
-      <ProbeShip className={styles.distantShip} heading={-20} trail={false} />
+      <SpaceStation className={styles.station} />
+      <CellPlanet className={`${styles.cellPlanet} drift-a`} />
+      <MitochondriaMoon className={`${styles.mitoMoon} drift-b`} />
+      <ProbeShip className={`${styles.distantShip} drift-c`} heading={-20} trail={false} />
       <Scrim className={styles.grid}>
         <div>
           <p className={`label ${styles.eyebrow}`}>BioCataalysis × UnivaDev</p>
