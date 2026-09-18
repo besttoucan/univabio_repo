@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DEVPOST_URL, navLinks } from "../content/content";
-import { ReachMark } from "../illustrations/ReachMark";
+import { ProbeShip } from "../illustrations/objects/ProbeShip";
 import styles from "./Nav.module.css";
 
 export function Nav() {
@@ -10,7 +10,7 @@ export function Nav() {
     <header className={styles.nav}>
       <div className={styles.inner}>
         <a className={styles.brand} href="#top">
-          <ReachMark className={styles.brandMark} />
+          <ProbeShip className={styles.brandMark} trail={false} />
           UnivaBio
         </a>
 
