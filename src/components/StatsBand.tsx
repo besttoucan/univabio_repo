@@ -1,7 +1,10 @@
 import { DEVPOST_URL } from "../content/content";
-import { AntibodySatellite } from "../illustrations/objects/AntibodySatellite";
 import { BloodstreamBelt } from "../illustrations/objects/BloodstreamBelt";
-import { TelemetryLine } from "../illustrations/objects/TelemetryLine";
+import { DnaComet } from "../illustrations/objects/DnaComet";
+import { ProbeShip } from "../illustrations/objects/ProbeShip";
+import { Satellite } from "../illustrations/objects/Satellite";
+import { satelliteFor } from "../illustrations/objects/satellitePalette";
+import { Reveal } from "./Reveal";
 import { Scrim } from "./Scrim";
 import styles from "./StatsBand.module.css";
 
@@ -15,25 +18,29 @@ const stats = [
 export function StatsBand() {
   return (
     <section className={styles.band} aria-label="Event stats">
-      <BloodstreamBelt className={styles.belt} />
-      <AntibodySatellite className={styles.satellite} />
+      <BloodstreamBelt className={`${styles.belt} drift-b`} />
+      <DnaComet className={`${styles.comet} drift-c`} />
+      <ProbeShip className={`${styles.statsShip} drift-a`} heading={4} trail={false} />
       <Scrim>
         <div className={styles.row}>
-          {stats.map((stat, i) => (
-            <div className={styles.stat} key={stat.label}>
-              <span
-                className={`${styles.value} ${stat.glow ? "glow-text" : ""}`}
-                style={{ color: stat.color }}
-              >
-                {stat.value}
-              </span>
-              <span className={`label ${styles.label}`}>
-                {stat.label}
-                {stat.asOf && <span className={styles.asOf}>{stat.asOf}</span>}
-              </span>
-              <TelemetryLine seed={100 + i} />
-            </div>
-          ))}
+          {stats.map((stat, i) => {
+            const { variant, color } = satelliteFor("stats", i);
+            return (
+              <Reveal className={styles.stat} key={stat.label} delay={i * 90}>
+                <Satellite variant={variant} color={color} size="sm" className={styles.icon} />
+                <span
+                  className={`${styles.value} ${stat.glow ? "glow-text" : ""}`}
+                  style={{ color: stat.color }}
+                >
+                  {stat.value}
+                </span>
+                <span className={`label ${styles.label}`}>
+                  {stat.label}
+                  {stat.asOf && <span className={styles.asOf}>{stat.asOf}</span>}
+                </span>
+              </Reveal>
+            );
+          })}
         </div>
         <p className={styles.footnote}>
           Participant count is a point-in-time figure. See the{" "}
