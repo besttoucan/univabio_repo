@@ -1,0 +1,69 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.card {
+  position: relative;
+  padding: clamp(28px, 2.6vw, 42px);
+  background: rgba(14, 7, 22, 0.72);
+  transition: background-color 0.35s ease;
+}
+
+.card:hover {
+  background: rgba(42, 23, 69, 0.82);
+}
+
+.icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  color: var(--lilac);
+}
+
+.icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.index {
+  position: absolute;
+  top: clamp(28px, 2.6vw, 42px);
+  right: clamp(28px, 2.6vw, 42px);
+  font-size: 0.92rem;
+  color: var(--text-mute);
+}
+
+.title {
+  margin-top: clamp(40px, 5vw, 76px);
+  color: var(--cream);
+}
+
+.body {
+  margin-top: 12px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.note {
+  margin-top: 28px;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    margin-top: 28px;
+  }
+}

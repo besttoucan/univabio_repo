@@ -1,79 +1,90 @@
-.section {
-  position: relative;
-  padding: 40px 0;
+.ticker {
   overflow: hidden;
+  padding: clamp(26px, 3vw, 40px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  /* fade the run out at both edges rather than cutting a logo in half */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 
-.comet {
-  position: absolute;
-  z-index: 0;
-  top: 4%;
-  right: 6%;
-  width: 110px;
-  height: 36px;
-  opacity: 0.65;
-  pointer-events: none;
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: slide 52s linear infinite;
 }
 
-.mark {
-  position: absolute;
-  z-index: 0;
-  bottom: 8%;
-  left: 3%;
-  width: 30px;
-  height: 30px;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-@media (max-width: 760px) {
-  .comet,
-  .mark {
-    display: none;
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
   }
 }
 
-.headingRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  margin-bottom: 44px;
-}
-
-.heading {
-  margin-bottom: 8px;
-}
-
-.intro {
-  margin-bottom: 0;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--color-hairline);
+.ticker:hover .track {
+  animation-play-state: paused;
 }
 
 .item {
-  flex: 1 1 20%;
-  min-width: 180px;
-  padding: 26px 20px 26px 0;
-  border-bottom: 1px solid var(--color-hairline);
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  color: var(--color-ink-faint);
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(30px, 4vw, 64px);
+}
+
+.link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  transition: color 0.15s ease;
 }
 
-a.item:hover {
-  color: var(--color-accent);
+/* One white silhouette for every logo. The supplied assets are a mix of dark
+   marks on transparency and light marks on plates, and flattening them to a
+   single weight is the only way nine of them read as one row. */
+.logo {
+  display: block;
+  height: clamp(28px, 3.4vw, 46px);
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.72;
+  transition: opacity 0.25s ease;
 }
 
-@media (max-width: 640px) {
-  .headingRow {
-    flex-direction: column;
-    align-items: flex-start;
+.link:hover .logo {
+  opacity: 1;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--cream);
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+.tickerStill {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.tickerStill .track {
+  animation: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+  row-gap: 28px;
+  padding: 0 var(--gutter);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+  .logo {
+    transition: none;
   }
 }

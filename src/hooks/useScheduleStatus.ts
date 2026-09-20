@@ -5,12 +5,21 @@ export type PhaseState = "done" | "active" | "upcoming";
 
 export interface ScheduleStatus {
   states: Record<string, PhaseState>;
+  /** Short sentence describing where the event currently stands. */
   message: string;
+  /** Whole days from now until submissions close, or null once they have. */
+  daysToDeadline: number | null;
 }
 
-function computeStatus(events: ScheduleEvent[], now: Date): ScheduleStatus {
+const DAY_MS = 86_400_000;
+
+function computeStatus(
+  events: ScheduleEvent[],
+  deadlineId: string,
+  now: Date,
+): ScheduleStatus {
   const states: Record<string, PhaseState> = {};
-  let activeEvent: ScheduleEvent | undefined;
+  let active: ScheduleEvent | undefined;
 
   for (const event of events) {
     const start = new Date(event.start);
@@ -20,34 +29,45 @@ function computeStatus(events: ScheduleEvent[], now: Date): ScheduleStatus {
       states[event.id] = "done";
     } else if (now >= start && (!end || now < end)) {
       states[event.id] = "active";
-      activeEvent = event;
+      active = event;
     } else {
       states[event.id] = "upcoming";
     }
   }
 
+  const deadline = events.find((event) => event.id === deadlineId);
+  const remaining = deadline ? new Date(deadline.start).getTime() - now.getTime() : 0;
+  const daysToDeadline = remaining > 0 ? Math.floor(remaining / DAY_MS) : null;
+
   let message: string;
-  if (activeEvent) {
-    message = `Right now: ${activeEvent.title.toLowerCase()}.`;
-  } else if (events.length && now < new Date(events[0].start)) {
-    message = "Submissions haven't opened yet — check back soon.";
+  if (daysToDeadline === 0) {
+    message = "Closes today";
+  } else if (daysToDeadline !== null) {
+    message = daysToDeadline === 1 ? "1 day to the deadline" : `${daysToDeadline} days to the deadline`;
+  } else if (active) {
+    message = `${active.title} in progress`;
   } else {
-    const last = events[events.length - 1];
-    message = `${last?.title ?? "This cycle"} — UnivaBio has wrapped for now.`;
+    message = "This cycle has finished";
   }
 
-  return { states, message };
+  return { states, message, daysToDeadline };
 }
 
-export function useScheduleStatus(events: ScheduleEvent[]): ScheduleStatus {
-  const [status, setStatus] = useState<ScheduleStatus>(() => computeStatus(events, new Date()));
+/**
+ * Derives phase state from the clock so the schedule and the hero badge stay
+ * truthful without anyone editing copy. Recomputes once a minute.
+ */
+export function useScheduleStatus(events: ScheduleEvent[], deadlineId = "close"): ScheduleStatus {
+  const [status, setStatus] = useState<ScheduleStatus>(() =>
+    computeStatus(events, deadlineId, new Date()),
+  );
 
   useEffect(() => {
     const id = window.setInterval(() => {
-      setStatus(computeStatus(events, new Date()));
+      setStatus(computeStatus(events, deadlineId, new Date()));
     }, 60_000);
     return () => window.clearInterval(id);
-  }, [events]);
+  }, [events, deadlineId]);
 
   return status;
 }

@@ -1,33 +1,39 @@
 import { judgingCriteria } from "../content/content";
-import { Satellite } from "../illustrations/objects/Satellite";
-import { satelliteFor } from "../illustrations/objects/satellitePalette";
-import { ProbeShip } from "../illustrations/objects/ProbeShip";
-import { SynapsePlanet } from "../illustrations/objects/SynapsePlanet";
+import { Counter } from "./Counter";
 import { Reveal } from "./Reveal";
-import { Scrim } from "./Scrim";
+import { SectionHead } from "./SectionHead";
 import styles from "./Judging.module.css";
 
-export function Judging() {
-  return (
-    <section className={styles.section} id="judging">
-      <SynapsePlanet className={`${styles.synapsePlanet} drift-b`} />
-      <ProbeShip className={`${styles.approachingShip} drift-c`} heading={12} />
-      <Scrim>
-        <h2 className={styles.heading}>How projects are judged</h2>
+const total = judgingCriteria.reduce((sum, criterion) => sum + criterion.points, 0);
 
-        <div className={styles.grid}>
-          {judgingCriteria.map((criterion, i) => {
-            const { variant, color } = satelliteFor("judging", i);
-            return (
-              <Reveal className={styles.item} key={criterion.title} delay={i * 90}>
-                <Satellite variant={variant} color={color} className={styles.badge} />
-                <h3 className={styles.itemTitle}>{criterion.title}</h3>
-                <p className={styles.itemDesc}>{criterion.description}</p>
+export function Judging({ index = "03" }: { index?: string }) {
+  return (
+    <section className="section" id="judging" aria-labelledby="judging-title">
+      <div className="page">
+        <SectionHead
+          index={index}
+          id="judging-title"
+          title="The scorecard"
+          lede="Five criteria, five points each, nothing weighted above the rest."
+        />
+
+        <div className={styles.layout}>
+          <ol className={styles.list}>
+            {judgingCriteria.map((criterion, i) => (
+              <Reveal as="li" className={styles.row} key={criterion.title} delay={i * 90}>
+                <span className={`mono ${styles.points}`}>{criterion.points}</span>
+                <h3 className={styles.title}>{criterion.title}</h3>
+                <p className={styles.body}>{criterion.description}</p>
               </Reveal>
-            );
-          })}
+            ))}
+          </ol>
+
+          <Reveal className={styles.total} delay={200}>
+            <Counter className={styles.totalValue} to={total} delay={300} />
+            <span className={styles.totalLabel}>points possible</span>
+          </Reveal>
         </div>
-      </Scrim>
+      </div>
     </section>
   );
 }

@@ -6,15 +6,20 @@ export interface NavLink {
 export interface KeyFact {
   label: string;
   value: string;
+  note?: string;
 }
 
-export interface WhyPoint {
+export interface Stat {
+  /** Raw number, so it can be counted up and formatted at render time. */
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+}
+
+export interface WhoPoint {
   title: string;
   description: string;
-}
-
-export interface ThemeExample {
-  text: string;
 }
 
 export interface RequirementItem {
@@ -27,36 +32,38 @@ export interface ScheduleEvent {
   id: string;
   title: string;
   dateLabel: string;
-  /** ISO timestamp — when this phase begins */
+  detail: string;
+  /** ISO timestamp for when this phase begins. */
   start: string;
-  /** ISO timestamp — when this phase ends (omit for the final, open-ended event) */
+  /** ISO timestamp for when it ends. Omitted on the final, open-ended event. */
   end?: string;
 }
 
 export interface Prize {
   rank: string;
   winners: string;
+  /** Total sponsor-credit value of the tier, already summed. */
+  value: number;
   items: string[];
+  /** Marks the tier that carries the amber accent. */
+  lead?: boolean;
 }
 
 export interface JudgingCriterion {
   title: string;
+  points: number;
   description: string;
 }
 
 export interface Sponsor {
   name: string;
-  /** left undefined until a real asset is supplied — falls back to a text wordmark */
-  logoUrl?: string;
-  /** left undefined until a verified sponsor URL is supplied */
+  /** Official site, taken from the Devpost listing. */
   href?: string;
-}
-
-export interface Judge {
-  name: string;
-  title: string;
-  /** left undefined until a real photo is supplied — falls back to initials */
-  photoUrl?: string;
+  /**
+   * Path under /sponsors. Left undefined until a real asset exists, in which
+   * case the ticker falls back to setting the name as a wordmark.
+   */
+  logo?: string;
 }
 
 export interface FaqItem {

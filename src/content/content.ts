@@ -7,80 +7,93 @@ import type {
   RequirementItem,
   ScheduleEvent,
   Sponsor,
-  WhyPoint,
+  Stat,
+  WhoPoint,
 } from "./types";
 
+/*
+  Every fact below comes from the official Devpost listing (overview, dates,
+  and rules tabs). Anything the listing does not state is left out, or points
+  back to Devpost, rather than being filled in with a plausible guess.
+*/
+
 export const DEVPOST_URL = "https://univabio.devpost.com/";
+export const DEVPOST_RULES_URL = "https://univabio.devpost.com/rules";
+export const DEVPOST_DATES_URL = "https://univabio.devpost.com/details/dates";
+export const BIOCATAALYSIS_URL = "https://biocataalysis.org";
 export const CONTACT_EMAIL = "biocataalysis@gmail.com";
 
+export const TAGLINE =
+  "Biology needs builders. UnivaBio brings students worldwide together to build tools that make healthcare smarter, earlier, and more accessible.";
+
+/** The whole site: three pages plus home. Anything that does not earn a nav
+    slot lives in the footer. */
 export const navLinks: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Theme", href: "#theme" },
-  { label: "Prizes", href: "#prizes" },
-  { label: "Schedule", href: "#schedule" },
-  { label: "Sponsors", href: "#sponsors" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Compete", href: "/compete/" },
+  { label: "Prizes", href: "/prizes/" },
+  { label: "Rules & FAQ", href: "/rules/" },
 ];
 
 export const heroFacts: KeyFact[] = [
-  { label: "Submissions close", value: "Oct 6, 2026" },
-  { label: "Format", value: "Online, worldwide" },
-  { label: "Prize pool", value: "$40,000 — non-cash" },
-  { label: "Who can join", value: "Students, ages 13+" },
+  { label: "Deadline", value: "Oct 6, 2026", note: "11:45pm EDT" },
+  { label: "Format", value: "Online", note: "Worldwide" },
+  { label: "Who", value: "Students 13+", note: "Solo or team" },
+  { label: "Enter at", value: "Devpost", note: "Open now" },
 ];
 
-export const whyPoints: WhyPoint[] = [
-  {
-    title: "No experience required",
-    description:
-      "First hackathon or fiftieth — we care about the idea and the willingness to learn, not a resume.",
-  },
-  {
-    title: "AI assistants are expected",
-    description:
-      "Build with Claude, ChatGPT, Copilot, or whatever helps you move. The only norm: understand your own code well enough to explain it.",
-  },
-  {
-    title: "Global by default",
-    description:
-      "Entirely online. There is no venue to reach and no single time zone to match — build on your own schedule.",
-  },
-  {
-    title: "Ages 13 and up",
-    description:
-      "Middle school through college, solo or in a team, everyone works under the same theme and the same judging bar.",
-  },
+export const stats: Stat[] = [
+  { value: 40000, prefix: "$", label: "In sponsor prizes" },
+  { value: 104, label: "Entrants win something" },
+  { value: 60, label: "Days to build it" },
+  { value: 25, label: "Points on the scorecard" },
 ];
 
-export const themeExamples: string[] = [
-  "An AI-powered EdTech tool that helps a patient or student understand a condition",
-  "An imaging classification model that flags something earlier than manual review would",
-  "A novel medical decision-support concept, built as working software",
-  "An accessibility tool that makes health information easier to reach and use",
+export const challengeExamples: string[] = [
+  "A tool that explains a diagnosis in language a patient can use.",
+  "A model trained on imaging data that flags what a manual pass misses.",
+  "Decision support for a clinician, built as working software.",
+  "An accessibility project for people locked out of health information.",
+];
+
+export const whoPoints: WhoPoint[] = [
+  {
+    title: "First-timers",
+    description: "The bar is set so a beginner can ship something real.",
+  },
+  {
+    title: "AI assistants",
+    description: "Build with Claude, ChatGPT, Copilot. Just know your own code.",
+  },
+  {
+    title: "Any time zone",
+    description: "No venue, no shared clock, two months of runway.",
+  },
+  {
+    title: "Ages 13 up",
+    description: "Middle school through university. No companies.",
+  },
 ];
 
 export const requirements: RequirementItem[] = [
   {
     index: "01",
-    title: "Project",
-    description:
-      "A website, app, or other coding prototype with real user interaction — not a mockup.",
+    title: "The project",
+    description: "Something a person can actually use. Not a mockup.",
   },
   {
     index: "02",
-    title: "Demo video",
-    description:
-      "Explains the project's purpose, shows its features, and shows how a person actually uses it.",
+    title: "A demo video",
+    description: "What it does, and someone using it.",
   },
   {
     index: "03",
-    title: "One-page description",
-    description: "A PDF covering the project's purpose and key features, in plain language.",
+    title: "A one-page PDF",
+    description: "The purpose and the key features.",
   },
   {
     index: "04",
-    title: "GitHub repo or code PDF",
-    description: "All the code developed for the project, so judges can see how it was built.",
+    title: "Your code",
+    description: "A GitHub repo, or a PDF of the source.",
   },
 ];
 
@@ -88,159 +101,195 @@ export const scheduleEvents: ScheduleEvent[] = [
   {
     id: "open",
     title: "Submissions open",
-    dateLabel: "Aug 7, 2026 · 12:00am EDT",
+    dateLabel: "Aug 7, 2026",
+    detail: "12:00am EDT. Register any time while the window is open.",
     start: "2026-08-07T00:00:00-04:00",
     end: "2026-10-06T23:45:00-04:00",
   },
   {
     id: "close",
     title: "Submissions close",
-    dateLabel: "Oct 6, 2026 · 11:45pm EDT",
+    dateLabel: "Oct 6, 2026",
+    detail: "11:45pm EDT. All four files uploaded by then.",
     start: "2026-10-06T23:45:00-04:00",
     end: "2026-10-07T09:00:00-04:00",
   },
   {
     id: "judging",
-    title: "Judging window",
-    dateLabel: "Oct 7 – Oct 14, 2026",
+    title: "Judging",
+    dateLabel: "Oct 7 to 14, 2026",
+    detail: "Every entry scored out of 25 points.",
     start: "2026-10-07T09:00:00-04:00",
     end: "2026-10-14T23:45:00-04:00",
   },
   {
     id: "winners",
     title: "Winners announced",
-    dateLabel: "Oct 15, 2026 · 9:00am EDT",
+    dateLabel: "Oct 15, 2026",
+    detail: "9:00am EDT, on the Devpost listing.",
     start: "2026-10-15T09:00:00-04:00",
   },
 ];
 
 export const prizes: Prize[] = [
   {
-    rank: "1st place",
+    rank: "First place",
     winners: "1 winner",
+    value: 3890,
+    lead: true,
     items: [
-      "Momen Credits — $2,000",
-      "CodeCrafters 2-yr membership — $720",
-      "InterviewBuddy Credits — $70",
-      "Protoflow Credits — $300",
-      "Adaption Labs Credits — $800",
+      "Momen credits, $2,000",
+      "CodeCrafters two-year membership, $720",
+      "Adaption Labs credits, $800",
+      "Protoflow credits, $300",
+      "InterviewBuddy credits, $70",
     ],
   },
   {
-    rank: "2nd place",
+    rank: "Second place",
     winners: "1 winner",
+    value: 1355,
     items: [
-      "CodeCrafters 1-yr membership — $360",
-      "InterviewBuddy Credits — $45",
-      "Protoflow Credits — $150",
-      "Adaption Labs Credits — $800",
+      "CodeCrafters one-year membership, $360",
+      "Adaption Labs credits, $800",
+      "Protoflow credits, $150",
+      "InterviewBuddy credits, $45",
     ],
   },
   {
-    rank: "3rd place",
+    rank: "Third place",
     winners: "1 winner",
+    value: 1100,
     items: [
-      "CodeCrafters 6-mo membership — $180",
-      "InterviewBuddy Credits — $45",
-      "Protoflow Credits — $75",
-      "Adaption Labs Credits — $800",
+      "CodeCrafters six-month membership, $180",
+      "Adaption Labs credits, $800",
+      "Protoflow credits, $75",
+      "InterviewBuddy credits, $45",
     ],
   },
   {
-    rank: "Best No-Code AI App",
-    winners: "Built with Momen · 1 winner",
-    items: ["Momen Credits — $2,000"],
+    rank: "Best no-code AI app",
+    winners: "1 winner, built with Momen",
+    value: 2000,
+    items: ["Momen credits, $2,000"],
   },
   {
-    rank: "Tin Computer Growth Credit",
+    rank: "Tin Computer growth credit",
     winners: "100 winners",
-    items: ["$299 Tin Computer Growth Credit each — $29,900 total"],
+    value: 29900,
+    items: ["A $299 credit for each of 100 entrants"],
   },
 ];
 
 export const judgingCriteria: JudgingCriterion[] = [
-  { title: "Idea & Innovation", description: "How original and well-considered is the core idea?" },
-  { title: "Implementation", description: "How functional and technically sound is the build?" },
   {
-    title: "Health Impact & Rigor",
-    description: "How meaningfully — and how credibly — does it address a real health problem?",
+    title: "Idea and innovation",
+    points: 5,
+    description: "Does it address a real problem, and is it different from what exists?",
   },
-  { title: "Design & Usability", description: "How clear and usable is the experience for a real person?" },
+  {
+    title: "Implementation",
+    points: 5,
+    description: "Does it work, and how hard was it to build?",
+  },
+  {
+    title: "Health impact",
+    points: 5,
+    description: "Who is it for, and is the claim credible?",
+  },
+  {
+    title: "Design and usability",
+    points: 5,
+    description: "Is it thought through for the person using it?",
+  },
   {
     title: "Presentation",
-    description: "How clearly does the team communicate what they built and why it matters?",
+    points: 5,
+    description: "Clear problem, working demo, honest about what is unfinished.",
   },
 ];
 
-// No verified sponsor URLs or logo assets were supplied — hrefs and logoUrls are
-// left undefined intentionally rather than guessed, per the site's own no-fabrication rule.
+// Logos and links are the ones the organizers uploaded to the Devpost listing,
+// self-hosted under public/sponsors and normalized by tools/prepare-logos.py.
 export const sponsors: Sponsor[] = [
-  { name: "InterviewBuddy" },
-  { name: "Momen" },
-  { name: "CodeCrafters" },
-  { name: "Tin Computer" },
-  { name: ".xyz" },
-  { name: "DevSwarm" },
-  { name: "Protoflow" },
-  { name: "MeDo" },
-  { name: "Adaption Labs" },
+  { name: "Momen", href: "https://momen.app/", logo: "/sponsors/momen.png" },
+  { name: "CodeCrafters", href: "https://codecrafters.io/", logo: "/sponsors/codecrafters.png" },
+  { name: "Tin Computer", href: "https://tin.computer/", logo: "/sponsors/tin-computer.png" },
+  { name: "Adaption Labs", href: "https://adaptionlabs.ai/", logo: "/sponsors/adaption-labs.png" },
+  { name: "Protoflow", href: "https://www.protoflow.ai/", logo: "/sponsors/protoflow.png" },
+  { name: "InterviewBuddy", href: "https://interviewbuddy.net/", logo: "/sponsors/interviewbuddy.png" },
+  { name: "DevSwarm", href: "https://devswarm.ai", logo: "/sponsors/devswarm.png" },
+  { name: "MeDo", href: "https://medo.dev/home", logo: "/sponsors/medo.png" },
+  { name: ".xyz", href: "https://gen.xyz/", logo: "/sponsors/xyz.png" },
 ];
 
 export const faqGroups: FaqGroup[] = [
   {
-    title: "General",
+    title: "Entry",
     items: [
       {
-        question: "Is UnivaBio online or in person?",
-        answer: "Fully online and public. You can take part from anywhere in the world.",
+        question: "Who can enter?",
+        answer:
+          "Students aged 13 and over, from any country or territory outside the standard export-control exceptions. Companies and professional organizations are excluded.",
       },
       {
-        question: "Is there a cost to enter?",
+        question: "Do I need a team?",
         answer:
-          "Check the official rules page for the current entry cost — it isn't restated here to avoid giving stale information.",
+          "No. You can enter alone or with a team. Team-size limits are set out in the official rules on Devpost.",
       },
       {
-        question: "Are prizes cash or non-cash?",
+        question: "What if I have never built anything before?",
         answer:
-          "All prizes are non-cash — sponsor product credits, subscriptions, and licenses. See the Prizes section for the full breakdown.",
-      },
-    ],
-  },
-  {
-    title: "Eligibility & registration",
-    items: [
-      {
-        question: "Who can participate?",
-        answer:
-          "Students ages 13 and up, from any country or territory, subject to standard export-control exceptions. Companies and professional organizations can't enter.",
-      },
-      {
-        question: "Do I need a team, or can I work solo?",
-        answer:
-          "Either. You can build individually or as a team — check the rules page for the exact team-size cap.",
+          "That is a normal starting point here. Judges look at the idea and the working build rather than your experience.",
       },
       {
         question: "How do I register?",
-        answer: 'Go to univabio.devpost.com and click "Join Hackathon." Registration and submission both happen on Devpost.',
+        answer:
+          "Open the Devpost listing and click Join hackathon. Registration and submission both happen there, not on this site.",
       },
     ],
   },
   {
-    title: "Submission",
+    title: "Projects",
     items: [
       {
-        question: "Can I use AI coding tools?",
+        question: "Can I use AI coding assistants?",
         answer:
-          "Yes — using assistants like Claude, ChatGPT, or Copilot is encouraged. You should still understand your own code well enough to explain it to the judges.",
+          "Yes, and it is encouraged. Be ready to walk judges through your own code and explain the decisions in it.",
       },
       {
-        question: "What exactly do I submit?",
+        question: "What exactly do I upload?",
         answer:
-          "A working project, a demo video, a one-page project description (PDF), and a GitHub repo or code PDF. See the requirements section for details.",
+          "Four things: the working project, a demo video, a one-page PDF description, and either a GitHub repository or a PDF of your code.",
       },
       {
-        question: "When is the submission deadline?",
-        answer: "October 6, 2026 at 11:45pm EDT. See the full schedule above.",
+        question: "Does the project have to be about health?",
+        answer:
+          "Yes. Health impact is one of the five scored criteria. Beyond that the form is open: app, website, model, simulation, or system.",
+      },
+      {
+        question: "When is the deadline?",
+        answer: "October 6, 2026 at 11:45pm EDT. Judging runs the following week.",
+      },
+    ],
+  },
+  {
+    title: "Prizes",
+    items: [
+      {
+        question: "Are the prizes cash?",
+        answer:
+          "No. Every prize is non-cash: sponsor credits, subscriptions, licenses, and domains. They cannot be redeemed for money.",
+      },
+      {
+        question: "How many entrants win something?",
+        answer:
+          "104, across the five categories. The Tin Computer growth credit alone goes to 100 entrants.",
+      },
+      {
+        question: "Who is judging?",
+        answer:
+          "The judging panel is listed on the Devpost page. Scoring uses the five criteria on this page, five points each.",
       },
     ],
   },

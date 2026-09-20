@@ -1,0 +1,55 @@
+.lamp {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.svg {
+  position: absolute;
+  /* Overscan so blobs can travel past the edges without popping. */
+  inset: -14% -8%;
+  width: 116%;
+  height: 128%;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+}
+
+.blob {
+  animation-name: rise;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+/* One slow rise, squashing at the turn like wax losing its heat. */
+@keyframes rise {
+  0% {
+    transform: translate(0, 14%) scale(1, 0.92);
+  }
+  35% {
+    transform: translate(calc(var(--drift) * 0.6%), -4%) scale(0.94, 1.08);
+  }
+  70% {
+    transform: translate(calc(var(--drift) * 1%), -18%) scale(1.06, 0.96);
+  }
+  100% {
+    transform: translate(0, -30%) scale(0.96, 1.05);
+  }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(14, 7, 22, 0.1), rgba(14, 7, 22, 0.62) 70%),
+    linear-gradient(rgba(14, 7, 22, 0.34), rgba(14, 7, 22, 0.52));
+}
+
+@media (max-width: 900px) {
+  .svg {
+    opacity: 0.44;
+  }
+}

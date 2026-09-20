@@ -1,45 +1,54 @@
 import { sponsors } from "../content/content";
-import { DnaComet } from "../illustrations/objects/DnaComet";
-import { Satellite } from "../illustrations/objects/Satellite";
-import { Reveal } from "./Reveal";
-import { Scrim } from "./Scrim";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { SectionHead } from "./SectionHead";
 import styles from "./Sponsors.module.css";
 
-export function Sponsors() {
-  return (
-    <section className={styles.section} id="sponsors">
-      <DnaComet className={`${styles.comet} drift-c`} />
-      <Satellite variant="ring" color="var(--color-fusion)" size="sm" className={`${styles.mark} drift-b`} />
-      <Scrim>
-        <Reveal>
-          <div className={styles.headingRow}>
-            <div>
-              <h2 className={styles.heading}>Sponsors</h2>
-              <p className={styles.intro}>The prizes above are made possible by these partners.</p>
-            </div>
-          </div>
+export function Sponsors({ index = "02" }: { index?: string }) {
+  const reducedMotion = usePrefersReducedMotion();
+  // Two copies make the loop seamless: the track slides exactly half its width.
+  const run = reducedMotion ? sponsors : [...sponsors, ...sponsors];
 
-          <div className={styles.row}>
-            {sponsors.map((sponsor) =>
-              sponsor.href ? (
+  return (
+    <section className="section" id="sponsors" aria-labelledby="sponsors-title">
+      <div className="page">
+        <SectionHead
+          index={index}
+          id="sponsors-title"
+          title="Who put it up"
+          lede="Every prize on this page is credit, tooling, or membership put up by one of these companies."
+        />
+      </div>
+
+      <div className={`${styles.ticker} ${reducedMotion ? styles.tickerStill : ""}`}>
+        <ul className={styles.track} aria-label="Sponsors">
+          {run.map((sponsor, i) => {
+            const duplicate = i >= sponsors.length;
+            return (
+              <li className={styles.item} key={`${sponsor.name}-${i}`} aria-hidden={duplicate || undefined}>
                 <a
-                  key={sponsor.name}
-                  className={styles.item}
+                  className={styles.link}
                   href={sponsor.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  tabIndex={duplicate ? -1 : undefined}
                 >
-                  {sponsor.name}
+                  {sponsor.logo ? (
+                    <img
+                      className={styles.logo}
+                      src={sponsor.logo}
+                      alt={`${sponsor.name} logo`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <span className={styles.wordmark}>{sponsor.name}</span>
+                  )}
                 </a>
-              ) : (
-                <span key={sponsor.name} className={styles.item}>
-                  {sponsor.name}
-                </span>
-              ),
-            )}
-          </div>
-        </Reveal>
-      </Scrim>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </section>
   );
 }

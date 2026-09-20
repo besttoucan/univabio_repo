@@ -1,53 +1,71 @@
-import { DEVPOST_URL, heroFacts } from "../content/content";
-import { CellPlanet } from "../illustrations/objects/CellPlanet";
-import { MitochondriaMoon } from "../illustrations/objects/MitochondriaMoon";
-import { ProbeShip } from "../illustrations/objects/ProbeShip";
-import { SpaceStation } from "../illustrations/objects/SpaceStation";
-import { ReachMark } from "../illustrations/ReachMark";
-import { Scrim } from "./Scrim";
+import { DEVPOST_URL, heroFacts, scheduleEvents } from "../content/content";
+import { useScheduleStatus } from "../hooks/useScheduleStatus";
+import { HelixBand } from "../marks/HelixBand";
+import { Counter } from "./Counter";
+import { Reveal } from "./Reveal";
 import styles from "./Hero.module.css";
 
 export function Hero() {
+  const { daysToDeadline, message } = useScheduleStatus(scheduleEvents);
+  const open = daysToDeadline !== null;
+
   return (
     <section className={styles.hero} id="top">
-      <SpaceStation className={styles.station} />
-      <CellPlanet className={`${styles.cellPlanet} drift-a`} />
-      <MitochondriaMoon className={`${styles.mitoMoon} drift-b`} />
-      <ProbeShip className={`${styles.distantShip} drift-c`} heading={-20} trail={false} />
-      <Scrim className={styles.grid}>
-        <div>
-          <p className={`label ${styles.eyebrow}`}>BioCataalysis × UnivaDev</p>
-          <div className={styles.headlineRow}>
-            <ReachMark className={styles.mark} />
-            <h1 className={styles.headline}>UnivaBio</h1>
-          </div>
-          <p className={styles.themeLine}>Artificial Intelligence for Human Health</p>
-          <p className={styles.tagline}>
-            Biology needs builders. UnivaBio brings students worldwide together to build tools that
-            make healthcare smarter, earlier, and more accessible.
-          </p>
-          <div className={styles.ctas}>
-            <a className="btn glow" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
+      <div className={`page ${styles.top}`}>
+        <Reveal className={`eyebrow ${styles.kicker}`}>
+          BioCataalysis &times; UnivaDev &nbsp;/&nbsp; Online &nbsp;/&nbsp; Ages 13+
+        </Reveal>
+
+        <Reveal variant="wipe" as="h1" className={styles.title} delay={80}>
+          UnivaBio
+        </Reveal>
+
+        <div className={styles.under}>
+          <Reveal delay={220}>
+            <p className={styles.theme}>
+              Artificial intelligence <em>for human health.</em>
+            </p>
+          </Reveal>
+
+          <Reveal className={styles.actions} delay={320}>
+            <a className="btn" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
               Register on Devpost
             </a>
-            <a className="btn btn-quiet" href="#schedule">
-              View schedule →
+            <a className="btn btn--line" href="/compete/">
+              How to enter
             </a>
-          </div>
+          </Reveal>
         </div>
+      </div>
 
-        <div className={styles.side}>
-          <div className={styles.facts}>
-            {heroFacts.map((fact) => (
-              <div className={styles.fact} key={fact.label}>
-                <span className={`label ${styles.factLabel}`}>{fact.label}</span>
-                <span className={styles.factValue}>{fact.value}</span>
-              </div>
-            ))}
-            <p className={styles.footnote}>Non-cash prizes — sponsor credits, subscriptions & licenses.</p>
-          </div>
-        </div>
-      </Scrim>
+      <div className={styles.bandWrap}>
+        <HelixBand className={styles.band} />
+      </div>
+
+      <div className={`page ${styles.strip}`}>
+        <p className={styles.status}>
+          <span className={styles.statusText}>
+            {open ? "Submissions open" : "Submissions closed"}
+          </span>
+          {open ? (
+            <span className={`mono ${styles.countdown}`}>
+              <Counter to={daysToDeadline} /> days left
+            </span>
+          ) : (
+            <span className={`mono ${styles.countdown}`}>{message}</span>
+          )}
+        </p>
+
+        <dl className={styles.facts}>
+          {heroFacts.map((fact, i) => (
+            <Reveal className={styles.fact} key={fact.label} delay={i * 80}>
+              <dt className={`mono ${styles.factLabel}`}>{fact.label}</dt>
+              <dd className={styles.factValue}>{fact.value}</dd>
+              {fact.note ? <dd className={styles.factNote}>{fact.note}</dd> : null}
+            </Reveal>
+          ))}
+        </dl>
+      </div>
     </section>
   );
 }

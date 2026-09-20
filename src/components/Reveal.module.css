@@ -1,12 +1,60 @@
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+/* Shared easing: a long, soft settle rather than a bounce. */
+.rise,
+.wipe,
+.draw {
+  --ease: cubic-bezier(0.16, 0.84, 0.28, 1);
 }
 
-.reveal.revealed {
+/* The observed element for wipe and draw. It carries no effect of its own so
+   it always has area for the IntersectionObserver to measure. */
+.host {
+  display: block;
+}
+
+.rise {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.wipe {
+  display: block;
+  opacity: 0;
+  clip-path: inset(0 0 105% 0);
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--ease), clip-path 1s var(--ease), transform 1s var(--ease);
+}
+
+/* Takes its color from the host, so a caller styles the rule by setting
+   `color` and leaves the animation alone. */
+.draw {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.1s var(--ease);
+}
+
+.rise.in,
+.wipe.in {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.draw.in {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .wipe,
+  .draw {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
 }

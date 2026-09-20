@@ -1,0 +1,58 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  gap: 72px;
+  align-items: start;
+}
+
+.rail {
+  position: sticky;
+  top: 116px;
+  padding: 32px;
+  border: 1px solid var(--line-strong);
+  background: rgba(14, 7, 22, 0.72);
+}
+
+.railTitle {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lilac);
+}
+
+.railFact {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+}
+
+.railFact:first-of-type {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+}
+
+.railValue {
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.railCta {
+  display: flex;
+  margin-top: 26px;
+}
+
+@media (max-width: 1080px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .rail {
+    position: static;
+    max-width: 460px;
+  }
+}

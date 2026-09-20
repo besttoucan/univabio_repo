@@ -1,38 +1,17 @@
-import { Faq } from "./components/Faq";
-import { FinalCta, Footer } from "./components/Footer";
+import { Challenge } from "./components/Challenge";
 import { Hero } from "./components/Hero";
-import { Judges } from "./components/Judges";
-import { Judging } from "./components/Judging";
-import { Nav } from "./components/Nav";
-import { Prizes } from "./components/Prizes";
-import { Requirements } from "./components/Requirements";
-import { Schedule } from "./components/Schedule";
-import { Sponsors } from "./components/Sponsors";
-import { StatsBand } from "./components/StatsBand";
-import { ThemeSection } from "./components/ThemeSection";
-import { WhySection } from "./components/WhySection";
-import { GalaxyScene } from "./illustrations/galaxy/GalaxyScene";
+import { PageShell } from "./components/PageShell";
+import { Stats } from "./components/Stats";
+import { Who } from "./components/Who";
 
+/** Home: what this is, who it is for, and the two ways out (register, or compete). */
 export function App() {
   return (
-    <>
-      <GalaxyScene />
-      <Nav />
-      <main>
-        <Hero />
-        <WhySection />
-        <StatsBand />
-        <ThemeSection />
-        <Requirements />
-        <Schedule />
-        <Prizes />
-        <Judging />
-        <Sponsors />
-        <Judges />
-        <Faq />
-        <FinalCta />
-      </main>
-      <Footer />
-    </>
+    <PageShell current="/">
+      <Hero />
+      <Stats />
+      <Challenge index="01" />
+      <Who index="02" />
+    </PageShell>
   );
 }

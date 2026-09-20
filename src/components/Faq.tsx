@@ -1,57 +1,49 @@
-import { useState } from "react";
-import { faqGroups } from "../content/content";
-import { IconBadge } from "../illustrations/IconBadge";
-import { IconCodeBracket, IconGlobe, IconGradCap } from "../illustrations/sectionIcons";
-import { ParchmentPanel } from "./ParchmentPanel";
+import { CONTACT_EMAIL, DEVPOST_RULES_URL, faqGroups } from "../content/content";
 import { Reveal } from "./Reveal";
-import { Scrim } from "./Scrim";
+import { SectionHead } from "./SectionHead";
 import styles from "./Faq.module.css";
 
-const groupIcons = [IconGlobe, IconGradCap, IconCodeBracket];
-const groupColors = ["var(--color-vascular)", "var(--color-fusion)", "var(--color-circuit)"];
-
-export function Faq() {
-  const [openKey, setOpenKey] = useState<string | null>(null);
-
+export function Faq({ index = "02" }: { index?: string }) {
   return (
-    <section className={styles.section} id="faq">
-      <Scrim>
-        <h2 className={styles.heading}>Frequently asked questions</h2>
+    <section className="section" id="faq" aria-labelledby="faq-title">
+      <div className="page">
+        <SectionHead
+          index={index}
+          id="faq-title"
+          title="Questions"
+          lede={
+            <>
+              If anything here disagrees with the{" "}
+              <a href={DEVPOST_RULES_URL} target="_blank" rel="noopener noreferrer">
+                official rules
+              </a>
+              , the rules win.
+            </>
+          }
+        />
 
-        <ParchmentPanel className={styles.groups}>
-          {faqGroups.map((group, gi) => (
-            <Reveal className={styles.group} key={group.title} delay={gi * 120}>
-              <div className={styles.groupTitle}>
-                <IconBadge icon={groupIcons[gi]} color={groupColors[gi]} size="sm" />
-                <h3 className="label">{group.title}</h3>
-              </div>
-              <div className={styles.groupItems}>
-                {group.items.map((item) => {
-                  const key = `${group.title}-${item.question}`;
-                  const isOpen = openKey === key;
-                  return (
-                    <div className={`${styles.item} ${isOpen ? styles.open : ""}`} key={key}>
-                      <button
-                        className={styles.question}
-                        aria-expanded={isOpen}
-                        onClick={() => setOpenKey(isOpen ? null : key)}
-                      >
-                        {item.question}
-                        <span className={styles.icon} aria-hidden="true">
-                          +
-                        </span>
-                      </button>
-                      <div className={styles.answer}>
-                        <p>{item.answer}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </Reveal>
-          ))}
-        </ParchmentPanel>
-      </Scrim>
+        {faqGroups.map((group, groupIndex) => (
+          <Reveal className={styles.group} key={group.title} delay={groupIndex * 80}>
+            <h3 className={`eyebrow ${styles.groupTitle}`}>{group.title}</h3>
+
+            <div className={styles.items}>
+              {group.items.map((item) => (
+                <details className={styles.item} key={item.question}>
+                  <summary className={styles.question}>
+                    <span>{item.question}</span>
+                    <span className={styles.sign} aria-hidden="true" />
+                  </summary>
+                  <p className={styles.answer}>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </Reveal>
+        ))}
+
+        <p className={`fine ${styles.contact}`}>
+          Still stuck? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </p>
+      </div>
     </section>
   );
 }

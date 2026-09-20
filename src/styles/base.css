@@ -1,0 +1,284 @@
+/*
+  UnivaBio design tokens.
+
+  Dark plum base with a lava lamp burning behind the whole page (see
+  src/components/LavaLamp.tsx). Three accents, each with one job:
+    lilac    structure, rules, the drawing, section numbers
+    magenta  live state, the base pairs, anything happening now
+    lava     money, deadlines, first place, the primary call to action
+
+  Type: Fraunces for display with its SOFT and WONK axes turned up, Archivo
+  for body, Spline Sans Mono for data.
+*/
+
+:root {
+  /* palette */
+  --void: #0e0716;
+  --plum: #160d22;
+  --plum-2: #1d1130;
+  --grape: #2a1745;
+  --cream: #f4ecff;
+  --lilac: #c0a6ff;
+  --magenta: #ff5f8f;
+  --lava: #ff9142;
+  --coral: #ff5f8f;
+
+  /* themeable surface tokens */
+  --surface: transparent;
+  --text: var(--cream);
+  --text-soft: rgba(244, 236, 255, 0.74);
+  --text-mute: rgba(244, 236, 255, 0.52);
+  --line: rgba(192, 166, 255, 0.2);
+  --line-strong: rgba(192, 166, 255, 0.42);
+  --accent: var(--lilac);
+  --on-accent: var(--void);
+
+  /* type */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Spline Sans Mono", ui-monospace, Menlo, monospace;
+  --wonk: "SOFT" 30, "WONK" 1;
+
+  /* rhythm */
+  --page: 1320px;
+  --gutter: 44px;
+  --section-y: clamp(80px, 8.5vw, 136px);
+}
+
+/* A panel that sits over the lamp: used where a block of text needs the
+   background held still behind it. */
+.panel {
+  background: linear-gradient(rgba(14, 7, 22, 0.82), rgba(14, 7, 22, 0.88));
+}
+
+.panel--solid {
+  background: var(--plum);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.58;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(4rem, 14vw, 12.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+}
+
+h2 {
+  font-size: clamp(2.6rem, 6.2vw, 5.4rem);
+}
+
+h3 {
+  font-size: clamp(1.45rem, 2.1vw, 2rem);
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--line-strong);
+}
+
+a:hover {
+  text-decoration-color: var(--lava);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--lava);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--magenta);
+  color: var(--void);
+}
+
+/* ---------- layout ---------- */
+
+.page {
+  width: 100%;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-y) 0;
+}
+
+.sectionLine {
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- small type ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lilac);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background: currentColor;
+}
+
+.lede {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--text-soft);
+  text-wrap: balance;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.fine {
+  font-size: 0.95rem;
+  color: var(--text-mute);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  border: 2px solid var(--lava);
+  border-radius: 2px;
+  background: var(--lava);
+  color: var(--void);
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--lava);
+}
+
+.btn--line {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+.btn--line:hover {
+  background: transparent;
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.btn--small {
+  padding: 12px 24px;
+  font-size: 0.98rem;
+  border-width: 1.5px;
+}
+
+.skipLink {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--lava);
+  color: var(--void);
+  padding: 14px 20px;
+}
+
+.skipLink:focus {
+  left: 20px;
+  top: 20px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --gutter: 22px;
+  }
+  body {
+    font-size: 17px;
+  }
+  .lede {
+    max-width: 28ch;
+  }
+}

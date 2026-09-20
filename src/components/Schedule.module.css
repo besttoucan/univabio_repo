@@ -1,107 +1,118 @@
-.section {
-  position: relative;
-  padding: 40px 0;
-  overflow: hidden;
-}
-
-.planet {
-  position: absolute;
-  z-index: 0;
-  top: -22%;
-  right: -6%;
-  width: 30%;
-  max-width: 280px;
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-@media (max-width: 900px) {
-  .planet {
-    display: none;
-  }
-}
-
-.headingRow {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-  margin-bottom: 12px;
-}
-
-.heading {
-  margin-bottom: 0;
-}
-
-.status {
-  color: var(--color-circuit);
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 44px;
-}
-
-.list {
+.track {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 32px;
 }
 
 .step {
-  padding: 20px 28px 0 0;
-  border-top: 1px solid var(--color-hairline);
   position: relative;
+  padding-top: 40px;
 }
 
-.milestone {
-  width: 28px;
-  height: 28px;
-  display: block;
-  margin-bottom: 14px;
-}
-
-.step::before {
-  content: "";
+.rail {
   position: absolute;
-  top: -1px;
+  top: 0;
   left: 0;
+  right: -32px;
   height: 2px;
-  width: 0;
-  background: var(--color-ink);
+  background: var(--line);
 }
 
-.step.done::before {
-  width: 100%;
-  background: var(--color-ink-faint);
+.step:last-child .rail {
+  right: 0;
 }
 
-.step.active::before {
-  width: 100%;
-  background: var(--color-circuit);
+.node {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: var(--void);
+  border: 2px solid var(--line-strong);
 }
 
-.date {
-  display: block;
-  margin-bottom: 10px;
+.state {
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
 }
 
 .title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  margin-top: 12px;
+  color: var(--cream);
 }
 
-.step.active .title {
-  color: var(--color-circuit);
+.date {
+  margin-top: 8px;
+  font-size: 1.05rem;
+  color: var(--lilac);
 }
 
-.step.done .title {
-  color: var(--color-ink-faint);
+.detail {
+  margin-top: 16px;
+  max-width: 24ch;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--text-mute);
 }
 
-@media (max-width: 760px) {
-  .list {
+/* ---------- phase states ---------- */
+
+.done .rail {
+  background: var(--line-strong);
+}
+
+.done .node {
+  background: var(--line-strong);
+  border-color: var(--line-strong);
+}
+
+.done .title,
+.done .date {
+  opacity: 0.55;
+}
+
+.active .rail {
+  background: var(--magenta);
+}
+
+.active .node {
+  background: var(--magenta);
+  border-color: var(--magenta);
+}
+
+.active .state {
+  color: var(--magenta);
+}
+
+
+@media (max-width: 900px) {
+  .track {
     grid-template-columns: 1fr;
     gap: 0;
   }
   .step {
-    padding: 22px 0;
+    padding: 0 0 36px 34px;
+  }
+  .rail {
+    top: 6px;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .step:last-child .rail {
+    bottom: auto;
+    height: 20px;
+  }
+  .node {
+    top: 0;
+    left: -7px;
+  }
+  .detail {
+    max-width: none;
   }
 }

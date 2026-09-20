@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 /**
- * One-shot "has this element been scrolled to yet" reveal — TreeHacks-style
- * staged arrival (fade/grow into place once, then hold still) rather than a
- * continuous loop. Cheap: IntersectionObserver fires once, then disconnects.
+ * Tracks whether an element has been scrolled into view yet. One-shot: the
+ * observer fires once and then disconnects, so nothing animates twice and
+ * nothing runs on scroll. Reduced-motion users start in the revealed state.
  */
 export function useScrollReveal<T extends Element>(threshold = 0.2) {
   const ref = useRef<T | null>(null);

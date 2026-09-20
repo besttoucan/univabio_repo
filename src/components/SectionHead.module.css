@@ -1,0 +1,33 @@
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 40px 80px;
+  align-items: end;
+  margin-bottom: clamp(48px, 6vw, 92px);
+}
+
+.index {
+  margin-bottom: 26px;
+}
+
+.title {
+  max-width: 14ch;
+}
+
+.ledeWrap {
+  padding-bottom: 0.6em;
+}
+
+@media (max-width: 900px) {
+  .head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .title {
+    max-width: none;
+  }
+  .ledeWrap {
+    padding-bottom: 0;
+  }
+}

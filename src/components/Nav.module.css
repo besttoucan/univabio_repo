@@ -1,96 +1,119 @@
-.nav {
+.bar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: var(--color-paper);
-  border-bottom: 1px solid var(--color-hairline);
+  z-index: 40;
+  background: rgba(14, 7, 22, 0.92);
+  border-bottom: 1px solid var(--line);
 }
 
 .inner {
-  max-width: var(--container-w);
-  margin: 0 auto;
-  padding: 14px 32px;
   display: flex;
   align-items: center;
   gap: 40px;
+  height: 84px;
 }
 
-.brand {
-  display: flex;
+.wordmark {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  color: var(--cream);
   font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--color-ink);
+  font-variation-settings: var(--wonk);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   text-decoration: none;
-  margin-right: auto;
+  flex-shrink: 0;
 }
 
-.brandMark {
-  width: 42px;
-  height: 22px;
+.mark {
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
+  color: var(--lilac);
 }
 
 .links {
   display: flex;
-  gap: 26px;
+  align-items: center;
+  gap: 38px;
+  margin-left: auto;
 }
 
 .links a {
-  color: var(--color-ink-dim);
+  position: relative;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  font-weight: 500;
   text-decoration: none;
-  font-size: 0.92rem;
+  padding: 8px 0;
+  transition: color 0.2s ease;
 }
 
 .links a:hover {
-  color: var(--color-accent);
+  color: var(--cream);
 }
 
-.toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
+/* underline grows from the left, and stays put on the current page */
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--lava);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s cubic-bezier(0.16, 0.84, 0.28, 1);
 }
 
-.toggle span {
-  width: 20px;
-  height: 1px;
-  background: var(--color-ink);
+/* Qualified with .links a so it outranks the collapsed default above. */
+.links a:hover::after,
+.links a.current::after {
+  transform: scaleX(1);
 }
 
-.mobile {
-  display: none;
-  flex-direction: column;
-  padding: 4px 32px 20px;
+.links a.current {
+  color: var(--cream);
 }
 
-.mobile.open {
-  display: flex;
+.cta {
+  flex-shrink: 0;
 }
 
-.mobile a {
-  padding: 12px 0;
-  border-top: 1px solid var(--color-hairline);
-  color: var(--color-ink-dim);
-  text-decoration: none;
+@media (prefers-reduced-motion: reduce) {
+  .links a::after {
+    transition: none;
+  }
 }
 
-.mobile .cta {
-  margin-top: 14px;
-  width: fit-content;
-}
-
-@media (max-width: 720px) {
-  .links,
-  .navCta {
+@media (max-width: 900px) {
+  .inner {
+    height: auto;
+    min-height: 68px;
+    gap: 14px 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .links {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: 26px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .links::-webkit-scrollbar {
     display: none;
   }
-  .toggle {
-    display: flex;
+  .links a {
+    white-space: nowrap;
+    font-size: 1rem;
+  }
+  .cta {
+    margin-left: auto;
   }
 }

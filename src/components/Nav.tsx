@@ -1,51 +1,44 @@
-import { useState } from "react";
 import { DEVPOST_URL, navLinks } from "../content/content";
-import { ProbeShip } from "../illustrations/objects/ProbeShip";
+import { HelixMark } from "../marks/HelixMark";
 import styles from "./Nav.module.css";
 
-export function Nav() {
-  const [open, setOpen] = useState(false);
+interface NavProps {
+  /** Path of the page being rendered, so its nav item can mark itself current. */
+  current?: string;
+}
 
+export function Nav({ current = "/" }: NavProps) {
   return (
-    <header className={styles.nav}>
-      <div className={styles.inner}>
-        <a className={styles.brand} href="#top">
-          <ProbeShip className={styles.brandMark} trail={false} />
-          UnivaBio
+    <header className={styles.bar}>
+      <div className={`page ${styles.inner}`}>
+        <a className={styles.wordmark} href="/" aria-label="UnivaBio home">
+          <HelixMark className={styles.mark} />
+          <span>UnivaBio</span>
         </a>
 
-        <nav className={styles.links} aria-label="Primary">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
-            </a>
-          ))}
+        <nav className={styles.links} aria-label="Main">
+          {navLinks.map((link) => {
+            const isCurrent = link.href === current;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={isCurrent ? styles.current : undefined}
+                aria-current={isCurrent ? "page" : undefined}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
-        <a className={`btn glow ${styles.navCta}`} href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
-          Register
-        </a>
-
-        <button
-          className={styles.toggle}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+        <a
+          className={`btn btn--small ${styles.cta}`}
+          href={DEVPOST_URL}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span />
-          <span />
-          <span />
-        </button>
-      </div>
-
-      <div className={`${styles.mobile} ${open ? styles.open : ""}`}>
-        {navLinks.map((link) => (
-          <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
-            {link.label}
-          </a>
-        ))}
-        <a className={`btn glow ${styles.cta}`} href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
-          Register on Devpost
+          Register
         </a>
       </div>
     </header>
