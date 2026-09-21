@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&amp;family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Spline+Sans+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <!-- Paints the page colour before any CSS arrives, so a slow load is dark
+         rather than a white flash. -->
+    <style>
+      body {
+        margin: 0;
+        background: #0e0716;
+        color: #f4ecff;
+      }
+    </style>
     <!-- Title, description, canonical, social cards and structured data are
          written by the head-meta plugin in vite.config.ts. -->
     <!--%META%-->
@@ -15,5 +24,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/pages/privacy.tsx"></script>
+    <!--
+      This file is a Vite template, not a finished page: the script above is
+      TypeScript that a browser cannot run on its own. Opening it with a plain
+      static server (VS Code Live Server, file://) leaves the page empty, so say
+      why instead of showing nothing.
+    -->
+    <script>
+      setTimeout(function () {
+        if (document.getElementById("root").firstChild) return;
+        document.getElementById("root").innerHTML =
+          '<div style="font:16px/1.6 ui-monospace,Menlo,monospace;max-width:52ch;margin:16vh auto;padding:0 24px">' +
+          '<p style="color:#ff9142;margin:0 0 12px">This page needs the dev server.</p>' +
+          '<p style="margin:0 0 12px">It is a Vite template: the script it loads is TypeScript, which a plain static server (Live Server, file://) cannot run.</p>' +
+          '<p style="margin:0">Run <b>npm run dev</b> and open <b>http://localhost:5173</b>, or <b>npm run build &amp;&amp; npm run preview</b> for the built site.</p>' +
+          "</div>";
+      }, 1200);
+    </script>
   </body>
 </html>

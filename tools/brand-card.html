@@ -1,0 +1,363 @@
+<!doctype html>
+<!--
+  Source for everything in brand/. Rendered by tools/make-brand.mjs:
+
+    npm run brand
+
+  Variants are chosen with ?v= in the URL:
+    banner  wide Devpost header, dark, lamp behind the lockup
+    card    social / share card at 1600x900
+    logo    the lockup alone on transparency
+    mark    the glyph alone on transparency
+    og      1200x630 link-preview card; ?title= and ?facts= fill it
+
+  Colors and type match src/styles/base.css. Edit here, re-run, done.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&amp;family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Spline+Sans+Mono:wght@400;500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --void: #0e0716;
+        --cream: #f4ecff;
+        --lilac: #c0a6ff;
+        --magenta: #ff5f8f;
+        --lava: #ff9142;
+        --wonk: "SOFT" 30, "WONK" 1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: transparent;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: "Archivo", sans-serif;
+        color: var(--cream);
+      }
+
+      /* ---------- backdrop ---------- */
+
+      .stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      body[data-bg="dark"] .stage {
+        background: var(--void);
+      }
+
+      .lamp {
+        position: absolute;
+        inset: -12%;
+        opacity: 0.68;
+        mix-blend-mode: screen;
+      }
+
+      .scrim {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(70% 140% at 50% 50%, rgba(14, 7, 22, 0.86), rgba(14, 7, 22, 0.34) 72%),
+          linear-gradient(rgba(14, 7, 22, 0.28), rgba(14, 7, 22, 0.4));
+      }
+
+      body:not([data-bg="dark"]) .lamp,
+      body:not([data-bg="dark"]) .scrim {
+        display: none;
+      }
+
+      /* ---------- lockup ---------- */
+
+      .lockup {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--gap, 34px);
+      }
+
+      .mark {
+        width: var(--markSize, 104px);
+        height: var(--markSize, 104px);
+        flex-shrink: 0;
+      }
+
+      .name {
+        display: flex;
+        align-items: center;
+        gap: var(--nameGap, 22px);
+      }
+
+      .word {
+        font-family: "Fraunces", serif;
+        font-variation-settings: var(--wonk);
+        font-weight: 700;
+        font-size: var(--wordSize, 136px);
+        line-height: 0.86;
+        letter-spacing: -0.045em;
+        color: var(--cream);
+        white-space: nowrap;
+      }
+
+      .edition {
+        align-self: center;
+        padding: 0.32em 0.62em 0.28em;
+        border: 2px solid var(--lava);
+        font-family: "Spline Sans Mono", monospace;
+        font-size: var(--editionSize, 30px);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        color: var(--lava);
+      }
+
+      .divider {
+        width: 2px;
+        height: var(--dividerH, 96px);
+        background: rgba(192, 166, 255, 0.34);
+        flex-shrink: 0;
+      }
+
+      .partner {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-family: "Spline Sans Mono", monospace;
+        font-size: var(--partnerSize, 26px);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--lilac);
+        white-space: nowrap;
+      }
+
+      .partner small {
+        font-size: 0.72em;
+        letter-spacing: 0.14em;
+        color: rgba(244, 236, 255, 0.5);
+      }
+
+      /* ---------- per-variant sizing ---------- */
+
+      body[data-v="card"] .stage {
+        flex-direction: column;
+        gap: 46px;
+      }
+
+      body[data-v="card"] .tagline {
+        position: relative;
+        font-family: "Fraunces", serif;
+        font-variation-settings: var(--wonk);
+        font-weight: 500;
+        font-size: 54px;
+        letter-spacing: -0.03em;
+        color: var(--cream);
+      }
+
+      body[data-v="card"] .tagline em {
+        font-style: normal;
+        color: var(--lava);
+      }
+
+      body[data-v="card"] .facts {
+        position: relative;
+        font-family: "Spline Sans Mono", monospace;
+        font-size: 24px;
+        letter-spacing: 0.06em;
+        color: var(--lilac);
+      }
+
+      body[data-v="og"] .stage {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 68px 72px 64px;
+      }
+
+      body[data-v="og"] .tagline {
+        position: relative;
+        margin: 0;
+        max-width: 15ch;
+        font-family: "Fraunces", serif;
+        font-variation-settings: var(--wonk);
+        font-weight: 700;
+        font-size: 84px;
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+        color: var(--cream);
+      }
+
+      body[data-v="og"] .tagline em {
+        font-style: normal;
+        color: var(--lava);
+      }
+
+      body[data-v="og"] .facts {
+        position: relative;
+        margin: 0;
+        font-family: "Spline Sans Mono", monospace;
+        font-size: 24px;
+        letter-spacing: 0.06em;
+        color: var(--lilac);
+      }
+
+      body[data-v="mark"] .name,
+      body[data-v="mark"] .divider,
+      body[data-v="mark"] .partner {
+        display: none;
+      }
+
+      body[data-v="logo"] .divider,
+      body[data-v="logo"] .partner {
+        display: none;
+      }
+
+      /* No partner block on the card, so the divider has nothing to divide. */
+      body[data-v="og"] .partner,
+      body[data-v="og"] .divider {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <svg class="lamp" id="lamp" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="goo" color-interpolation-filters="sRGB" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="9" />
+          </filter>
+        </defs>
+        <g filter="url(#goo)" id="blobs"></g>
+      </svg>
+      <div class="scrim"></div>
+
+      <div class="lockup">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#c0a6ff" stroke-width="1.7" stroke-linecap="round">
+          <path d="M1.4 12C3.2 6.3 5.9 6.3 7.6 12C9.3 17.7 12 17.7 13.8 12" />
+          <rect x="14.6" y="8.4" width="7.6" height="7.6" />
+          <rect x="16.9" y="10.7" width="3" height="3" fill="#ff5f8f" stroke="none" />
+        </svg>
+
+        <div class="name">
+          <span class="word">UnivaBio</span>
+          <span class="edition" id="edition">v1</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="partner">
+          <span>BioCataalysis &times; UnivaDev</span>
+          <small>AI for human health</small>
+        </div>
+      </div>
+
+      <p class="tagline">Artificial intelligence <em>for human health.</em></p>
+      <p class="facts">Online worldwide &nbsp;/&nbsp; Students 13+ &nbsp;/&nbsp; Closes Oct 6, 2026</p>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const variant = params.get("v") || "banner";
+      const edition = params.get("edition");
+
+      document.body.dataset.v = variant;
+      // Only the two dark variants paint a background; the rest stay transparent
+      // so the PNG can sit on anything.
+      document.body.dataset.bg =
+        variant === "banner" || variant === "card" || variant === "og" ? "dark" : "light";
+
+      if (edition !== null) {
+        const node = document.getElementById("edition");
+        if (edition === "") node.remove();
+        else node.textContent = edition;
+      }
+
+      // Blob fields authored per frame shape, in a viewBox with the same aspect
+      // as the output, so nothing gets stretched or cropped to a flat wash.
+      const lamps = {
+        banner: {
+          box: "0 0 240 42",
+          blobs: [
+            [18, 34, 26, "#ff5f8f"], [62, 2, 22, "#c0a6ff"], [108, 40, 20, "#ff9142"],
+            [168, 0, 24, "#ff5f8f"], [206, 36, 22, "#c0a6ff"], [238, 8, 20, "#ff9142"],
+          ],
+        },
+        og: {
+          box: "0 0 120 63",
+          blobs: [
+            [12, 50, 26, "#ff5f8f"], [36, 6, 20, "#c0a6ff"], [66, 66, 22, "#ff9142"],
+            [100, 8, 24, "#ff5f8f"], [116, 44, 20, "#c0a6ff"],
+          ],
+        },
+        card: {
+          box: "0 0 160 90",
+          blobs: [
+            [16, 70, 34, "#ff5f8f"], [44, 10, 26, "#c0a6ff"], [82, 94, 28, "#ff9142"],
+            [132, 12, 32, "#ff5f8f"], [154, 62, 26, "#c0a6ff"],
+          ],
+        },
+      };
+
+      const lamp = lamps[variant];
+      if (lamp) {
+        document.getElementById("lamp").setAttribute("viewBox", lamp.box);
+        document.getElementById("blobs").innerHTML = lamp.blobs
+          .map(([cx, cy, r, fill]) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" />`)
+          .join("");
+      }
+
+      // Ink version: the same lockup for light backgrounds.
+      if (params.get("ink") !== null) {
+        const root = document.documentElement.style;
+        root.setProperty("--cream", "#140a22");
+        root.setProperty("--lilac", "#4a2d8f");
+        root.setProperty("--lava", "#c2560d");
+        document.querySelector(".mark").setAttribute("stroke", "#4a2d8f");
+        document.querySelector(".mark rect[fill]").setAttribute("fill", "#c9265c");
+      }
+
+      const sizing = {
+        banner: { markSize: "96px", wordSize: "128px", gap: "38px", nameGap: "20px", editionSize: "30px", dividerH: "104px", partnerSize: "26px" },
+        card: { markSize: "86px", wordSize: "116px", gap: "32px", nameGap: "18px", editionSize: "27px", dividerH: "92px", partnerSize: "23px" },
+        og: { markSize: "48px", wordSize: "62px", gap: "20px", nameGap: "14px", editionSize: "18px" },
+        logo: { markSize: "120px", wordSize: "168px", gap: "44px", nameGap: "26px", editionSize: "38px" },
+        mark: { markSize: "420px" },
+      };
+
+      for (const [key, value] of Object.entries(sizing[variant] || {})) {
+        document.documentElement.style.setProperty(`--${key}`, value);
+      }
+
+      if (variant === "og") {
+        // Both accept a little inline markup so a figure can carry the accent.
+        const title = params.get("title");
+        const facts = params.get("facts");
+        if (title) document.querySelector(".tagline").innerHTML = title;
+        if (facts) document.querySelector(".facts").innerHTML = facts;
+      } else if (variant !== "card") {
+        document.querySelector(".tagline").remove();
+        document.querySelector(".facts").remove();
+      }
+    </script>
+  </body>
+</html>

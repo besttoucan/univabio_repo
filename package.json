@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "og": "node tools/make-og.mjs"
+    "og": "node tools/make-og.mjs",
+    "brand": "node tools/make-brand.mjs",
+    "check:preview": "node tools/check-preview.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

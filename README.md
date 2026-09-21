@@ -14,7 +14,9 @@ npm run dev      # dev server
 npm run build    # type-check and build to dist/
 npm run preview  # serve the built site
 npm run lint
-npm run og       # regenerate public/og.png from tools/og-card.html
+npm run og       # regenerate the link-preview cards in public/og/
+npm run check:preview   # verify every page's preview tags (run after build)
+npm run brand    # regenerate the banner and logo files in brand/
 python tools/prepare-logos.py   # normalize anything new in public/sponsors
 ```
 
@@ -44,6 +46,36 @@ section headings do not repeat the page titles.
    `error_page 404 /404.html;`.
 3. `robots.txt` and `sitemap.xml` are generated into `dist/` at build time. There is nothing to edit
    by hand.
+
+## Link previews
+
+The card that appears when someone pastes a link into Slack, Discord, iMessage,
+WhatsApp, LinkedIn or X comes from Open Graph tags in the page head. They are
+written by the head-meta plugin in `vite.config.ts` from the same page table as
+everything else, so a page cannot ship with a preview that disagrees with it.
+
+Each page has its own 1200x630 card under `public/og/`, rendered by
+`npm run og` from the same template as the brand files. `npm run check:preview`
+verifies, against the built output, that every page has the full tag set, that
+`og:image` is an absolute URL, and that the file it points at actually exists.
+
+**Previews stay broken until `SITE_ORIGIN` is the real domain.** Scrapers fetch
+`og:image` as an absolute URL, so while it reads `https://univabio.org` the card
+resolves to nothing. Set the origin, deploy, then test a real URL at
+<https://www.opengraph.xyz> or Discord's paste box.
+
+## Brand files
+
+`brand/` holds the banner, share card and logo files, all rendered from
+`tools/brand-card.html` by `npm run brand` so they use the real typeface and the
+real palette rather than an approximation of them. There is a banner for the
+Devpost header, a 16:9 card for sharing, and the lockup and glyph on
+transparency in both a light-background and a dark-background version. See
+`brand/README.md` for which file is which.
+
+The edition tag (`v1`) is a parameter, not baked into the artwork: pass
+`?edition=v2` to the template, or change the value in `tools/make-brand.mjs`,
+and the whole set rebuilds for the next run of the event.
 
 ## Sponsor logos
 

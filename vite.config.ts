@@ -23,6 +23,10 @@ interface PageMeta {
   description: string;
   /** The page carrying the FAQ, which is where the FAQPage schema belongs. */
   faq?: boolean;
+  /** Link-preview card under public/og. Defaults to the home card. */
+  image?: string;
+  /** Sentence describing that card, for anyone reading the preview aloud. */
+  imageAlt?: string;
   /** Keeps the 404 out of the index. */
   noindex?: boolean;
 }
@@ -30,18 +34,24 @@ interface PageMeta {
 const pages: Record<string, PageMeta> = {
   "index.html": {
     path: "/",
+    image: "/og/home.png",
+    imageAlt: "UnivaBio: artificial intelligence for human health. Online worldwide, students 13 and up, closes October 6, 2026.",
     title: "UnivaBio · A global student hackathon on AI for human health",
     description:
       "UnivaBio is an online hackathon for students aged 13 and up, hosted by BioCataalysis with UnivaDev. Build an AI project for human health by October 6, 2026. $40,000 in non-cash sponsor prizes.",
   },
   "compete/index.html": {
     path: "/compete/",
+    image: "/og/compete.png",
+    imageAlt: "How to enter UnivaBio: four files, scored out of 25, closes October 6, 2026.",
     title: "How to enter · UnivaBio",
     description:
       "The four files every UnivaBio entry needs, the dates from submissions opening to winners, and the five criteria judges score each project against.",
   },
   "prizes/index.html": {
     path: "/prizes/",
+    image: "/og/prizes.png",
+    imageAlt: "UnivaBio prizes: $40,000 on the table, 104 winners, five categories, none of it cash.",
     title: "Prizes · UnivaBio",
     description:
       "Roughly $40,000 in non-cash sponsor prizes across five categories, awarded to 104 entrants, and the companies putting them up.",
@@ -49,6 +59,8 @@ const pages: Record<string, PageMeta> = {
   "rules/index.html": {
     path: "/rules/",
     faq: true,
+    image: "/og/rules.png",
+    imageAlt: "UnivaBio rules and answers: students 13 and up, solo or team, AI assistants welcome.",
     title: "Rules & FAQ · UnivaBio",
     description:
       "Who can enter UnivaBio, what counts as a submission, how entries are scored out of 25, whether AI assistants are allowed, and how the non-cash prizes work.",
@@ -87,7 +99,7 @@ function eventSchema(): string {
     name: "UnivaBio",
     description: TAGLINE,
     url: `${SITE_ORIGIN}/`,
-    image: `${SITE_ORIGIN}/og.png`,
+    image: `${SITE_ORIGIN}/og/home.png`,
     startDate: submissionsOpen?.start,
     endDate: submissionsClose?.start,
     eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
@@ -131,6 +143,8 @@ function headMeta(root: string): Plugin {
         if (!meta) return html;
 
         const url = `${SITE_ORIGIN}${meta.path}`;
+        const image = `${SITE_ORIGIN}${meta.image ?? "/og/home.png"}`;
+        const imageAlt = meta.imageAlt ?? "The UnivaBio wordmark on a dark plum field.";
         const tags = [
           `<title>${escapeHtml(meta.title)}</title>`,
           `<meta name="description" content="${escapeHtml(meta.description)}" />`,
@@ -141,13 +155,17 @@ function headMeta(root: string): Plugin {
           `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
           `<meta property="og:description" content="${escapeHtml(meta.description)}" />`,
           `<meta property="og:url" content="${url}" />`,
-          `<meta property="og:image" content="${SITE_ORIGIN}/og.png" />`,
+          `<meta property="og:locale" content="en_US" />`,
+          `<meta property="og:image" content="${image}" />`,
+          `<meta property="og:image:type" content="image/png" />`,
           `<meta property="og:image:width" content="1200" />`,
           `<meta property="og:image:height" content="630" />`,
+          `<meta property="og:image:alt" content="${escapeHtml(imageAlt)}" />`,
           `<meta name="twitter:card" content="summary_large_image" />`,
           `<meta name="twitter:title" content="${escapeHtml(meta.title)}" />`,
           `<meta name="twitter:description" content="${escapeHtml(meta.description)}" />`,
-          `<meta name="twitter:image" content="${SITE_ORIGIN}/og.png" />`,
+          `<meta name="twitter:image" content="${image}" />`,
+          `<meta name="twitter:image:alt" content="${escapeHtml(imageAlt)}" />`,
           key === "index.html" ? eventSchema() : "",
           meta.faq ? faqSchema() : "",
         ].filter(Boolean);
