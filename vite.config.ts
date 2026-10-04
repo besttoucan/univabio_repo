@@ -11,10 +11,12 @@ import {
 
 /**
  * The public origin the site is served from. Canonical URLs, Open Graph tags,
- * the sitemap, and the structured data all derive from this one value, so
- * moving the site to its real domain is a single edit here.
+ * the sitemap, and the structured data all derive from this one value.
+ *
+ * Set SITE_ORIGIN in the host's build environment to override it without
+ * touching the code; the fallback below is what ships if nothing is set.
  */
-const SITE_ORIGIN = "https://univabio.org";
+const SITE_ORIGIN = (process.env.SITE_ORIGIN ?? "https://univabio.org").replace(/\/$/, "");
 
 interface PageMeta {
   /** Public path, used for canonical and og:url. */
@@ -36,34 +38,34 @@ const pages: Record<string, PageMeta> = {
     path: "/",
     image: "/og/home.png",
     imageAlt: "UnivaBio: artificial intelligence for human health. Online worldwide, students 13 and up, closes October 6, 2026.",
-    title: "UnivaBio · A global student hackathon on AI for human health",
+    title: "UnivaBio · Online AI healthcare hackathon for students",
     description:
-      "UnivaBio is an online hackathon for students aged 13 and up, hosted by BioCataalysis with UnivaDev. Build an AI project for human health by October 6, 2026. $40,000 in non-cash sponsor prizes.",
+      "An online AI healthcare hackathon for students 13+, worldwide. Build an AI project for human health by October 6, 2026. $40,000 in non-cash sponsor prizes.",
   },
   "compete/index.html": {
     path: "/compete/",
     image: "/og/compete.png",
     imageAlt: "How to enter UnivaBio: four files, scored out of 25, closes October 6, 2026.",
-    title: "How to enter · UnivaBio",
+    title: "How to enter · UnivaBio AI hackathon",
     description:
-      "The four files every UnivaBio entry needs, the dates from submissions opening to winners, and the five criteria judges score each project against.",
+      "What to submit to this online AI healthcare hackathon: four files, the full schedule, and the five criteria judges score every project out of 25 against.",
   },
   "prizes/index.html": {
     path: "/prizes/",
     image: "/og/prizes.png",
     imageAlt: "UnivaBio prizes: $40,000 on the table, 104 winners, five categories, none of it cash.",
-    title: "Prizes · UnivaBio",
+    title: "Prizes · UnivaBio AI healthcare hackathon",
     description:
-      "Roughly $40,000 in non-cash sponsor prizes across five categories, awarded to 104 entrants, and the companies putting them up.",
+      "$40,000 in non-cash sponsor prizes across five categories, awarded to 104 entrants of this online student hackathon, and the companies putting them up.",
   },
   "rules/index.html": {
     path: "/rules/",
     faq: true,
     image: "/og/rules.png",
     imageAlt: "UnivaBio rules and answers: students 13 and up, solo or team, AI assistants welcome.",
-    title: "Rules & FAQ · UnivaBio",
+    title: "Rules & FAQ · UnivaBio student hackathon",
     description:
-      "Who can enter UnivaBio, what counts as a submission, how entries are scored out of 25, whether AI assistants are allowed, and how the non-cash prizes work.",
+      "Who can enter this virtual AI hackathon, what counts as a submission, whether AI assistants are allowed, and how entries are scored out of 25 points.",
   },
   "privacy/index.html": {
     path: "/privacy/",
@@ -174,11 +176,15 @@ function headMeta(root: string): Plugin {
       },
     },
 
-    /** robots.txt and the sitemap come from the same page table as the meta tags. */
+    /** robots.txt, the sitemap and the manifest all come from the page table. */
     generateBundle() {
       const indexable = Object.values(pages).filter((page) => !page.noindex);
+      const lastmod = new Date().toISOString().slice(0, 10);
       const urls = indexable
-        .map((page) => `  <url>\n    <loc>${SITE_ORIGIN}${page.path}</loc>\n  </url>`)
+        .map(
+          (page) =>
+            `  <url>\n    <loc>${SITE_ORIGIN}${page.path}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`,
+        )
         .join("\n");
 
       this.emitFile({
@@ -187,10 +193,44 @@ function headMeta(root: string): Plugin {
         source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
       });
 
+      // GitHub Pages reads CNAME to keep the custom domain bound to the site,
+      // and .nojekyll stops it running the output through Jekyll first.
+      this.emitFile({
+        type: "asset",
+        fileName: "CNAME",
+        source: `${new URL(SITE_ORIGIN).hostname}
+`,
+      });
+
+      this.emitFile({ type: "asset", fileName: ".nojekyll", source: "" });
+
       this.emitFile({
         type: "asset",
         fileName: "robots.txt",
         source: `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`,
+      });
+
+      // A manifest makes the site installable and gives Android a real icon.
+      this.emitFile({
+        type: "asset",
+        fileName: "site.webmanifest",
+        source: JSON.stringify(
+          {
+            name: "UnivaBio",
+            short_name: "UnivaBio",
+            description: pages["index.html"].description,
+            start_url: "/",
+            display: "standalone",
+            background_color: "#0e0716",
+            theme_color: "#0e0716",
+            icons: [
+              { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+              { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
+            ],
+          },
+          null,
+          2,
+        ),
       });
     },
   };

@@ -1,5 +1,5 @@
 import { DEVPOST_URL, navLinks } from "../content/content";
-import { HelixMark } from "../marks/HelixMark";
+import { ChipMark } from "../marks/ChipMark";
 import styles from "./Nav.module.css";
 
 interface NavProps {
@@ -12,7 +12,7 @@ export function Nav({ current = "/" }: NavProps) {
     <header className={styles.bar}>
       <div className={`page ${styles.inner}`}>
         <a className={styles.wordmark} href="/" aria-label="UnivaBio home">
-          <HelixMark className={styles.mark} />
+          <ChipMark className={styles.mark} />
           <span>UnivaBio</span>
         </a>
 

@@ -37,15 +37,42 @@ them are in the nav; the rest are reachable from the footer or from a bad URL.
 Each page owns one question. Nothing appears on two of them, which is why the
 section headings do not repeat the page titles.
 
-## Before deploying
+## Deploying
 
-1. **Set the domain.** `SITE_ORIGIN` at the top of `vite.config.ts` is currently
-   `https://univabio.org`. Every canonical URL, Open Graph tag, the sitemap and the structured data
-   derive from it, so changing that one line moves the whole site.
-2. **Point the host's 404 at `/404.html`.** Netlify and Vercel do this automatically; on Nginx use
-   `error_page 404 /404.html;`.
-3. `robots.txt` and `sitemap.xml` are generated into `dist/` at build time. There is nothing to edit
-   by hand.
+The site publishes to GitHub Pages at <https://univabio.org> via
+`.github/workflows/deploy.yml`, which runs on every push to `main`. The workflow
+builds, runs `check:preview`, and fails the deploy rather than shipping a page
+with broken preview tags.
+
+`SITE_ORIGIN` in `vite.config.ts` drives everything downstream: canonical URLs,
+Open Graph tags, the sitemap, the structured data, and the `CNAME` file that
+keeps the custom domain bound to the site. Change that one value (or set a
+`SITE_ORIGIN` environment variable at build time) and the whole site follows.
+
+`robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME` and `.nojekyll` are all
+generated into `dist/` at build time. None of them are edited by hand.
+
+### One-time setup
+
+- **Repo settings → Pages → Source: GitHub Actions.**
+- **DNS for univabio.org** — four `A` records at the apex pointing to
+  `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`,
+  and a `CNAME` for `www` pointing to `<user>.github.io`. Then tick **Enforce
+  HTTPS** in repo settings once the certificate is issued.
+
+## Search
+
+Titles and descriptions target what people actually search for, checked against
+Semrush keyword data rather than guessed. The findings that shaped them:
+`healthcare hackathon` (KD 33) and `virtual hackathon` (KD 36) are winnable for
+a new domain, `ai hackathon` (590/mo, KD 51) is a stretch worth making, and
+`hackathon for high school students` has **zero** search volume despite being
+the most natural way to describe the event. `ai in healthcare` is 110k/mo at
+KD 87, which is Mayo Clinic territory and not worth chasing.
+
+The build also emits a sitemap with `lastmod`, a `robots.txt`, and a web app
+manifest, and every page carries `Event` or `FAQPage` structured data. Rerun
+`npm run check:preview` after any change to the page table.
 
 ## Link previews
 

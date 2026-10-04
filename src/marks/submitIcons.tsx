@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
 /**
- * One icon per submission deliverable, drawn to the same rules as HelixMark:
+ * One icon per submission deliverable, drawn to the same rules as ChipMark:
  * 24px box, 1.6 stroke, round caps, ink outline with a single teal element
  * carrying the meaning. Each silhouette is deliberately different (a window, a
  * circle, a sheet, brackets) so the four stay apart at this size.

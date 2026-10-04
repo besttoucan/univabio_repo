@@ -22,9 +22,9 @@ export function Hero() {
 
         <div className={styles.under}>
           <Reveal delay={220}>
-            <p className={styles.theme}>
+            <h2 className={styles.theme}>
               Artificial intelligence <em>for human health.</em>
-            </p>
+            </h2>
           </Reveal>
 
           <Reveal className={styles.actions} delay={320}>

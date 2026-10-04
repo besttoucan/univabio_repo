@@ -28,6 +28,13 @@ const variants = [
   { name: "univabio-wordmark-ink", v: "logo", width: 1200, height: 320, transparent: true, edition: "", ink: true },
   { name: "univabio-mark", v: "mark", width: 512, height: 512, transparent: true },
   { name: "univabio-mark-ink", v: "mark", width: 512, height: 512, transparent: true, ink: true },
+  // Square tiles: profile pictures, Devpost thumbnails, app icons.
+  { name: "univabio-icon", v: "icon", width: 1024, height: 1024, transparent: false },
+  { name: "univabio-icon-512", v: "icon", width: 512, height: 512, transparent: false },
+  // Served by the site itself, so iOS has something to put on a home screen.
+  { name: "apple-touch-icon", v: "icon", width: 180, height: 180, transparent: false, dir: "public" },
+  { name: "icon-192", v: "icon", width: 192, height: 192, transparent: false, dir: "public" },
+  { name: "icon-512", v: "icon", width: 512, height: 512, transparent: false, dir: "public" },
 ];
 
 const candidates = [
@@ -48,7 +55,9 @@ if (!browser) {
 mkdirSync(outDir, { recursive: true });
 
 for (const variant of variants) {
-  const out = resolve(outDir, `${variant.name}.png`);
+  const target = variant.dir ? resolve(here, "..", variant.dir) : outDir;
+  mkdirSync(target, { recursive: true });
+  const out = resolve(target, `${variant.name}.png`);
   const query = new URLSearchParams({ v: variant.v });
   if (variant.edition !== undefined) query.set("edition", variant.edition);
   if (variant.ink) query.set("ink", "1");
@@ -68,7 +77,7 @@ for (const variant of variants) {
   args.push(`file://${card.replaceAll("\\", "/")}?${query}`);
 
   execFileSync(browser, args);
-  console.log(`${variant.name}.png  ${variant.width}x${variant.height}`);
+  console.log(`${variant.dir ?? "brand"}/${variant.name}.png  ${variant.width}x${variant.height}`);
 }
 
 console.log(`\nWrote ${variants.length} files to ${outDir}`);

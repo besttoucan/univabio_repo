@@ -7,7 +7,7 @@ import {
   scheduleEvents,
 } from "../content/content";
 import { useScheduleStatus } from "../hooks/useScheduleStatus";
-import { HelixMark } from "../marks/HelixMark";
+import { ChipMark } from "../marks/ChipMark";
 import { Counter } from "./Counter";
 import { Reveal } from "./Reveal";
 import styles from "./Footer.module.css";
@@ -40,7 +40,7 @@ export function Footer() {
       <div className={`page ${styles.meta}`}>
         <div className={styles.brand}>
           <span className={styles.wordmark}>
-            <HelixMark className={styles.mark} />
+            <ChipMark className={styles.mark} />
             UnivaBio
           </span>
           <p className={styles.brandNote}>
