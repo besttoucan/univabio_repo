@@ -26,6 +26,10 @@ const variants = [
   // Without the edition tag, for anything that outlives this year's event.
   { name: "univabio-wordmark", v: "logo", width: 1200, height: 320, transparent: true, edition: "" },
   { name: "univabio-wordmark-ink", v: "logo", width: 1200, height: 320, transparent: true, edition: "", ink: true },
+  // Filled lockups: for anywhere a transparent PNG would vanish or box out.
+  { name: "univabio-logo-filled", v: "logo", width: 1600, height: 500, transparent: false, bg: "dark" },
+  { name: "univabio-logo-filled-light", v: "logo", width: 1600, height: 500, transparent: false, bg: "paper", ink: true },
+  { name: "univabio-wordmark-filled", v: "logo", width: 1600, height: 500, transparent: false, bg: "dark", edition: "" },
   { name: "univabio-mark", v: "mark", width: 512, height: 512, transparent: true },
   { name: "univabio-mark-ink", v: "mark", width: 512, height: 512, transparent: true, ink: true },
   // Square tiles: profile pictures, Devpost thumbnails, app icons.
@@ -61,6 +65,7 @@ for (const variant of variants) {
   const query = new URLSearchParams({ v: variant.v });
   if (variant.edition !== undefined) query.set("edition", variant.edition);
   if (variant.ink) query.set("ink", "1");
+  if (variant.bg) query.set("bg", variant.bg);
 
   const args = [
     "--headless=new",

@@ -35,11 +35,10 @@ export function PrivacyPage() {
 
               <h3>Third parties</h3>
               <p>
-                The site loads its typefaces from Google Fonts, so your browser makes a request to
-                Google when a page loads and Google receives your IP address and user agent as part
-                of it. Sponsor logos are served from this site rather than from the sponsors, so
-                viewing them tells those companies nothing. No other third-party service is embedded
-                in these pages.
+                None. The typefaces, the sponsor logos and every image are served from this site
+                rather than from a font CDN or from the sponsors themselves, so loading a page here
+                tells no other company that you visited. Nothing on these pages is embedded from
+                anywhere else.
               </p>
               <p>
                 Links out to{" "}

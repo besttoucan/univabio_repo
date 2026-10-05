@@ -12,25 +12,28 @@
     og      1200x630 link-preview card; ?title= and ?facts= fill it
     icon    square app icon / avatar: the glyph on a filled tile
 
+  ?bg=dark or ?bg=paper fills the background on a variant that would otherwise
+  render on transparency, for places that handle transparent PNGs badly.
+
   Colors and type match src/styles/base.css. Edit here, re-run, done.
 -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&amp;family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Spline+Sans+Mono:wght@400;500&amp;display=swap"
-      rel="stylesheet"
-    />
     <style>
+      @font-face { font-family: "Clash Display"; src: url("../public/fonts/clash-600.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Clash Display"; src: url("../public/fonts/clash-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Satoshi"; src: url("../public/fonts/satoshi-400.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Satoshi"; src: url("../public/fonts/satoshi-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Spline Sans Mono"; src: url("../public/fonts/mono-400.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Spline Sans Mono"; src: url("../public/fonts/mono-500.woff2") format("woff2"); font-weight: 500; }
+
       :root {
         --void: #0e0716;
         --cream: #f4ecff;
         --lilac: #c0a6ff;
         --magenta: #ff5f8f;
         --lava: #ff9142;
-        --wonk: "SOFT" 30, "WONK" 1;
       }
 
       * {
@@ -49,7 +52,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        font-family: "Archivo", sans-serif;
+        font-family: "Satoshi", sans-serif;
         color: var(--cream);
       }
 
@@ -67,6 +70,10 @@
 
       body[data-bg="dark"] .stage {
         background: var(--void);
+      }
+
+      body[data-bg="paper"] .stage {
+        background: #f4f1ea;
       }
 
       .lamp {
@@ -87,6 +94,16 @@
       body:not([data-bg="dark"]) .lamp,
       body:not([data-bg="dark"]) .scrim {
         display: none;
+      }
+
+      /* A paper card gets a soft tint of the brand colours instead of the lamp. */
+      body[data-bg="paper"] .stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(70% 120% at 12% 20%, rgba(192, 166, 255, 0.3), transparent 70%),
+          radial-gradient(60% 110% at 88% 85%, rgba(255, 145, 66, 0.22), transparent 72%);
       }
 
       /* ---------- lockup ---------- */
@@ -111,8 +128,7 @@
       }
 
       .word {
-        font-family: "Fraunces", serif;
-        font-variation-settings: var(--wonk);
+        font-family: "Clash Display", sans-serif;
         font-weight: 700;
         font-size: var(--wordSize, 136px);
         line-height: 0.86;
@@ -167,8 +183,7 @@
 
       body[data-v="card"] .tagline {
         position: relative;
-        font-family: "Fraunces", serif;
-        font-variation-settings: var(--wonk);
+        font-family: "Clash Display", sans-serif;
         font-weight: 500;
         font-size: 54px;
         letter-spacing: -0.03em;
@@ -199,8 +214,7 @@
         position: relative;
         margin: 0;
         max-width: 15ch;
-        font-family: "Fraunces", serif;
-        font-variation-settings: var(--wonk);
+        font-family: "Clash Display", sans-serif;
         font-weight: 700;
         font-size: 84px;
         line-height: 0.96;
@@ -292,9 +306,11 @@
       document.body.dataset.v = variant;
       // Only the two dark variants paint a background; the rest stay transparent
       // so the PNG can sit on anything.
-      document.body.dataset.bg = ["banner", "card", "og", "icon"].includes(variant)
-        ? "dark"
-        : "light";
+      // An explicit ?bg= wins; otherwise the filled variants pick dark and the
+      // rest stay transparent.
+      document.body.dataset.bg =
+        params.get("bg") ??
+        (["banner", "card", "og", "icon"].includes(variant) ? "dark" : "light");
 
       if (edition !== null) {
         const node = document.getElementById("edition");
@@ -310,6 +326,13 @@
           blobs: [
             [18, 34, 26, "#ff5f8f"], [62, 2, 22, "#c0a6ff"], [108, 40, 20, "#ff9142"],
             [168, 0, 24, "#ff5f8f"], [206, 36, 22, "#c0a6ff"], [238, 8, 20, "#ff9142"],
+          ],
+        },
+        logo: {
+          box: "0 0 160 50",
+          blobs: [
+            [14, 40, 26, "#ff5f8f"], [52, 4, 22, "#c0a6ff"], [96, 46, 24, "#ff9142"],
+            [140, 6, 24, "#ff5f8f"], [158, 36, 20, "#c0a6ff"],
           ],
         },
         icon: {

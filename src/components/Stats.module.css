@@ -36,7 +36,6 @@
   position: relative;
   display: block;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(2.6rem, 5.6vw, 5.4rem);
   white-space: nowrap;
   font-weight: 700;

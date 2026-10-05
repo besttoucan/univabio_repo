@@ -45,7 +45,6 @@
 .totalValue {
   display: block;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(5rem, 10vw, 8.5rem);
   font-weight: 700;
   line-height: 0.85;

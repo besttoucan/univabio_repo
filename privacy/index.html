@@ -7,9 +7,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&amp;family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;family=Spline+Sans+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link rel="preload" href="/fonts/clash-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Paints the page colour before any CSS arrives, so a slow load is dark
          rather than a white flash. -->
     <style>
@@ -26,6 +25,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/pages/privacy.tsx"></script>
+    <!--%DEV_GUARD%-->
     <!--
       This file is a Vite template, not a finished page: the script above is
       TypeScript that a browser cannot run on its own. Opening it with a plain
@@ -43,5 +43,6 @@
           "</div>";
       }, 1200);
     </script>
+    <!--%/DEV_GUARD%-->
   </body>
 </html>

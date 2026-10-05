@@ -57,7 +57,6 @@
 
 .wordmark {
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(1.6rem, 3vw, 2.6rem);
   font-weight: 600;
   letter-spacing: -0.035em;

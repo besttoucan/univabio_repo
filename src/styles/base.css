@@ -1,14 +1,67 @@
+/* Self-hosted so the page makes no third-party request for type, and so the
+   fonts cannot change under us. Clash Display and Satoshi are Fontshare
+   (ITF Free Font License); Spline Sans Mono is SIL OFL. */
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Spline Sans Mono";
+  src: url("/fonts/mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Spline Sans Mono";
+  src: url("/fonts/mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
 /*
   UnivaBio design tokens.
 
-  Dark plum base with a lava lamp burning behind the whole page (see
-  src/components/LavaLamp.tsx). Three accents, each with one job:
+  Dark plum base, no background effect: the drawings, the type and the accents
+  carry the page. Three accents, each with one job:
     lilac    structure, rules, the drawing, section numbers
     magenta  live state, the base pairs, anything happening now
     lava     money, deadlines, first place, the primary call to action
 
-  Type: Fraunces for display with its SOFT and WONK axes turned up, Archivo
-  for body, Spline Sans Mono for data.
+  Type: Clash Display for headings, Satoshi for body, Spline Sans Mono for
+  data. All three are self-hosted; none of them is a default any AI tool
+  reaches for.
 */
 
 :root {
@@ -34,10 +87,9 @@
   --on-accent: var(--void);
 
   /* type */
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-body: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Satoshi", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Spline Sans Mono", ui-monospace, Menlo, monospace;
-  --wonk: "SOFT" 30, "WONK" 1;
 
   /* rhythm */
   --page: 1320px;
@@ -75,7 +127,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--void);
+  /* A quiet tonal shift rather than a wash of colour: the accents and the
+     drawings carry the colour, the background stays out of their way. */
+  background: linear-gradient(180deg, #120a1d 0%, var(--void) 38%, #140b21 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 19px;
@@ -90,22 +145,21 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
   color: var(--text);
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(4rem, 14vw, 12.5rem);
-  line-height: 0.88;
-  letter-spacing: -0.045em;
+  font-size: clamp(3.6rem, 12.5vw, 11rem);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
 }
 
 h2 {
-  font-size: clamp(2.6rem, 6.2vw, 5.4rem);
+  font-size: clamp(2.4rem, 5.6vw, 4.8rem);
 }
 
 h3 {
@@ -194,7 +248,6 @@ button {
 .lede {
   max-width: 22ch;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(1.35rem, 2.2vw, 2rem);
   line-height: 1.22;
   letter-spacing: -0.015em;

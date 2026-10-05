@@ -28,7 +28,6 @@
   align-self: start;
   justify-self: end;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(4rem, 11vw, 9.5rem);
   font-weight: 700;
   line-height: 0.84;
@@ -65,7 +64,6 @@
 .tierValue {
   display: block;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(2.2rem, 3.6vw, 3.4rem);
   font-weight: 700;
   line-height: 0.95;

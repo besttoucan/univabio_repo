@@ -18,7 +18,21 @@ Edit the template, re-run, and the whole set is rebuilt at once.
 | `univabio-icon.png` | 1024x1024 | Profile pictures, Devpost thumbnail, app icon |
 | `univabio-icon-512.png` | 512x512 | Anywhere smaller |
 
+## Logos on a filled background
+
+Use these anywhere a transparent PNG would vanish or get boxed out — Devpost,
+Discord, Google Docs, slides, anything that puts its own background behind an
+image.
+
+| File | Size | Use it for |
+| --- | --- | --- |
+| `univabio-logo-filled.png` | 1600x500 | Lockup with `v1` on the brand background |
+| `univabio-logo-filled-light.png` | 1600x500 | Same lockup on a light background |
+| `univabio-wordmark-filled.png` | 1600x500 | Filled, without the `v1` tag |
+
 ## Logos on transparency
+
+Only use these when you control what sits behind them.
 
 | File | Size | Use it for |
 | --- | --- | --- |

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Footer } from "./Footer";
-import { LavaLamp } from "./LavaLamp";
 import { Nav } from "./Nav";
 
 interface PageShellProps {
@@ -13,7 +12,6 @@ interface PageShellProps {
 export function PageShell({ current, children }: PageShellProps) {
   return (
     <>
-      <LavaLamp />
       <a className="skipLink" href="#main">
         Skip to content
       </a>

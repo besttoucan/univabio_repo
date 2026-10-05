@@ -122,12 +122,14 @@ the entry in `content.ts` at it.
   job. Lilac is structure: rules, section numbers, the drawing. Magenta is live state: the current
   schedule phase and the base pairs on the drawing. Lava orange is money and urgency: prize figures,
   the deadline count, the primary button. Nothing else gets a color.
-- **Type**: Fraunces for display with its `SOFT` and `WONK` axes turned up, so headlines have some
-  character at size; Archivo for body; Spline Sans Mono for data and labels.
-- **The lamp** (`src/components/LavaLamp.tsx`): six circles inside a gooey SVG filter that blurs
-  them and then snaps the alpha back to hard edges, so neighbouring blobs bulge toward each other
-  and merge the way wax does. It is fixed behind the page and sits still under
-  `prefers-reduced-motion`.
+- **Type**: Clash Display for headings, Satoshi for body, Spline Sans Mono for data. All three are
+  self-hosted from `public/fonts`, so the page makes no third-party request for type and the fonts
+  cannot change underneath us. None of them is a default any AI tool reaches for — Inter, the one
+  that is, is deliberately absent. Hack the North runs Satoshi for the same reason.
+- **The background** (`src/components/VitalsTrace.tsx`): a vitals monitor, fixed behind the page.
+  The waveform is a real PQRST complex — the small P bump, the sharp QRS spike, the broader T wave
+  — tiled across the width, with a band of it sweeping left to right the way a monitor redraws
+  itself and a brighter head riding at the front. It holds still under `prefers-reduced-motion`.
 
 ## Motion
 

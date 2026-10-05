@@ -25,7 +25,6 @@
 .lede {
   max-width: 44ch;
   font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
   font-size: clamp(1.3rem, 2.1vw, 1.85rem);
   line-height: 1.24;
   letter-spacing: -0.015em;

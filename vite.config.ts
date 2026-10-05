@@ -172,7 +172,17 @@ function headMeta(root: string): Plugin {
           meta.faq ? faqSchema() : "",
         ].filter(Boolean);
 
-        return html.replace("<!--%META%-->", tags.join("\n    "));
+        const withMeta = html.replace("<!--%META%-->", tags.join("\n    "));
+
+        // The dev-server guard only helps someone opening these files with a
+        // static server. Strip it from the build rather than shipping a
+        // localhost URL and an npm command to the public site.
+        return ctx.server
+          ? withMeta
+          : withMeta.replace(
+              /[ \t]*<!--%DEV_GUARD%-->[\s\S]*?<!--%\/DEV_GUARD%-->\n?/,
+              "",
+            );
       },
     },
 
