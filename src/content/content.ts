@@ -304,10 +304,10 @@ export const judges: Person[] = [
 // TODO: Ryan review. Placeholders until the organizing team's names and roles
 // are in; replace each entry, or add and remove entries as needed.
 export const staff: Person[] = [
-  { name: "Organizer name", role: "Founder, BioCataalysis" },
-  { name: "Organizer name", role: "Co-organizer, UnivaDev" },
-  { name: "Organizer name", role: "Sponsorships" },
-  { name: "Organizer name", role: "Operations" },
+  { name: "Organizer name", role: "Lead Competition Director & Organizer" },
+  { name: "Organizer name", role: "Organizer" },
+  { name: "Organizer name", role: "Organizer" },
+  { name: "Organizer name", role: "Organizer" },
 ];
 
 export const faqGroups: FaqGroup[] = [
