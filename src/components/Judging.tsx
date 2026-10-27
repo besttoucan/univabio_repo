@@ -13,7 +13,8 @@ export function Judging({ index = "03" }: { index?: string }) {
         <SectionHead
           index={index}
           id="judging-title"
-          title="The scorecard"
+          label="Judging"
+          title={<>The <em>scorecard.</em></>}
           lede="Five criteria, five points each, nothing weighted above the rest."
         />
 

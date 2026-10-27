@@ -1,7 +1,7 @@
 import type {
+  EventPhase,
   FaqGroup,
   JudgingCriterion,
-  KeyFact,
   NavLink,
   Prize,
   RequirementItem,
@@ -9,6 +9,7 @@ import type {
   Sponsor,
   Stat,
   WhoPoint,
+  Winner,
 } from "./types";
 
 /*
@@ -20,26 +21,50 @@ import type {
 export const DEVPOST_URL = "https://univabio.devpost.com/";
 export const DEVPOST_RULES_URL = "https://univabio.devpost.com/rules";
 export const DEVPOST_DATES_URL = "https://univabio.devpost.com/details/dates";
+export const DEVPOST_GALLERY_URL = "https://univabio.devpost.com/project-gallery";
 export const BIOCATAALYSIS_URL = "https://biocataalysis.org";
 export const CONTACT_EMAIL = "biocataalysis@gmail.com";
 
 export const TAGLINE =
   "Biology needs builders. UnivaBio brings students worldwide together to build tools that make healthcare smarter, earlier, and more accessible.";
 
-/** The whole site: three pages plus home. Anything that does not earn a nav
-    slot lives in the footer. */
+/**
+ * Where the event stands. Copy and calls to action across the site switch on
+ * this one value. Winners were announced on Devpost on Oct 15, 2026.
+ */
+export const EVENT_PHASE: EventPhase = "results";
+
+export const phaseCta: Record<EventPhase, NavLink> = {
+  open: { label: "Register", href: DEVPOST_URL },
+  judging: { label: "See submissions", href: DEVPOST_GALLERY_URL },
+  results: { label: "See winners", href: DEVPOST_GALLERY_URL },
+};
+
+export const phaseChip: Record<EventPhase, string> = {
+  open: "Submissions open · Closes Oct 6",
+  judging: "Submissions closed Oct 6 · Judging in progress",
+  results: "Submissions closed Oct 6 · Winners announced Oct 15",
+};
+
+/** The home page reads top to bottom in this order. */
 export const navLinks: NavLink[] = [
+  { label: "About", href: "/#about" },
+  { label: "Theme", href: "/#theme" },
+  { label: "Results", href: "/#results" },
+  { label: "Prizes", href: "/#prizes" },
+  { label: "Timeline", href: "/#timeline" },
+  { label: "Sponsors", href: "/#sponsors" },
+  { label: "FAQ", href: "/#faq" },
+];
+
+/** The standalone pages, linked from the footer. */
+export const pageLinks: NavLink[] = [
   { label: "Compete", href: "/compete/" },
   { label: "Prizes", href: "/prizes/" },
   { label: "Rules & FAQ", href: "/rules/" },
 ];
 
-export const heroFacts: KeyFact[] = [
-  { label: "Deadline", value: "Oct 6, 2026", note: "11:45pm EDT" },
-  { label: "Format", value: "Online", note: "Worldwide" },
-  { label: "Who", value: "Students 13+", note: "Solo or team" },
-  { label: "Enter at", value: "Devpost", note: "Open now" },
-];
+export const metaStrip = ["Online", "Worldwide", "Students 13+", "$40,000 in prizes"];
 
 export const stats: Stat[] = [
   { value: 40000, prefix: "$", label: "In sponsor prizes" },
@@ -222,6 +247,11 @@ export const sponsors: Sponsor[] = [
   { name: "MeDo", href: "https://medo.dev/home", logo: "/sponsors/medo.png" },
   { name: ".xyz", href: "https://gen.xyz/", logo: "/sponsors/xyz.png" },
 ];
+
+// TODO: Ryan review. The winning projects are not in this repo yet and Devpost
+// could not be read from here; until they are added, the results section links
+// to the Devpost gallery instead.
+export const winners: Winner[] = [];
 
 export const faqGroups: FaqGroup[] = [
   {

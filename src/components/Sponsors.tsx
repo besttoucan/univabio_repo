@@ -14,7 +14,8 @@ export function Sponsors({ index = "02" }: { index?: string }) {
         <SectionHead
           index={index}
           id="sponsors-title"
-          title="Who put it up"
+          label="Sponsors"
+          title={<>Who put it <em>up.</em></>}
           lede="Every prize on this page is credit, tooling, or membership put up by one of these companies."
         />
       </div>

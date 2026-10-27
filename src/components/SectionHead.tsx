@@ -4,18 +4,21 @@ import styles from "./SectionHead.module.css";
 
 interface SectionHeadProps {
   index: string;
-  title: string;
+  /** Uppercase words after the number: "01 — What is UnivaBio". */
+  label: string;
+  /** Wrap one phrase in <em>: it is set italic and lit. */
+  title: ReactNode;
   lede?: ReactNode;
   id?: string;
 }
 
-/** Index and oversized title on the left, a short lede across the gutter. */
-export function SectionHead({ index, title, lede, id }: SectionHeadProps) {
+/** Numbered eyebrow and oversized title on the left, a short lede across the gutter. */
+export function SectionHead({ index, label, title, lede, id }: SectionHeadProps) {
   return (
     <header className={styles.head}>
       <div>
         <Reveal className={`eyebrow ${styles.index}`} delay={60}>
-          {index}
+          <span className="mono">{index}</span> — {label}
         </Reveal>
         <Reveal variant="wipe" as="h2" id={id} className={styles.title}>
           {title}

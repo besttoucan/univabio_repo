@@ -5,12 +5,13 @@ import styles from "./Who.module.css";
 
 export function Who({ index = "02" }: { index?: string }) {
   return (
-    <section className="section" id="who" aria-labelledby="who-title">
+    <section className="section" id="about" aria-labelledby="who-title">
       <div className="page">
         <SectionHead
           index={index}
           id="who-title"
-          title="Who it is for"
+          label="What is UnivaBio"
+          title={<>Who it is <em>for.</em></>}
           lede="576 students had registered by 19 September 2026."
         />
 

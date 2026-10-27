@@ -1,4 +1,4 @@
-import { DEVPOST_URL, navLinks } from "../content/content";
+import { EVENT_PHASE, navLinks, phaseCta } from "../content/content";
 import { ChipMark } from "../marks/ChipMark";
 import styles from "./Nav.module.css";
 
@@ -34,11 +34,11 @@ export function Nav({ current = "/" }: NavProps) {
 
         <a
           className={`btn btn--small ${styles.cta}`}
-          href={DEVPOST_URL}
+          href={phaseCta[EVENT_PHASE].href}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Register
+          {phaseCta[EVENT_PHASE].label}
         </a>
       </div>
     </header>

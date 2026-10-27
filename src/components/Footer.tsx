@@ -3,7 +3,9 @@ import {
   CONTACT_EMAIL,
   DEVPOST_RULES_URL,
   DEVPOST_URL,
-  navLinks,
+  EVENT_PHASE,
+  pageLinks,
+  phaseCta,
   scheduleEvents,
 } from "../content/content";
 import { useScheduleStatus } from "../hooks/useScheduleStatus";
@@ -14,10 +16,13 @@ import styles from "./Footer.module.css";
 
 export function Footer() {
   const { daysToDeadline } = useScheduleStatus(scheduleEvents);
+  const cta = phaseCta[EVENT_PHASE];
 
   return (
     <footer className={styles.footer}>
-      <div className={`page ${styles.closing}`}>
+      <div className={`page ${styles.closing}`} id="next">
+        <Reveal className={`eyebrow ${styles.next}`}>What&rsquo;s next</Reveal>
+
         {daysToDeadline !== null ? (
           <Reveal className={styles.clock}>
             <Counter className={styles.clockValue} to={daysToDeadline} />
@@ -26,14 +31,23 @@ export function Footer() {
         ) : null}
 
         <Reveal variant="wipe" as="h2" className={styles.title} delay={80}>
-          Build something that makes health easier to reach.
+          Your idea could be <em>the next thing to grow.</em>
         </Reveal>
 
         <Reveal className={styles.cta} delay={200}>
-          <a className="btn" href={DEVPOST_URL} target="_blank" rel="noopener noreferrer">
-            Register on Devpost
+          <a className="btn" href={cta.href} target="_blank" rel="noopener noreferrer">
+            {cta.label}
           </a>
-          <span className={styles.ctaNote}>Students 13+, anywhere in the world.</span>
+          {EVENT_PHASE === "open" ? null : (
+            <a className="btn btn--line" href={BIOCATAALYSIS_URL} target="_blank" rel="noopener noreferrer">
+              Stay updated
+            </a>
+          )}
+          <span className={styles.ctaNote}>
+            {EVENT_PHASE === "open"
+              ? "Students 13+, anywhere in the world."
+              : "Follow BioCataalysis for the next edition."}
+          </span>
         </Reveal>
       </div>
 
@@ -55,7 +69,7 @@ export function Footer() {
             <li>
               <a href="/">Home</a>
             </li>
-            {navLinks.map((link) => (
+            {pageLinks.map((link) => (
               <li key={link.href}>
                 <a href={link.href}>{link.label}</a>
               </li>
@@ -100,6 +114,9 @@ export function Footer() {
       <div className={`page ${styles.bottom}`}>
         <p className={`mono ${styles.copy}`}>&copy; {new Date().getFullYear()} UnivaBio</p>
         <p className={`mono ${styles.copy}`}>Details follow Devpost. Checked 19 September 2026.</p>
+        <p className={`mono ${styles.copy} ${styles.egg}`} aria-hidden="true">
+          &gt; sequencing complete<span className={styles.caret}>▌</span>
+        </p>
       </div>
     </footer>
   );

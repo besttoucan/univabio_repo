@@ -3,12 +3,6 @@ export interface NavLink {
   href: string;
 }
 
-export interface KeyFact {
-  label: string;
-  value: string;
-  note?: string;
-}
-
 export interface Stat {
   /** Raw number, so it can be counted up and formatted at render time. */
   value: number;
@@ -74,4 +68,16 @@ export interface FaqItem {
 export interface FaqGroup {
   title: string;
   items: FaqItem[];
+}
+
+export type EventPhase = "open" | "judging" | "results";
+
+export interface Winner {
+  project: string;
+  team: string;
+  prize: string;
+  track?: string;
+  href: string;
+  /** 1, 2 or 3 for the placed winners, which carry the highlight accent. */
+  place?: 1 | 2 | 3;
 }

@@ -10,7 +10,8 @@ export function Faq({ index = "02" }: { index?: string }) {
         <SectionHead
           index={index}
           id="faq-title"
-          title="Questions"
+          label="FAQ"
+          title={<>Questions, <em>answered.</em></>}
           lede={
             <>
               If anything here disagrees with the{" "}
