@@ -63,6 +63,8 @@ export interface Sponsor {
 export interface Person {
   name: string;
   role: string;
+  /** Square headshot under /team. */
+  photo?: string;
 }
 
 export interface FaqItem {

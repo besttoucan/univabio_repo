@@ -25,3 +25,19 @@
 .group {
   margin: clamp(56px, 6vw, 88px) 0 24px;
 }
+
+.staff {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* A thin lit ring, the same membrane the organism's cells are drawn with. */
+.photo {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1.5px var(--glow-1), 0 0 16px rgba(192, 166, 255, 0.35);
+}

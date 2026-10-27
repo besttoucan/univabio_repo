@@ -301,13 +301,13 @@ export const judges: Person[] = [
   { name: "Sharoon Babu", role: "Lead AI Engineer at Gartner" },
 ];
 
-// TODO: Ryan review. Placeholders until the organizing team's names and roles
-// are in; replace each entry, or add and remove entries as needed.
+// Headshots come from each person's team page (stemise.org, univadev.com,
+// biocataalysis.org), resized to 320px squares.
 export const staff: Person[] = [
-  { name: "Organizer name", role: "Lead Competition Director & Organizer" },
-  { name: "Organizer name", role: "Organizer" },
-  { name: "Organizer name", role: "Organizer" },
-  { name: "Organizer name", role: "Organizer" },
+  { name: "Ryan Ahn", role: "Lead Competition Director & Organizer", photo: "/team/ryan.jpg" },
+  { name: "Eldiiar Bekbolotov", role: "Organizer", photo: "/team/eldiiar.jpg" },
+  { name: "Aaron Yu", role: "Organizer", photo: "/team/aaron.jpg" },
+  { name: "Ofir Savir", role: "Organizer", photo: "/team/ofir.jpg" },
 ];
 
 export const faqGroups: FaqGroup[] = [

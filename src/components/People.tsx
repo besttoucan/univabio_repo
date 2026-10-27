@@ -26,10 +26,23 @@ export function People({ index = "08" }: { index?: string }) {
 
         <h3 className={`eyebrow ${styles.group}`}>Organizers</h3>
         <Reveal as="ul" className={styles.grid}>
-          {staff.map((person, i) => (
-            <li className={styles.judge} key={`${person.name}-${i}`}>
-              <h4 className={styles.name}>{person.name}</h4>
-              <p className={styles.role}>{person.role}</p>
+          {staff.map((person) => (
+            <li className={`${styles.judge} ${styles.staff}`} key={person.name}>
+              {person.photo ? (
+                <img
+                  className={styles.photo}
+                  src={person.photo}
+                  alt=""
+                  width={64}
+                  height={64}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : null}
+              <div>
+                <h4 className={styles.name}>{person.name}</h4>
+                <p className={styles.role}>{person.role}</p>
+              </div>
             </li>
           ))}
         </Reveal>
