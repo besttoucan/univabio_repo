@@ -164,7 +164,7 @@ export const prizes: Prize[] = [
     rank: "First place",
     winners: "1 winner",
     value: 3890,
-    lead: true,
+    award: "first",
     items: [
       "Momen credits, $2,000",
       "CodeCrafters two-year membership, $720",
@@ -177,6 +177,7 @@ export const prizes: Prize[] = [
     rank: "Second place",
     winners: "1 winner",
     value: 1355,
+    award: "second",
     items: [
       "CodeCrafters one-year membership, $360",
       "Adaption Labs credits, $800",
@@ -188,6 +189,7 @@ export const prizes: Prize[] = [
     rank: "Third place",
     winners: "1 winner",
     value: 1100,
+    award: "third",
     items: [
       "CodeCrafters six-month membership, $180",
       "Adaption Labs credits, $800",
@@ -199,12 +201,14 @@ export const prizes: Prize[] = [
     rank: "Best no-code AI app",
     winners: "1 winner, built with Momen",
     value: 2000,
+    award: "build",
     items: ["Momen credits, $2,000"],
   },
   {
     rank: "Tin Computer growth credit",
     winners: "100 winners",
     value: 29900,
+    award: "many",
     items: ["A $299 credit for each of 100 entrants"],
   },
 ];

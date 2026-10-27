@@ -79,6 +79,10 @@
   --glow-2: #ff5f8f;
   --glow-3: #ff9142;
   --glass: rgba(22, 13, 34, 0.7);
+  /* medal tones, used only on the three placed awards */
+  --gold: #ffd36b;
+  --silver: #cfd3e6;
+  --bronze: #d98a5a;
 
   /* older names, kept so every component reads from the same tokens */
   --void: var(--abyss);

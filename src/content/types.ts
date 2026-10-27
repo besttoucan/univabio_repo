@@ -33,14 +33,16 @@ export interface ScheduleEvent {
   end?: string;
 }
 
+export type PrizeAward = "first" | "second" | "third" | "build" | "many";
+
 export interface Prize {
   rank: string;
   winners: string;
   /** Total sponsor-credit value of the tier, already summed. */
   value: number;
   items: string[];
-  /** Marks the tier that carries the amber accent. */
-  lead?: boolean;
+  /** Picks the award's colour and its mark: the three placings, then the two specials. */
+  award: PrizeAward;
 }
 
 export interface JudgingCriterion {
