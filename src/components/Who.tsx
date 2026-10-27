@@ -12,7 +12,7 @@ export function Who({ index = "02" }: { index?: string }) {
           id="who-title"
           label="What is UnivaBio"
           title={<>Who it is <em>for.</em></>}
-          lede="576 students had registered by 19 September 2026."
+          lede="935 students registered on Devpost."
         />
 
         <ul className={styles.grid}>

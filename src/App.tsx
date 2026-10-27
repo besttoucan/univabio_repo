@@ -3,6 +3,7 @@ import { Faq } from "./components/Faq";
 import { Hero } from "./components/Hero";
 import { Judging } from "./components/Judging";
 import { PageShell } from "./components/PageShell";
+import { People } from "./components/People";
 import { Prizes } from "./components/Prizes";
 import { Results } from "./components/Results";
 import { Schedule } from "./components/Schedule";
@@ -23,7 +24,8 @@ export function App() {
       <Judging index="05" />
       <Schedule index="06" />
       <Sponsors index="07" />
-      <Faq index="08" />
+      <People index="08" />
+      <Faq index="09" />
     </PageShell>
   );
 }

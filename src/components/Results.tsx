@@ -3,7 +3,6 @@ import { Reveal } from "./Reveal";
 import { SectionHead } from "./SectionHead";
 import styles from "./Results.module.css";
 
-const judging = scheduleEvents.find((event) => event.id === "judging");
 const announced = scheduleEvents.find((event) => event.id === "winners");
 
 /** What came out of the event. Empty while submissions are still open. */
@@ -22,7 +21,7 @@ export function Results({ index = "03" }: { index?: string }) {
           lede={
             results
               ? `Winners were announced on ${announced?.dateLabel}, on the Devpost listing.`
-              : `Judging runs ${judging?.dateLabel}. Winners are announced ${announced?.dateLabel}.`
+              : `Judging is under way. Winners are announced on ${announced?.dateLabel}.`
           }
         />
 

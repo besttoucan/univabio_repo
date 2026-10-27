@@ -38,7 +38,7 @@ export function Hero() {
               {cta.label}
             </a>
             <a className="btn btn--line" href="/#results">
-              {EVENT_PHASE === "open" ? "How to enter" : "Results"}
+              {{ open: "How to enter", judging: "Submissions", results: "Results" }[EVENT_PHASE]}
             </a>
           </div>
         </Reveal>

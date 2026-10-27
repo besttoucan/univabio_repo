@@ -3,14 +3,15 @@
 Branch: `redesign/bioluminescence`. Not pushed, merged or deployed.
 
 ## Open questions
-- **Winners list.** `EVENT_PHASE = 'results'`, but neither the repo nor Devpost (403 to automated fetches) gave me winner names. `winners` in `src/content/content.ts` is empty, so Results links to the Devpost gallery. Fill the array and the winners grid renders, with 1st/2nd/3rd highlighted in `--glow-3`.
-- **Workshops (06) and People (08).** The repo has no workshops, speakers, judges or organizer data, so these sections are left out rather than invented. Send the data and they slot in between Timeline and FAQ.
+- **Winners (due Nov 7).** When they're posted, set `EVENT_PHASE = 'results'` and fill `winners` in `src/content/content.ts`. The winners grid then renders, with 1st/2nd/3rd highlighted in `--glow-3`.
+- **Nov 7 date.** The Devpost overview shows "Winners announced soon" next to "Nov 7, 2026". I read that as the announcement date, with no time given.
+- **Workshops.** There's no workshop or speaker data on Devpost or in the repo, so this section is still left out.
 - **"Free" in the hero sub-line.** I didn't claim it: the rules page says entry fee terms live on Devpost.
 - **OG images** still show the pre-redesign cards. They are still truthful (dates, prizes), so I didn't regenerate them.
 - **Stay updated** links to biocataalysis.org. There's no Discord, Instagram or newsletter in the repo.
 
 ## Decisions
-- 2026-10-27: `EVENT_PHASE = 'results'`, because today is past the Oct 15 announcement date in `scheduleEvents`.
+- 2026-10-27: updated from the Devpost overview, pasted by Ryan. Changes: `EVENT_PHASE = 'judging'`; winners date moved from Oct 15 to Nov 7; 935 participants; added the 41 judges as section 08 People; the third criterion renamed "Health impact and rigor"; FAQ deadline and judging answers updated. Prizes and sponsors already matched.
 - Typography: the site has no serif; the headline face is **Clash Display**, which is kept. The lit phrase uses the browser's synthesized italic plus a `--glow-1` text-shadow. Mono stays **Spline Sans Mono** and body stays **Satoshi** (already self-hosted, so no new font requests).
 - Palette: the existing colours are now named `--abyss / --abyss-2 / --ink / --muted / --line / --glow-1 (lilac) / --glow-2 (magenta) / --glow-3 (lava)`; older names alias them.
 - Kept the multi-page site and its SEO plugin. The home page is the long scroll; `/compete/`, `/prizes/`, `/rules/` still exist, share the shell (and the organism), and are linked from the footer.

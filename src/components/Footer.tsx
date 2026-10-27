@@ -113,7 +113,7 @@ export function Footer() {
 
       <div className={`page ${styles.bottom}`}>
         <p className={`mono ${styles.copy}`}>&copy; {new Date().getFullYear()} UnivaBio</p>
-        <p className={`mono ${styles.copy}`}>Details follow Devpost. Checked 19 September 2026.</p>
+        <p className={`mono ${styles.copy}`}>Details follow Devpost. Checked 27 October 2026.</p>
         <p className={`mono ${styles.copy} ${styles.egg}`} aria-hidden="true">
           &gt; sequencing complete<span className={styles.caret}>▌</span>
         </p>

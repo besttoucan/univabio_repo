@@ -60,6 +60,11 @@ export interface Sponsor {
   logo?: string;
 }
 
+export interface Judge {
+  name: string;
+  role: string;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;
