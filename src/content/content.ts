@@ -1,7 +1,7 @@
 import type {
   EventPhase,
   FaqGroup,
-  Judge,
+  Person,
   JudgingCriterion,
   NavLink,
   Prize,
@@ -257,7 +257,7 @@ export const sponsors: Sponsor[] = [
 export const winners: Winner[] = [];
 
 /** As listed on the Devpost overview, in the same order. */
-export const judges: Judge[] = [
+export const judges: Person[] = [
   { name: "Sudheer Pratap", role: "Lead Software Engineer" },
   { name: "Aditya Shrivastava", role: "Software Engineer at Barclays" },
   { name: "Rupak Bose", role: "Lead Researcher @ Qen Labs Inc" },
@@ -299,6 +299,15 @@ export const judges: Judge[] = [
   { name: "Haripreeth Avarur", role: "Graduate Researcher and MS Computer Science, University of Michigan" },
   { name: "Aqsa Kanwal", role: "iCodeGuru Trainer & Community Moderator" },
   { name: "Sharoon Babu", role: "Lead AI Engineer at Gartner" },
+];
+
+// TODO: Ryan review. Placeholders until the organizing team's names and roles
+// are in; replace each entry, or add and remove entries as needed.
+export const staff: Person[] = [
+  { name: "Organizer name", role: "Founder, BioCataalysis" },
+  { name: "Organizer name", role: "Co-organizer, UnivaDev" },
+  { name: "Organizer name", role: "Sponsorships" },
+  { name: "Organizer name", role: "Operations" },
 ];
 
 export const faqGroups: FaqGroup[] = [

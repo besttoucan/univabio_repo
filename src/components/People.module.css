@@ -21,3 +21,7 @@
   line-height: 1.45;
   color: var(--faint);
 }
+
+.group {
+  margin: clamp(56px, 6vw, 88px) 0 24px;
+}

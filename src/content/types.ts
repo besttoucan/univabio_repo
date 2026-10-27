@@ -60,7 +60,7 @@ export interface Sponsor {
   logo?: string;
 }
 
-export interface Judge {
+export interface Person {
   name: string;
   role: string;
 }
