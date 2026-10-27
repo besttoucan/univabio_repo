@@ -20,7 +20,8 @@ export function Submit({ index = "01" }: { index?: string }) {
         <SectionHead
           index={index}
           id="submit-title"
-          title="Four files"
+          label="Submit"
+          title={<>Four <em>files.</em></>}
           lede="All of them uploaded to Devpost before the deadline. Miss one and the entry is incomplete."
         />
 

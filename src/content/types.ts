@@ -3,12 +3,6 @@ export interface NavLink {
   href: string;
 }
 
-export interface KeyFact {
-  label: string;
-  value: string;
-  note?: string;
-}
-
 export interface Stat {
   /** Raw number, so it can be counted up and formatted at render time. */
   value: number;
@@ -39,14 +33,16 @@ export interface ScheduleEvent {
   end?: string;
 }
 
+export type PrizeAward = "first" | "second" | "third" | "build" | "many";
+
 export interface Prize {
   rank: string;
   winners: string;
   /** Total sponsor-credit value of the tier, already summed. */
   value: number;
   items: string[];
-  /** Marks the tier that carries the amber accent. */
-  lead?: boolean;
+  /** Picks the award's colour and its mark: the three placings, then the two specials. */
+  award: PrizeAward;
 }
 
 export interface JudgingCriterion {
@@ -66,6 +62,13 @@ export interface Sponsor {
   logo?: string;
 }
 
+export interface Person {
+  name: string;
+  role: string;
+  /** Square headshot under /team. */
+  photo?: string;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -74,4 +77,16 @@ export interface FaqItem {
 export interface FaqGroup {
   title: string;
   items: FaqItem[];
+}
+
+export type EventPhase = "open" | "judging" | "results";
+
+export interface Winner {
+  project: string;
+  team: string;
+  prize: string;
+  track?: string;
+  href: string;
+  /** 1, 2 or 3 for the placed winners, which carry the highlight accent. */
+  place?: 1 | 2 | 3;
 }

@@ -65,26 +65,42 @@
 */
 
 :root {
-  /* palette */
-  --void: #0e0716;
-  --plum: #160d22;
-  --plum-2: #1d1130;
-  --grape: #2a1745;
-  --cream: #f4ecff;
-  --lilac: #c0a6ff;
-  --magenta: #ff5f8f;
-  --lava: #ff9142;
-  --coral: #ff5f8f;
-
-  /* themeable surface tokens */
-  --surface: transparent;
-  --text: var(--cream);
-  --text-soft: rgba(244, 236, 255, 0.74);
-  --text-mute: rgba(244, 236, 255, 0.52);
+  /* palette: the existing colours, named for what they do in the water */
+  --abyss: #0e0716;
+  --abyss-2: #160d22;
+  --abyss-3: #1d1130;
+  --ink: #f4ecff;
+  --muted: rgba(244, 236, 255, 0.74);
+  --faint: rgba(244, 236, 255, 0.52);
   --line: rgba(192, 166, 255, 0.2);
   --line-strong: rgba(192, 166, 255, 0.42);
-  --accent: var(--lilac);
-  --on-accent: var(--void);
+  /* glow colours are light sources: on dark, softened, never a large flat fill */
+  --glow-1: #c0a6ff;
+  --glow-2: #ff5f8f;
+  --glow-3: #ff9142;
+  --glass: rgba(22, 13, 34, 0.7);
+  /* medal tones, used only on the three placed awards */
+  --gold: #ffd36b;
+  --silver: #cfd3e6;
+  --bronze: #d98a5a;
+
+  /* older names, kept so every component reads from the same tokens */
+  --void: var(--abyss);
+  --plum: var(--abyss-2);
+  --plum-2: var(--abyss-3);
+  --grape: #2a1745;
+  --cream: var(--ink);
+  --lilac: var(--glow-1);
+  --magenta: var(--glow-2);
+  --lava: var(--glow-3);
+  --coral: var(--glow-2);
+
+  --surface: transparent;
+  --text: var(--ink);
+  --text-soft: var(--muted);
+  --text-mute: var(--faint);
+  --accent: var(--glow-1);
+  --on-accent: var(--abyss);
 
   /* type */
   --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
@@ -127,10 +143,8 @@ html {
 
 body {
   margin: 0;
-  /* A quiet tonal shift rather than a wash of colour: the accents and the
-     drawings carry the colour, the background stays out of their way. */
-  background: linear-gradient(180deg, #120a1d 0%, var(--void) 38%, #140b21 100%);
-  background-attachment: fixed;
+  /* Dark water. The organism and the plankton are the only light in it. */
+  background: var(--abyss);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 19px;
@@ -217,7 +231,49 @@ button {
 .section {
   position: relative;
   z-index: 1;
-  padding: var(--section-y) 0;
+  padding: calc(var(--section-y) / 2) 0;
+}
+
+/* Each section's content sits on a translucent panel, so the organism glows
+   through the layout instead of being covered by it. */
+.section > .page,
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section > .page {
+  padding-top: calc(var(--section-y) / 2);
+  padding-bottom: calc(var(--section-y) / 2);
+}
+
+/* The one place type lights up: the italic phrase in a headline. */
+h1 em,
+h2 em {
+  font-style: italic;
+  color: var(--glow-1);
+  text-shadow: 0 0 22px rgba(192, 166, 255, 0.45);
+}
+
+/* ONLINE · WORLDWIDE · ... */
+.metaStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.metaStrip > li + li::before {
+  content: "·";
+  margin: 0 0.9em;
+  color: var(--glow-1);
 }
 
 .sectionLine {
@@ -228,6 +284,7 @@ button {
 
 .eyebrow {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 14px;
   font-family: var(--font-mono);

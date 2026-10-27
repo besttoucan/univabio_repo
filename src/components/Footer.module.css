@@ -2,7 +2,32 @@
   position: relative;
   z-index: 1;
   border-top: 1px solid var(--line);
-  background: linear-gradient(rgba(14, 7, 22, 0.55), rgba(14, 7, 22, 0.92));
+  /* clear at the top so the fully lit network shows around the closing line */
+  background: linear-gradient(transparent 0%, rgba(14, 7, 22, 0.5) 45%, rgba(14, 7, 22, 0.9));
+}
+
+.next {
+  margin-bottom: 26px;
+}
+
+.egg {
+  color: var(--glow-1);
+}
+
+.caret {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
 }
 
 /* ---------- closing ---------- */
@@ -51,7 +76,7 @@
 
 .ctaNote {
   font-size: 1.02rem;
-  color: var(--text-mute);
+  color: var(--muted);
 }
 
 /* ---------- link columns ---------- */
@@ -121,7 +146,8 @@
   justify-content: space-between;
   gap: 10px 24px;
   padding-top: 26px;
-  padding-bottom: 34px;
+  /* clears the fixed CELLS readout in the bottom-left corner */
+  padding-bottom: 72px;
   border-top: 1px solid var(--line);
 }
 

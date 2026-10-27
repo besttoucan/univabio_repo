@@ -16,6 +16,7 @@
   right: -32px;
   height: 2px;
   background: var(--line);
+  border-radius: 2px;
 }
 
 .step:last-child .rail {
@@ -28,8 +29,9 @@
   left: 0;
   width: 16px;
   height: 16px;
-  background: var(--void);
-  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--abyss);
+  border: 1.5px solid var(--line-strong);
 }
 
 .state {
@@ -61,12 +63,14 @@
 /* ---------- phase states ---------- */
 
 .done .rail {
-  background: var(--line-strong);
+  background: var(--glow-1);
+  box-shadow: 0 0 10px rgba(192, 166, 255, 0.55);
 }
 
 .done .node {
-  background: var(--line-strong);
-  border-color: var(--line-strong);
+  background: radial-gradient(circle, var(--glow-1) 0 30%, transparent 70%);
+  border-color: var(--glow-1);
+  box-shadow: 0 0 12px rgba(192, 166, 255, 0.6);
 }
 
 .done .title,
@@ -75,12 +79,14 @@
 }
 
 .active .rail {
-  background: var(--magenta);
+  background: linear-gradient(90deg, var(--glow-2), var(--line));
+  box-shadow: 0 0 12px rgba(255, 95, 143, 0.5);
 }
 
 .active .node {
-  background: var(--magenta);
-  border-color: var(--magenta);
+  background: var(--glow-2);
+  border-color: var(--glow-2);
+  box-shadow: 0 0 16px var(--glow-2);
 }
 
 .active .state {

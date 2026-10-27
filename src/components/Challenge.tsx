@@ -5,12 +5,13 @@ import styles from "./Challenge.module.css";
 
 export function Challenge({ index = "01" }: { index?: string }) {
   return (
-    <section className="section" id="challenge" aria-labelledby="challenge-title">
+    <section className="section" id="theme" aria-labelledby="challenge-title">
       <div className="page">
         <SectionHead
           index={index}
           id="challenge-title"
-          title="The brief"
+          label="The theme · AI for human health"
+          title={<>The <em>brief.</em></>}
           lede="Build something that helps a person detect illness earlier, understand it better, or live with it more easily."
         />
 

@@ -14,12 +14,13 @@ export function Schedule({ index = "02" }: { index?: string }) {
   const { states } = useScheduleStatus(scheduleEvents);
 
   return (
-    <section className="section" id="schedule" aria-labelledby="schedule-title">
+    <section className="section" id="timeline" aria-labelledby="schedule-title">
       <div className="page">
         <SectionHead
           index={index}
           id="schedule-title"
-          title="The dates"
+          label="Timeline"
+          title={<>The <em>dates.</em></>}
           lede="All times Eastern. The marker below reads your clock, so it is always the current phase."
         />
 

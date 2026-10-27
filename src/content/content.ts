@@ -1,7 +1,8 @@
 import type {
+  EventPhase,
   FaqGroup,
+  Person,
   JudgingCriterion,
-  KeyFact,
   NavLink,
   Prize,
   RequirementItem,
@@ -9,6 +10,7 @@ import type {
   Sponsor,
   Stat,
   WhoPoint,
+  Winner,
 } from "./types";
 
 /*
@@ -20,26 +22,52 @@ import type {
 export const DEVPOST_URL = "https://univabio.devpost.com/";
 export const DEVPOST_RULES_URL = "https://univabio.devpost.com/rules";
 export const DEVPOST_DATES_URL = "https://univabio.devpost.com/details/dates";
+export const DEVPOST_GALLERY_URL = "https://univabio.devpost.com/project-gallery";
 export const BIOCATAALYSIS_URL = "https://biocataalysis.org";
 export const CONTACT_EMAIL = "biocataalysis@gmail.com";
 
 export const TAGLINE =
   "Biology needs builders. UnivaBio brings students worldwide together to build tools that make healthcare smarter, earlier, and more accessible.";
 
-/** The whole site: three pages plus home. Anything that does not earn a nav
-    slot lives in the footer. */
+/**
+ * Where the event stands. Copy and calls to action across the site switch on
+ * this one value. Devpost, checked Oct 27, 2026: the hackathon has ended and
+ * winners are "announced soon", dated Nov 7, 2026.
+ */
+export const EVENT_PHASE: EventPhase = "judging";
+
+export const phaseCta: Record<EventPhase, NavLink> = {
+  open: { label: "Register", href: DEVPOST_URL },
+  judging: { label: "See submissions", href: DEVPOST_GALLERY_URL },
+  results: { label: "See winners", href: DEVPOST_GALLERY_URL },
+};
+
+export const phaseChip: Record<EventPhase, string> = {
+  open: "Submissions open · Closes Oct 6",
+  judging: "Submissions closed Oct 6 · Judging in progress",
+  results: "Submissions closed Oct 6 · Winners announced Nov 7",
+};
+
+/** The home page reads top to bottom in this order. */
 export const navLinks: NavLink[] = [
+  { label: "About", href: "/#about" },
+  { label: "Theme", href: "/#theme" },
+  { label: "Results", href: "/#results" },
+  { label: "Prizes", href: "/#prizes" },
+  { label: "Timeline", href: "/#timeline" },
+  { label: "Sponsors", href: "/#sponsors" },
+  { label: "People", href: "/#people" },
+  { label: "FAQ", href: "/#faq" },
+];
+
+/** The standalone pages, linked from the footer. */
+export const pageLinks: NavLink[] = [
   { label: "Compete", href: "/compete/" },
   { label: "Prizes", href: "/prizes/" },
   { label: "Rules & FAQ", href: "/rules/" },
 ];
 
-export const heroFacts: KeyFact[] = [
-  { label: "Deadline", value: "Oct 6, 2026", note: "11:45pm EDT" },
-  { label: "Format", value: "Online", note: "Worldwide" },
-  { label: "Who", value: "Students 13+", note: "Solo or team" },
-  { label: "Enter at", value: "Devpost", note: "Open now" },
-];
+export const metaStrip = ["Online", "Worldwide", "Students 13+", "$40,000 in prizes"];
 
 export const stats: Stat[] = [
   { value: 40000, prefix: "$", label: "In sponsor prizes" },
@@ -117,17 +145,17 @@ export const scheduleEvents: ScheduleEvent[] = [
   {
     id: "judging",
     title: "Judging",
-    dateLabel: "Oct 7 to 14, 2026",
-    detail: "Every entry scored out of 25 points.",
+    dateLabel: "From Oct 7, 2026",
+    detail: "Every entry scored out of 25 points by a panel of 41 judges.",
     start: "2026-10-07T09:00:00-04:00",
-    end: "2026-10-14T23:45:00-04:00",
+    end: "2026-11-07T00:00:00-05:00",
   },
   {
     id: "winners",
     title: "Winners announced",
-    dateLabel: "Oct 15, 2026",
-    detail: "9:00am EDT, on the Devpost listing.",
-    start: "2026-10-15T09:00:00-04:00",
+    dateLabel: "Nov 7, 2026",
+    detail: "On the Devpost listing.",
+    start: "2026-11-07T00:00:00-05:00",
   },
 ];
 
@@ -136,7 +164,7 @@ export const prizes: Prize[] = [
     rank: "First place",
     winners: "1 winner",
     value: 3890,
-    lead: true,
+    award: "first",
     items: [
       "Momen credits, $2,000",
       "CodeCrafters two-year membership, $720",
@@ -149,6 +177,7 @@ export const prizes: Prize[] = [
     rank: "Second place",
     winners: "1 winner",
     value: 1355,
+    award: "second",
     items: [
       "CodeCrafters one-year membership, $360",
       "Adaption Labs credits, $800",
@@ -160,6 +189,7 @@ export const prizes: Prize[] = [
     rank: "Third place",
     winners: "1 winner",
     value: 1100,
+    award: "third",
     items: [
       "CodeCrafters six-month membership, $180",
       "Adaption Labs credits, $800",
@@ -171,12 +201,14 @@ export const prizes: Prize[] = [
     rank: "Best no-code AI app",
     winners: "1 winner, built with Momen",
     value: 2000,
+    award: "build",
     items: ["Momen credits, $2,000"],
   },
   {
     rank: "Tin Computer growth credit",
     winners: "100 winners",
     value: 29900,
+    award: "many",
     items: ["A $299 credit for each of 100 entrants"],
   },
 ];
@@ -193,9 +225,9 @@ export const judgingCriteria: JudgingCriterion[] = [
     description: "Does it work, and how hard was it to build?",
   },
   {
-    title: "Health impact",
+    title: "Health impact and rigor",
     points: 5,
-    description: "Who is it for, and is the claim credible?",
+    description: "Who is it for, would it actually help them, and is there real potential?",
   },
   {
     title: "Design and usability",
@@ -221,6 +253,65 @@ export const sponsors: Sponsor[] = [
   { name: "DevSwarm", href: "https://devswarm.ai", logo: "/sponsors/devswarm.png" },
   { name: "MeDo", href: "https://medo.dev/home", logo: "/sponsors/medo.png" },
   { name: ".xyz", href: "https://gen.xyz/", logo: "/sponsors/xyz.png" },
+];
+
+// TODO: Ryan review. The winning projects are not in this repo yet and Devpost
+// could not be read from here; until they are added, the results section links
+// to the Devpost gallery instead.
+export const winners: Winner[] = [];
+
+/** As listed on the Devpost overview, in the same order. */
+export const judges: Person[] = [
+  { name: "Sudheer Pratap", role: "Lead Software Engineer" },
+  { name: "Aditya Shrivastava", role: "Software Engineer at Barclays" },
+  { name: "Rupak Bose", role: "Lead Researcher @ Qen Labs Inc" },
+  { name: "Nilesh Dhage", role: "Director, Product Management" },
+  { name: "Gaurav Shah", role: "Director-Staff Engineer at Fidelity Investments" },
+  { name: "Yaokai Jiang", role: "Founder & CEO of Momen.app" },
+  { name: "Viraj Sabhaya", role: "Associate Software Engineer, Altera Digital Health" },
+  { name: "Vincent Vu", role: "Software Engineer at Paraform" },
+  { name: "Harris Bashir", role: "Data & AI Engineer, Kidoz" },
+  { name: "Anudeep Bonagiri", role: "CEO & Cofounder of Cruze Maps" },
+  { name: "Shrithik Senthilkumar", role: "COO & Co-founder, Cruze Maps" },
+  { name: "Gediminas Jurgis Pažėra", role: "AI Engineer" },
+  { name: "Sunil Divvela", role: "Senior Solutions Architect at Amazon Web Services (AWS)" },
+  { name: "Aatish Dhami", role: "Founding Engineer, StyleFrame AI" },
+  { name: "Andrew Silvanus", role: "Head of Sales & Partnerships at Bayosthiti AI" },
+  { name: "Vishal Punjabi", role: "Principal AI Scientist, SAP Labs" },
+  { name: "Alina Olefirenko", role: "CTO" },
+  { name: "Mohammad Haris Zia", role: "Founding Senior Product Engineer at Neurotone AI" },
+  { name: "Ratna Kumar Bonagiri", role: "Staff Software Engineer" },
+  { name: "Ankur Bhatnagar", role: "Enterprise Integration & API Architect" },
+  { name: "Kavitha Gopalakrishnan", role: "Senior Product Manager, Google Labs" },
+  { name: "Saiprasad Charudatta Shrikhande", role: "Senior Manager" },
+  { name: "Sanjay Singh", role: "Staff Software Engineer at LinkedIn" },
+  { name: "Somiya Khan", role: "Operations Engineer at Avantduo" },
+  { name: "Omer Dogan", role: "CEO & Managing Director, Mono Apps" },
+  { name: "Sonal Harsh", role: "Founder, Pavafetch" },
+  { name: "Ujwal Vanjare", role: "Software Engineer at BNSF Railway" },
+  { name: "Akshay Talathi", role: "Vice President of Software Engineering at Goldman Sachs" },
+  { name: "Roman Mukovnin", role: "CTO & Co-founder of TWIG AI" },
+  { name: "Dulra Amolegbe", role: "Co-founder | CEO, AgentStatus" },
+  { name: "Swapnil Gaikwad", role: "Senior Software Development Engineer, Amazon" },
+  { name: "Yeswant Kumar Babulalji", role: "Principal Consultant" },
+  { name: "Sandeep Vattikuti", role: "Principal Software Engineer" },
+  { name: "Ravi Shanker Thadishetti", role: "Senior Software Engineer at PayPal" },
+  { name: "Oguzhan Karaca", role: "Co-Founder/CEO at Derya (YC S26)" },
+  { name: "Dishank Jhaveri", role: "Software Engineer at Hippocratic AI" },
+  { name: "Devyendar Maganti", role: "Lead Platform Engineer at Prudential Financial" },
+  { name: "Bhagath Siddi", role: "Senior Engineering Manager" },
+  { name: "Haripreeth Avarur", role: "Graduate Researcher and MS Computer Science, University of Michigan" },
+  { name: "Aqsa Kanwal", role: "iCodeGuru Trainer & Community Moderator" },
+  { name: "Sharoon Babu", role: "Lead AI Engineer at Gartner" },
+];
+
+// Headshots come from each person's team page (stemise.org, univadev.com,
+// biocataalysis.org), resized to 320px squares.
+export const staff: Person[] = [
+  { name: "Ryan Ahn", role: "Lead Competition Director & Organizer", photo: "/team/ryan.jpg" },
+  { name: "Eldiiar Bekbolotov", role: "Organizer", photo: "/team/eldiiar.jpg" },
+  { name: "Aaron Yu", role: "Organizer", photo: "/team/aaron.jpg" },
+  { name: "Ofir Savir", role: "Organizer", photo: "/team/ofir.jpg" },
 ];
 
 export const faqGroups: FaqGroup[] = [
@@ -269,7 +360,8 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         question: "When is the deadline?",
-        answer: "October 6, 2026 at 11:45pm EDT. Judging runs the following week.",
+        answer:
+          "Submissions closed October 6, 2026 at 11:45pm EDT. Winners are due on Devpost on November 7, 2026.",
       },
     ],
   },
@@ -289,7 +381,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Who is judging?",
         answer:
-          "The judging panel is listed on the Devpost page. Scoring uses the five criteria on this page, five points each.",
+          "A panel of 41 engineers, researchers, founders and product leaders, listed on this site and on Devpost. Scoring uses the five criteria on this page, five points each.",
       },
     ],
   },
