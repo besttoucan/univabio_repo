@@ -1,123 +1,180 @@
+/* A thin OS menubar, like a lab workstation's top bar. */
 .bar {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(14, 7, 22, 0.86);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(245, 243, 236, 0.85);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: var(--outline);
 }
 
 .inner {
   display: flex;
   align-items: center;
-  gap: 40px;
-  height: 84px;
+  gap: 28px;
+  height: 52px;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
   color: var(--cream);
   font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .mark {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
   color: var(--lilac);
 }
 
 .links {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 4px;
+}
+
+.links a,
+.sheet a:not(:global(.btn)) {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.links a:hover,
+.links a.current,
+.sheet a:not(:global(.btn)):hover {
+  color: var(--ink);
+  background: var(--tint-lilac);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   margin-left: auto;
 }
 
-.links a {
-  position: relative;
-  color: var(--text-soft);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 8px 0;
-  transition: color 0.2s ease;
+/* a tiny signal meter, the reference's now-playing bars in the glow colours */
+.live {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
 }
 
-.links a:hover {
-  color: var(--cream);
+.live i {
+  width: 2.5px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--glow-2);
+  transform-origin: bottom;
+  animation: eq 1s ease-in-out infinite alternate;
 }
 
-/* underline grows from the left, and stays put on the current page */
-.links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--glow-1);
-  box-shadow: 0 0 10px var(--glow-1);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.25s cubic-bezier(0.16, 0.84, 0.28, 1);
-}
+.live i:nth-child(2) { animation-delay: 0.15s; background: var(--glow-1); }
+.live i:nth-child(3) { animation-delay: 0.3s; background: var(--glow-3); }
+.live i:nth-child(4) { animation-delay: 0.45s; background: var(--glow-4); }
 
-/* Qualified with .links a so it outranks the collapsed default above. */
-.links a:hover::after,
-.links a.current::after {
-  transform: scaleX(1);
-}
-
-.links a.current {
-  color: var(--cream);
+@keyframes eq {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0.3); }
 }
 
 .cta {
   flex-shrink: 0;
 }
 
+.toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+}
+
+.toggle span {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cream);
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.25, 1), opacity 0.2s;
+}
+
+.toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: calc(100svh - 52px);
+  overflow-y: auto;
+  padding: 8px var(--gutter) 18px;
+  border-top: 1px dashed var(--line-strong);
+  background: var(--paper);
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheet a:not(:global(.btn)) {
+  padding: 13px 10px;
+  font-size: 1.05rem;
+}
+
+.sheet :global(.btn) {
+  margin-top: 10px;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .links a::after {
+  .live i,
+  .toggle span {
+    animation: none;
     transition: none;
   }
 }
 
 @media (max-width: 1180px) {
-  .inner {
-    height: auto;
-    min-height: 68px;
-    gap: 14px 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    flex-wrap: wrap;
-  }
-  .links {
-    order: 3;
-    width: 100%;
-    margin-left: 0;
-    gap: 26px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .links::-webkit-scrollbar {
+  .links,
+  .live {
     display: none;
   }
-  .links a {
-    white-space: nowrap;
-    padding: 13px 0;
+  .toggle {
+    display: flex;
   }
+}
+
+@media (min-width: 1181px) {
+  .sheet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 560px) {
   .cta {
-    margin-left: auto;
+    display: none;
   }
 }
