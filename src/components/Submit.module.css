@@ -9,12 +9,12 @@
 .card {
   position: relative;
   padding: clamp(28px, 2.6vw, 42px);
-  background: rgba(14, 7, 22, 0.72);
+  background: var(--paper-2);
   transition: background-color 0.35s ease;
 }
 
 .card:hover {
-  background: rgba(42, 23, 69, 0.82);
+  background: var(--tint-lilac);
 }
 
 .icon {

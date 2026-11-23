@@ -9,8 +9,10 @@
   position: sticky;
   top: 116px;
   padding: 32px;
-  border: 1px solid var(--line-strong);
-  background: rgba(14, 7, 22, 0.72);
+  border: var(--outline);
+  border-radius: var(--win-radius);
+  background: var(--paper-2);
+  box-shadow: var(--pop);
 }
 
 .railTitle {

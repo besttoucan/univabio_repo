@@ -45,7 +45,7 @@
   margin-top: clamp(70px, 8vw, 110px);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: rgba(17, 10, 27, 0.94);
+  background: var(--paper-2);
   overflow: hidden;
 }
 

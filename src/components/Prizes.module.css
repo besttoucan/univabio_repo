@@ -1,23 +1,23 @@
 /* Each award sets --tone; everything coloured inside a card reads from it. */
 .first {
   --tone: var(--gold);
-  --halo: rgba(255, 211, 107, 0.16);
+  --halo: #fff3c9;
 }
 .second {
   --tone: var(--silver);
-  --halo: rgba(207, 211, 230, 0.12);
+  --halo: #eceef4;
 }
 .third {
   --tone: var(--bronze);
-  --halo: rgba(217, 138, 90, 0.14);
+  --halo: #fbe3d3;
 }
 .build {
   --tone: var(--glow-1);
-  --halo: rgba(192, 166, 255, 0.14);
+  --halo: var(--tint-lilac);
 }
 .many {
   --tone: var(--glow-2);
-  --halo: rgba(255, 95, 143, 0.13);
+  --halo: var(--tint-pink);
 }
 
 .podium,
@@ -42,9 +42,11 @@
 .award {
   position: relative;
   padding: 28px 28px 32px;
-  border: 1px solid var(--line);
-  border-top: 2px solid var(--tone);
-  background: radial-gradient(120% 70% at 0% 0%, var(--halo), transparent 70%);
+  border: var(--outline);
+  border-top: 6px solid var(--tone);
+  border-radius: 14px;
+  background: linear-gradient(var(--halo), var(--paper-2) 70%);
+  box-shadow: var(--pop);
 }
 
 .head {
@@ -58,7 +60,6 @@
   width: 64px;
   height: 64px;
   color: var(--tone);
-  filter: drop-shadow(0 0 10px var(--halo)) drop-shadow(0 0 4px var(--halo));
 }
 
 .first .mark {
@@ -92,7 +93,6 @@
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--tone);
-  text-shadow: 0 0 22px var(--halo);
 }
 
 .first .value {
