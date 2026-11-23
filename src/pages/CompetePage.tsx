@@ -11,7 +11,7 @@ export function CompetePage() {
       <PageHeader
         kicker="Submissions close Oct 6, 2026"
         title="How to enter"
-        lede="Four files, two months to build them, twenty-five points on the scorecard."
+        lede="Four files, two months to build them, twenty-five points on the rubric."
       />
       <Submit index="01" />
       <Schedule index="02" />

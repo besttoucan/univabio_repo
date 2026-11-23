@@ -10,7 +10,6 @@ export function Challenge({ index = "01" }: { index?: string }) {
         <SectionHead
           index={index}
           id="challenge-title"
-          label="The theme · AI for human health"
           title={<>The <em>brief.</em></>}
           lede="Build something that helps a person detect illness earlier, understand it better, or live with it more easily."
         />

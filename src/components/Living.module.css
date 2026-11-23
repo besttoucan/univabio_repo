@@ -15,9 +15,13 @@
   bottom: 16px;
   z-index: 30;
   margin: 0;
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  background: var(--glass);
+  padding: 6px 12px;
+  border: var(--outline);
+  border-radius: 999px;
+  background: var(--paper-2);
+  box-shadow: var(--pop-sm);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   color: var(--muted);
@@ -26,4 +30,11 @@
 
 .readout span {
   color: var(--glow-1);
+}
+
+/* on a phone it would sit over the text you are reading */
+@media (max-width: 700px) {
+  .readout {
+    display: none;
+  }
 }

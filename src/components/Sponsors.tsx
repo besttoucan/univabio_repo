@@ -14,41 +14,40 @@ export function Sponsors({ index = "02" }: { index?: string }) {
         <SectionHead
           index={index}
           id="sponsors-title"
-          label="Sponsors"
-          title={<>Who put it <em>up.</em></>}
+          title="Sponsors."
           lede="Every prize on this page is credit, tooling, or membership put up by one of these companies."
         />
-      </div>
 
-      <div className={`${styles.ticker} ${reducedMotion ? styles.tickerStill : ""}`}>
-        <ul className={styles.track} aria-label="Sponsors">
-          {run.map((sponsor, i) => {
-            const duplicate = i >= sponsors.length;
-            return (
-              <li className={styles.item} key={`${sponsor.name}-${i}`} aria-hidden={duplicate || undefined}>
-                <a
-                  className={styles.link}
-                  href={sponsor.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  tabIndex={duplicate ? -1 : undefined}
-                >
-                  {sponsor.logo ? (
-                    <img
-                      className={styles.logo}
-                      src={sponsor.logo}
-                      alt={`${sponsor.name} logo`}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <span className={styles.wordmark}>{sponsor.name}</span>
-                  )}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        <div className={`${styles.ticker} ${reducedMotion ? styles.tickerStill : ""}`}>
+          <ul className={styles.track} aria-label="Sponsors">
+            {run.map((sponsor, i) => {
+              const duplicate = i >= sponsors.length;
+              return (
+                <li className={styles.item} key={`${sponsor.name}-${i}`} aria-hidden={duplicate || undefined}>
+                  <a
+                    className={styles.link}
+                    href={sponsor.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={duplicate ? -1 : undefined}
+                  >
+                    {sponsor.logo ? (
+                      <img
+                        className={styles.logo}
+                        src={sponsor.logo}
+                        alt={`${sponsor.name} logo`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <span className={styles.wordmark}>{sponsor.name}</span>
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </section>
   );

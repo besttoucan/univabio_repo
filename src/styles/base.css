@@ -1,94 +1,56 @@
-/* Self-hosted so the page makes no third-party request for type, and so the
-   fonts cannot change under us. Clash Display and Satoshi are Fontshare
-   (ITF Free Font License); Spline Sans Mono is SIL OFL. */
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/clash-500.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/clash-600.woff2") format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Clash Display";
-  src: url("/fonts/clash-700.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/satoshi-400.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/satoshi-500.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/satoshi-700.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Spline Sans Mono";
-  src: url("/fonts/mono-400.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Spline Sans Mono";
-  src: url("/fonts/mono-500.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-
 /*
-  UnivaBio design tokens.
+  UnivaBio design tokens: "lab notebook".
 
-  Dark plum base, no background effect: the drawings, the type and the accents
-  carry the page. Three accents, each with one job:
-    lilac    structure, rules, the drawing, section numbers
-    magenta  live state, the base pairs, anything happening now
-    lava     money, deadlines, first place, the primary call to action
+  Paper and ink, like the bench notebook a biologist sketches in. Cartoon
+  outlines (solid ink borders, hard offset shadows), graph-paper dots, and
+  pastel window tints carry the bio/techy feel. Accents, each with one job:
+    violet   structure, the drawing, section numbers
+    magenta  live state, anything happening now
+    orange   money, deadlines, first place, the primary call to action
+    green    done, ok, alive
 
-  Type: Clash Display for headings, Satoshi for body, Spline Sans Mono for
-  data. All three are self-hosted; none of them is a default any AI tool
-  reaches for.
+  Type: Bricolage Grotesque for headings, Inter for body, Geist Mono for
+  data.
 */
 
 :root {
-  /* palette: the existing colours, named for what they do in the water */
-  --abyss: #0e0716;
-  --abyss-2: #160d22;
-  --abyss-3: #1d1130;
-  --ink: #f4ecff;
-  --muted: rgba(244, 236, 255, 0.74);
-  --faint: rgba(244, 236, 255, 0.52);
-  --line: rgba(192, 166, 255, 0.2);
-  --line-strong: rgba(192, 166, 255, 0.42);
-  /* glow colours are light sources: on dark, softened, never a large flat fill */
-  --glow-1: #c0a6ff;
-  --glow-2: #ff5f8f;
-  --glow-3: #ff9142;
-  --glass: rgba(22, 13, 34, 0.7);
+  --paper: #f5f3ec;
+  --paper-2: #fffdf8;
+  --paper-3: #ece8dd;
+  --ink: #17131f;
+  --muted: rgba(23, 19, 31, 0.74);
+  --faint: rgba(23, 19, 31, 0.55);
+  --line: rgba(23, 19, 31, 0.14);
+  --line-strong: rgba(23, 19, 31, 0.78);
+  --outline: 1.5px solid var(--ink);
+  --pop: 4px 4px 0 var(--ink);
+  --pop-sm: 2px 2px 0 var(--ink);
+  /* accents, dark enough to read as text on paper (canvas reads these too) */
+  --glow-1: #7048e8;
+  --glow-2: #e0367a;
+  --glow-3: #f0650f;
+  --glow-4: #10a36b;
+  --glass: rgba(255, 253, 248, 0.92);
+  /* pastel window tints */
+  --tint-mint: #c9f2dc;
+  --tint-lilac: #e2d8ff;
+  --tint-peach: #ffdcc4;
+  --tint-pink: #ffd3e4;
+  --tint-sky: #cfe8ff;
+  --tint-lemon: #fff1b0;
   /* medal tones, used only on the three placed awards */
-  --gold: #ffd36b;
-  --silver: #cfd3e6;
-  --bronze: #d98a5a;
+  --gold: #b88700;
+  --silver: #6d7487;
+  --bronze: #b0602f;
 
   /* older names, kept so every component reads from the same tokens */
-  --void: var(--abyss);
-  --plum: var(--abyss-2);
-  --plum-2: var(--abyss-3);
-  --grape: #2a1745;
+  --abyss: var(--paper);
+  --abyss-2: var(--paper-2);
+  --abyss-3: var(--paper-3);
+  --void: var(--ink);
+  --plum: var(--paper-2);
+  --plum-2: var(--paper-3);
+  --grape: var(--tint-lilac);
   --cream: var(--ink);
   --lilac: var(--glow-1);
   --magenta: var(--glow-2);
@@ -100,23 +62,26 @@
   --text-soft: var(--muted);
   --text-mute: var(--faint);
   --accent: var(--glow-1);
-  --on-accent: var(--abyss);
+  --on-accent: var(--ink);
 
   /* type */
-  --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Satoshi", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Spline Sans Mono", ui-monospace, Menlo, monospace;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
 
   /* rhythm */
   --page: 1320px;
   --gutter: 44px;
-  --section-y: clamp(80px, 8.5vw, 136px);
+  --section-y: clamp(64px, 8vw, 128px);
+  --win-inset: clamp(10px, 2vw, 24px);
+  --win-radius: 16px;
+  --titlebar: 36px;
 }
 
 /* A panel that sits over the lamp: used where a block of text needs the
    background held still behind it. */
 .panel {
-  background: linear-gradient(rgba(14, 7, 22, 0.82), rgba(14, 7, 22, 0.88));
+  background: var(--glass);
 }
 
 .panel--solid {
@@ -143,11 +108,13 @@ html {
 
 body {
   margin: 0;
-  /* Dark water. The organism and the plankton are the only light in it. */
-  background: var(--abyss);
+  /* Graph paper: a dot grid on warm paper, under the living drawing. */
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(23, 19, 31, 0.13) 1.1px, transparent 1.4px);
+  background-size: 22px 22px;
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.58;
   font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
@@ -159,9 +126,9 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   color: var(--text);
   text-wrap: balance;
 }
@@ -215,8 +182,8 @@ button {
 }
 
 ::selection {
-  background: var(--magenta);
-  color: var(--void);
+  background: var(--tint-lemon);
+  color: var(--ink);
 }
 
 /* ---------- layout ---------- */
@@ -234,28 +201,68 @@ button {
   padding: calc(var(--section-y) / 2) 0;
 }
 
-/* Each section's content sits on a translucent panel, so the organism glows
-   through the layout instead of being covered by it. */
+/* "UnivaBio OS": every section is a cartoon lab window on the notebook page.
+   Titlebar, tint and its three outlined lights are drawn in CSS so no
+   component needs extra markup. Tints cycle section by section. */
 .section > .page,
 .glass {
-  background: var(--glass);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: var(--paper-2);
+  border: var(--outline);
 }
 
 .section > .page {
-  padding-top: calc(var(--section-y) / 2);
+  --tint: var(--tint-lilac);
+  position: relative;
+  width: calc(100% - 2 * var(--win-inset));
+  max-width: calc(var(--page) - 2 * var(--win-inset));
+  border-radius: var(--win-radius);
+  padding-top: calc(var(--section-y) / 2 + var(--titlebar));
   padding-bottom: calc(var(--section-y) / 2);
+  box-shadow: var(--pop);
 }
 
-/* The one place type lights up: the italic phrase in a headline. */
+main > .section:nth-of-type(6n + 1) > .page { --tint: var(--tint-mint); }
+main > .section:nth-of-type(6n + 2) > .page { --tint: var(--tint-lilac); }
+main > .section:nth-of-type(6n + 3) > .page { --tint: var(--tint-peach); }
+main > .section:nth-of-type(6n + 4) > .page { --tint: var(--tint-sky); }
+main > .section:nth-of-type(6n + 5) > .page { --tint: var(--tint-pink); }
+main > .section:nth-of-type(6n + 6) > .page { --tint: var(--tint-lemon); }
+
+.section > .page::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--titlebar);
+  border-radius: calc(var(--win-radius) - 1.5px) calc(var(--win-radius) - 1.5px) 0 0;
+  border-bottom: var(--outline);
+  background:
+    radial-gradient(circle 6.5px at 20px 50%, var(--glow-2) 4.6px, var(--ink) 5px 6px, transparent 6.5px),
+    radial-gradient(circle 6.5px at 40px 50%, var(--glow-3) 4.6px, var(--ink) 5px 6px, transparent 6.5px),
+    radial-gradient(circle 6.5px at 60px 50%, var(--glow-4) 4.6px, var(--ink) 5px 6px, transparent 6.5px),
+    var(--tint);
+}
+
+/* Sticker pill: a filename, a status, a kicker. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 30px;
+  padding: 3px 14px;
+  border: var(--outline);
+  border-radius: 999px;
+  background: var(--paper-2);
+  box-shadow: var(--pop-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+/* Headlines are set plain: the <em> in them carries no visual emphasis. */
 h1 em,
 h2 em {
-  font-style: italic;
-  color: var(--glow-1);
-  text-shadow: 0 0 22px rgba(192, 166, 255, 0.45);
+  font-style: normal;
 }
 
 /* ONLINE · WORLDWIDE · ... */
@@ -325,45 +332,51 @@ h2 em {
 
 /* ---------- buttons ---------- */
 
+/* Cartoon buttons: solid fill, ink outline, a hard shadow they press into. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 40px;
-  border: 2px solid var(--lava);
-  border-radius: 2px;
-  background: var(--lava);
-  color: var(--void);
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--glow-3);
+  box-shadow: var(--pop);
+  color: var(--ink);
   font-family: var(--font-body);
-  font-size: 1.08rem;
-  font-weight: 600;
+  font-size: 1.02rem;
+  font-weight: 700;
   letter-spacing: -0.01em;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .btn:hover {
-  background: transparent;
-  color: var(--lava);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
 }
 
 .btn--line {
-  background: transparent;
-  color: var(--text);
-  border-color: var(--line-strong);
-}
-
-.btn--line:hover {
-  background: transparent;
-  border-color: var(--cream);
-  color: var(--cream);
+  background: var(--paper-2);
 }
 
 .btn--small {
-  padding: 12px 24px;
-  font-size: 0.98rem;
-  border-width: 1.5px;
+  min-height: 36px;
+  padding: 0 16px;
+  font-size: 0.9rem;
+  box-shadow: var(--pop-sm);
+}
+
+.btn--small:hover {
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
 .skipLink {
@@ -372,7 +385,7 @@ h2 em {
   top: 0;
   z-index: 100;
   background: var(--lava);
-  color: var(--void);
+  color: var(--ink);
   padding: 14px 20px;
 }
 
@@ -383,7 +396,9 @@ h2 em {
 
 @media (max-width: 900px) {
   :root {
-    --gutter: 22px;
+    --gutter: 18px;
+    --win-radius: 12px;
+    --titlebar: 30px;
   }
   body {
     font-size: 17px;
