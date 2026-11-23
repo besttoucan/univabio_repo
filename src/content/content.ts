@@ -31,10 +31,10 @@ export const TAGLINE =
 
 /**
  * Where the event stands. Copy and calls to action across the site switch on
- * this one value. Devpost, checked Oct 27, 2026: the hackathon has ended and
- * winners are "announced soon", dated Nov 7, 2026.
+ * this one value. Winners were dated Nov 7, 2026 on Devpost; as of Nov 23 the
+ * event is past that date, so the site points at the winners.
  */
-export const EVENT_PHASE: EventPhase = "judging";
+export const EVENT_PHASE: EventPhase = "results";
 
 export const phaseCta: Record<EventPhase, NavLink> = {
   open: { label: "Register", href: DEVPOST_URL },
@@ -69,11 +69,13 @@ export const pageLinks: NavLink[] = [
 
 export const metaStrip = ["Online", "Worldwide", "Students 13+", "$40,000 in prizes"];
 
+// TODO: Ryan review. Devpost refuses automated reads, so these are the last
+// figures sourced from the listing. Add the final submission count here.
 export const stats: Stat[] = [
+  { value: 935, label: "Participants" },
   { value: 40000, prefix: "$", label: "In sponsor prizes" },
   { value: 104, label: "Entrants win something" },
-  { value: 60, label: "Days to build it" },
-  { value: 25, label: "Points on the scorecard" },
+  { value: 41, label: "Judges on the panel" },
 ];
 
 export const challengeExamples: string[] = [
