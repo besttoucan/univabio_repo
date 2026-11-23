@@ -10,7 +10,6 @@ export function Faq({ index = "02" }: { index?: string }) {
         <SectionHead
           index={index}
           id="faq-title"
-          label="FAQ"
           title={<>Questions, <em>answered.</em></>}
           lede={
             <>

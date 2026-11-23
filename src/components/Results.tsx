@@ -16,7 +16,6 @@ export function Results({ index = "03" }: { index?: string }) {
         <SectionHead
           index={index}
           id="results-title"
-          label={results ? "Results" : "Submissions"}
           title={results ? <>What students <em>grew.</em></> : <>Submissions are <em>in.</em></>}
           lede={
             results

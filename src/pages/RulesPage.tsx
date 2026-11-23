@@ -34,7 +34,6 @@ export function RulesPage() {
           <SectionHead
             index="01"
             id="rules-title"
-            label="Rules"
             title={<>The <em>rules.</em></>}
             lede="Who can enter, what counts as an entry, and what the listing keeps to itself."
           />

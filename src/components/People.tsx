@@ -10,7 +10,6 @@ export function People({ index = "08" }: { index?: string }) {
         <SectionHead
           index={index}
           id="people-title"
-          label="People"
           title={<>The <em>judges.</em></>}
           lede={`${judges.length} engineers, researchers, founders and product leaders score every entry.`}
         />

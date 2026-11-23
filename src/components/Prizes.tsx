@@ -34,8 +34,7 @@ export function Prizes({ index = "01" }: { index?: string }) {
         <SectionHead
           index={index}
           id="prizes-title"
-          label="Prizes"
-          title={<>The <em>tiers.</em></>}
+          title="Prizes."
           lede="First place takes the largest single share. The Tin Computer credit is the widest, reaching 100 entrants."
         />
 

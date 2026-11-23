@@ -19,8 +19,7 @@ export function Schedule({ index = "02" }: { index?: string }) {
         <SectionHead
           index={index}
           id="schedule-title"
-          label="Timeline"
-          title={<>The <em>dates.</em></>}
+          title="Timeline."
           lede="All times Eastern. The marker below reads your clock, so it is always the current phase."
         />
 

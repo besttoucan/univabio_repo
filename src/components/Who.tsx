@@ -10,9 +10,8 @@ export function Who({ index = "02" }: { index?: string }) {
         <SectionHead
           index={index}
           id="who-title"
-          label="What is UnivaBio"
           title={<>Who it is <em>for.</em></>}
-          lede="935 students registered on Devpost."
+          lede="First-timers to researchers, in every time zone."
         />
 
         <ul className={styles.grid}>
