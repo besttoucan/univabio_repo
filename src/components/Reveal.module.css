@@ -41,6 +41,10 @@
 .wipe.in {
   opacity: 1;
   transform: none;
+}
+
+/* only the wipe animates a clip; on .rise it would crop shadows and stickers */
+.wipe.in {
   clip-path: inset(0 0 0 0);
 }
 
