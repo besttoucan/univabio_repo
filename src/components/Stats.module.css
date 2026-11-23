@@ -6,7 +6,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -25,6 +25,7 @@
 .cell:nth-child(2) { background: var(--tint-peach); }
 .cell:nth-child(3) { background: var(--tint-lilac); }
 .cell:nth-child(4) { background: var(--tint-sky); }
+.cell:nth-child(5) { background: var(--tint-pink); }
 
 /* the hairline that draws itself across each column */
 .rule {
@@ -36,7 +37,7 @@
   color: var(--line-strong);
 }
 
-.cell:nth-child(2) .rule {
+.cell:nth-child(4) .rule {
   color: var(--lava);
 }
 
@@ -44,7 +45,7 @@
   position: relative;
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.2vw, 3.8rem);
+  font-size: clamp(2rem, 3.6vw, 3.3rem);
   white-space: nowrap;
   font-weight: 700;
   line-height: 0.9;
@@ -52,7 +53,7 @@
   color: var(--cream);
 }
 
-.cell:nth-child(2) .value {
+.cell:nth-child(4) .value {
   color: var(--lava);
 }
 
@@ -67,10 +68,14 @@
 @media (max-width: 900px) {
   .row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: 14px;
   }
   .cell {
     padding: 20px 16px 16px;
+  }
+  /* five tiles in two columns: the headline figure takes the full first row */
+  .cell:first-child {
+    grid-column: 1 / -1;
   }
   .label {
     font-size: 0.92rem;

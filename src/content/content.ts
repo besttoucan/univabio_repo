@@ -69,12 +69,13 @@ export const pageLinks: NavLink[] = [
 
 export const metaStrip = ["Online", "Worldwide", "Students 13+", "$40,000 in prizes"];
 
-// TODO: Ryan review. Devpost refuses automated reads, so these are the last
-// figures sourced from the listing. Add the final submission count here.
+// Projects from the organizers; countries from the Devpost country breakdown
+// export of Nov 23, 2026: 84 rows, less "unknown" and a duplicate Thailand.
 export const stats: Stat[] = [
   { value: 935, label: "Participants" },
+  { value: 243, label: "Projects built" },
+  { value: 82, label: "Countries" },
   { value: 40000, prefix: "$", label: "In sponsor prizes" },
-  { value: 104, label: "Entrants win something" },
   { value: 41, label: "Judges on the panel" },
 ];
 
